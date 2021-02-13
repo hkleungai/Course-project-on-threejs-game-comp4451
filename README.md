@@ -1,0 +1,3 @@
+# COMP4451
+
+This is the repository for the game project in COMP4451. Details to be added...
