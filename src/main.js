@@ -1,92 +1,40 @@
 "use strict";
 
 const __main__ = async () => {
-  // Dynamic Imports is needed since there are template strings used here.
   // Reasons for having dynamic imports with templates strings.
-  // -  Path like `three/examples/...` in official doc
-  //    can be immediately copied and replaced by `${THREE}/examples/...`.
+  // -  Paths like `three/examples/...` can be copied and replaced by `${THREE}/examples/...`.
   // -  Constants, like `THREE`, for module urls can be extracted
   //    and placed in another separate file for management.
   // P.s. Normally people manage module with nodejs support,
-  //      but for now I think is better make everything minimal and ugly :)
+  //      but for now I think it is better make everything minimal and ugly :)
+  // And as common practice, index files are (and would be) used extensively.
   const {
     THREE,
     THREE_BUILD,
-  } = await import('../utils/constants.js');
+    randint,
+    range,
+  } = await import('./utils/index.js');
   const {
     AmbientLight,
+    Box3,
     Color,
     DirectionalLight,
     MeshPhongMaterial,
     PerspectiveCamera,
     Scene,
-    TextureLoader,
     WebGLRenderer,
+    Vector3,
     sRGBEncoding,
   } = await import(THREE_BUILD);
   const { GLTFLoader } = await import(`${THREE}/examples/jsm/loaders/GLTFLoader.js`);
   const { OrbitControls } = await import(`${THREE}/examples/jsm/controls/OrbitControls.js`)
-
-  const boundary = new TextureLoader().load('./tiles/boundary.png');
-  const city_blue = new TextureLoader().load('./tiles/city_blue.png');
-  const city_green = new TextureLoader().load('./tiles/city_green.png');
-  const city_red = new TextureLoader().load('./tiles/city_red.png');
-  const city_yellow = new TextureLoader().load('./tiles/city_yellow.png');
-  const desert = new TextureLoader().load('./tiles/desert.png');
-  const forest = new TextureLoader().load('./tiles/forest.png');
-  const grassland = new TextureLoader().load('./tiles/grassland.png');
-  const hills = new TextureLoader().load('./tiles/hills.png');
-  const jungle = new TextureLoader().load('./tiles/jungle.png');
-  const metropolis_blue = new TextureLoader().load('./tiles/metropolis_blue.png');
-  const metropolis_green = new TextureLoader().load('./tiles/metropolis_green.png');
-  const metropolis_red = new TextureLoader().load('./tiles/metropolis_red.png');
-  const metropolis_yellow = new TextureLoader().load('./tiles/metropolis_yellow.png');
-  const mountains = new TextureLoader().load('./tiles/mountains.png');
-  const plains = new TextureLoader().load('./tiles/plains.png');
-  const ridge = new TextureLoader().load('./tiles/ridge.png');
-  const river = new TextureLoader().load('./tiles/river.png');
-  const rocks = new TextureLoader().load('./tiles/rocks.png');
-  const stream = new TextureLoader().load('./tiles/stream.png');
-  const suburb_blue = new TextureLoader().load('./tiles/suburb_blue.png');
-  const suburb_green = new TextureLoader().load('./tiles/suburb_green.png');
-  const suburb_red = new TextureLoader().load('./tiles/suburb_red.png');
-  const suburb_yellow = new TextureLoader().load('./tiles/suburb_yellow.png');
-  const swamp = new TextureLoader().load('./tiles/swamp.png');
-
-  const textures = [
-    boundary,
-    city_blue,
-    city_green,
-    city_red,
-    city_yellow,
-    desert,
-    forest,
-    grassland,
-    hills,
-    jungle,
-    metropolis_blue,
-    metropolis_green,
-    metropolis_red,
-    metropolis_yellow,
-    mountains,
-    plains,
-    ridge,
-    river,
-    rocks,
-    stream,
-    suburb_blue,
-    suburb_green,
-    suburb_red,
-    suburb_yellow,
-    swamp,
-  ];
+  const textures = await (await import('./resources/index.js')).textures_promise();
 
   const scene = new Scene();
-
   scene.background = new Color(0x000000);
+  // Lighting seems optional for now, just as placeholder here.
   const ambientLight = new AmbientLight(0xffffff, 0.4);
   scene.add(ambientLight);
-
   const directionalLight = new DirectionalLight(0xffffff, 0.8);
   directionalLight.position.set(0,1,0);
   directionalLight.castShadow = true;
@@ -98,40 +46,66 @@ const __main__ = async () => {
   document.body.appendChild(renderer.domElement);
 
   const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(1, 1, 15);
+  camera.position.set(0, 0, 15);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.addEventListener('change', renderer);
 
-  // TODO: Put it to utils
-  const randint_bounded_by = bound => Math.floor(Math.random() * bound * 2 - bound);
-
   const loader = new GLTFLoader();
-  textures.forEach(texture => {
-    // texture.encoding = sRGBEncoding;
-    // texture.flipY = false;
+  const textures_entries = Object.entries(textures);
 
-    loader.load('./raw.glb', gltf => {
-      gltf.scene.traverse(child => {
-        if (child.isMesh) {
-          child.material = new MeshPhongMaterial({
-            map: texture,
-            // color: 0xffffff,
+  // Inspired by https://jsfiddle.net/prisoner849/jzLdcemb/
+  // from https://discourse.threejs.org/t/hexagonal-grid-formation/18396
+  const circle_count = 4; // Param that determines the number of "layer"
+  let unit = -1;
+  const angle = Math.PI / 3;
+  const axis = new Vector3(0, 0, 1);
+  const axis_vector = unit => new Vector3(0, -unit, 0);
+  const side_vector = unit => new Vector3(0, unit, 0).applyAxisAngle(axis, -angle);
+  [false, true].forEach(is_origin_occupied => {
+    range(6).forEach(turn => {
+      range(circle_count).forEach(scaling => {
+        range(scaling + 1).forEach(bias => {
+          const [_, texture] = textures_entries[randint(textures_entries.length)];
+          loader.load('../assets/blends/raw.glb', gltf => {
+            gltf.scene.traverse(child => {
+              if (child.isMesh) {
+                if (unit === -1) {
+                  const box = new Box3().setFromObject( child );
+                  unit = box.getSize().x;
+                }
+
+                child.material = new MeshPhongMaterial({
+                  map: texture,
+                  // envMap: texture,
+                  // normalMap: texture,
+                  // color: 0xffffff,
+                  // wireframeLinewidth: 3,
+                  // wireframe: true,
+                });
+                child.geometry.center();
+
+                if (is_origin_occupied) {
+                  const child_position = axis_vector(unit).clone();
+                  child_position
+                    .multiplyScalar(scaling + 1)
+                    .addScaledVector(side_vector(unit), bias)
+                    .applyAxisAngle(axis, angle * turn + Math.PI / 2);
+                  child.position.set(child_position.x, child_position.y, child_position.z);
+                  scene.add(child);
+                } else {
+                  child.position.set(0, 0, 0);
+                  scene.add(child);
+                }
+              }
+            });
+          }, xhr => {
+            console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`);
+          }, (error) => {
+            console.error(error);
           });
-          child.geometry.center();
-          child.position.set(
-            randint_bounded_by(7),
-            randint_bounded_by(7),
-            randint_bounded_by(7),
-          );
-          child.scale.set(1.5, 1.5, 1.5);
-          scene.add(child);
-        }
+        });
       });
-    }, xhr => {
-      console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`);
-    }, (error) => {
-      console.error(error);
     });
   });
 

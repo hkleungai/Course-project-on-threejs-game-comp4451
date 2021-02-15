@@ -10,7 +10,7 @@ Below we briefly go over how one may start this project real quick.
 - Clone this repositiory with git.
 - Open VSCode and navigate to this project folder.
 - Install the `live server` extension.
-- Open the vscode command palette (by `ctrl + shift + p` or (`ctrl + p` and a `>` prefix)), and choose `Live Server: Open with Live Server`.
+- Open the vscode command palette (by <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> or (<kbd>Ctrl</kbd> + <kbd>P</kbd> and a <kbd>></kbd> prefix)), and choose `Live Server: Open with Live Server`.
 - Let your browser do the work :)
 - Remember to shut down the live server from the command palette before you leave your work.
 
