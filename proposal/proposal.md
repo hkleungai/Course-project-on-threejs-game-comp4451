@@ -66,7 +66,7 @@ ${}$
 ## **Introduction**
 - Name $-$ Steel of Stalin
 - Category $-$ Turn-based, "Multi-player", Strategic
-- Visual characteristics $-$ Abstract 2D game map with a first-person top-down view
+- Visual characteristics $-$ Abstract 2D game map with a top-down view
 - Goal $-$ Manipulating game _units_ on a designated map for destorying enemy's capital $!!$
 - Target at anyone who equipped with,
   - Balanced tatics on when facing multiple game options
@@ -110,7 +110,7 @@ ${}$
 
 ## **Implementations**
 - ThreeJS + WebGL as base framework
-  - Material layout with light effect could turn such 2D game into a pseudo-3D game
+  - Material layout with light effect
   - Javascript $-$ Possibility for extending into a web framework-based application
 - Several programming challenges that have to be overcome
   - AI-player design
