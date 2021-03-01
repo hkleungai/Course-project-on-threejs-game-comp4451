@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es6",
+    "lib": [
+      "es2020",
+      "esnext",
+      "DOM"
+    ],
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*",
+  ],
+  "outDir": "./dist/",
+  "sourceMap": true,
+  "noImplicitAny": true,
+  "module": "commonjs",
+  "declaration": true,
+  "allowSyntheticDefaultImports": true,
+  "esModuleInterop": true
+}

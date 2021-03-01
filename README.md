@@ -6,12 +6,17 @@ This is the repository for the game project in COMP4451. More Details to be adde
 
 Below we briefly go over how one may start this project real quick.
 
-- Install any modern browser (Chrome, Edge, Firefox, ...) and the VSCode IDE and git.
+- Install necessary softwares
+  - Any modern browser (Chrome, Edge, Firefox, ...)
+  - VSCode, git
+  - NPM, Yarn (Check the [official installation guide](https://classic.yarnpkg.com/en/docs/install/#windows-stable))
 - Clone this repositiory with git.
-- Open VSCode and navigate to this project folder.
-- Install the `live server` extension.
-- Open the vscode command palette (by <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> or (<kbd>Ctrl</kbd> + <kbd>P</kbd> and a <kbd>></kbd> prefix)), and choose `Live Server: Open with Live Server`.
-- Let your browser do the work :)
-- Remember to shut down the live server from the command palette before you leave your work.
+- Open IDE and navigate to this project folder.
+- Open the terminal, by typing <kbd>Ctrl</kbd> + <kbd>J</kbd> if necessary.
+  - Issue `npm --version` and `yarn --version` for safe-check.
+  - Issue `yarn` to install the necessary dependencies. ~~It may take a while for first-time installation.~~
+  - Issue `yarn start` to start the application.
+- Go to https://localhost:3000 to see for the results.
+  - See [this](https://www.npmjs.com/package/dotenv-flow) for how to set customized port number in your local.
 
-Alternatively you may use some http-server modules from python or NodeJs, by from my experience they are not that friendly or efficient so...
+**Remainder** -- For later development, always issue `yarn` before `yarn start` to make sure your local modules are up-to-date with the newest `package.json`. Or you can always do a one-liner `yarn && yarn start`.
