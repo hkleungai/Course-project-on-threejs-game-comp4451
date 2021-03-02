@@ -1,5 +1,4 @@
-"use strict";
-
+import { Cost, Attribute } from './attr';
 class Technology {
     constructor(name : string, prerquisite : Technology, buff_aspect, buff_amount, research_cost) {
 
@@ -25,4 +24,12 @@ class Module extends Customizable {
 
 class Shell extends Customizable {
 
+}
+
+export {
+    Technology,
+    Customizable,
+    Firearm,
+    Module,
+    Shell
 }

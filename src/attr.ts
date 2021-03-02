@@ -1,4 +1,4 @@
-"use strict";
+import { Unit } from './props/units';
 
 class Point {
     private _x : number;
@@ -377,4 +377,19 @@ class Spotting {
     set Communication(value : Attribute) { this._communication = value; }
     //#endregion
 
+}
+
+export {
+    Point,
+    Resources,
+    Attribute,
+    Modifier,
+    ModifierType,
+    TerrainModifiers,
+    Cost,
+    Maneuverability,
+    Defense,
+    Offense,
+    Load,
+    Spotting
 }

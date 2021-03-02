@@ -1,4 +1,7 @@
-"use strict";
+import { Resources } from './attr';
+import { Building } from './props/buildings';
+import { Unit } from './props/units';
+import { Technology, Customizable } from './research';
 
 enum Color {
     RED = 0,
@@ -17,8 +20,15 @@ class Player {
     public Researches : Technology[];
     public Customizables : Customizable[];
 
-    constructor(name : string, color : Color, resources : Resources, is_AI : boolean,
-                units : Unit[], buildings : Building[], research : Technology[], customizables : Customizable[]) {
+    constructor(
+        name : string, 
+        color : Color, 
+        resources : Resources, 
+        is_AI : boolean,
+        units : Unit[], 
+        buildings : Building[], 
+        research : Technology[], 
+        customizables : Customizable[]) {
         this.Name = name;
         this.Color = color;
         this.isAI = is_AI;
@@ -28,4 +38,9 @@ class Player {
         this.Researches = research;
         this.Customizables = customizables;
     }
+}
+
+export {
+    Color,
+    Player
 }

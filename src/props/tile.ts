@@ -1,4 +1,8 @@
-"use strict";
+import {
+    Point,
+    TerrainModifiers
+} from '../attr';
+import { Player } from '../player';
 
 enum TileType {
     BORDER = 0,
@@ -29,8 +33,14 @@ class Tile {
     private neighbor_offset_odd_x : [number, number][] = [[0, 1], [1, 1], [1, 0], [0, -1], [-1, 0], [-1, 1]];
     private neighbor_offset_even_x : [number, number][] = [[0, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0]];
 
-    constructor(coords : Point, type : TileType, terrain_mod : TerrainModifiers,
-                obstruct : number, can_construct : boolean, height : number) {
+    constructor(
+        coords : Point, 
+        type : TileType, 
+        terrain_mod : TerrainModifiers,
+        obstruct : number, 
+        can_construct : boolean, 
+        height : number
+        ) {
         this._coords = coords;
         this._type = type;
         this._terrain_mod = terrain_mod;
@@ -96,4 +106,10 @@ class GameMap {
     static Save() {
         
     }
+}
+
+export {
+    TileType,
+    Tile,
+    GameMap
 }

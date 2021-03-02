@@ -1,4 +1,15 @@
-"use strict";
+import { Prop } from './prop';
+import { 
+    Point, 
+    Attribute,
+    Cost, 
+    Maneuverability,
+    Defense,
+    Offense,
+    Resources,
+    Spotting
+} from '../attr';
+import { Firearm, Module } from '../research';
 
 class Unit extends Prop {
     private _name : string;
@@ -75,4 +86,13 @@ class Vessel extends Unit {
 
 class Plane extends Unit {
     
+}
+
+export {
+    Unit,
+    Personnel,
+    Artillery,
+    Vehicle,
+    Vessel,
+    Plane
 }

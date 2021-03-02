@@ -1,4 +1,3 @@
-"use strict";
 import { Audio, Mesh } from "three";
 
 class Prop {
@@ -9,3 +8,5 @@ class Prop {
 
     constructor() { }
 }
+
+export { Prop }
