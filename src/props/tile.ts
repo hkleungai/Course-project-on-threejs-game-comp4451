@@ -34,13 +34,13 @@ class Tile {
     private neighbor_offset_even_x : [number, number][] = [[0, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0]];
 
     constructor(
-        coords : Point, 
-        type : TileType, 
+        coords : Point,
+        type : TileType,
         terrain_mod : TerrainModifiers,
-        obstruct : number, 
-        can_construct : boolean, 
+        obstruct : number,
+        can_construct : boolean,
         height : number
-        ) {
+    ) {
         this._coords = coords;
         this._type = type;
         this._terrain_mod = terrain_mod;
@@ -101,10 +101,10 @@ class GameMap {
     static get Width() : number { return GameMap._width; }
 
     static Load() {
-        
+
     }
     static Save() {
-        
+
     }
 }
 

@@ -1,5 +1,5 @@
 class Building {
-    
+
 }
 
 export { Building }

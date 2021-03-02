@@ -2,12 +2,15 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const ROOT = path.resolve(__dirname, 'src');
 
 require('dotenv-flow').config();
 
 module.exports = {
+  mode: 'development',
+
   context: ROOT,
 
   entry: {
@@ -33,12 +36,6 @@ module.exports = {
         enforce: 'pre',
         test: /\.js$/,
         use: 'source-map-loader'
-      },
-      {
-        enforce: 'pre',
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        use: 'tslint-loader'
       },
 
       /****************
@@ -66,6 +63,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT, 'index.html'),
       favicon: path.resolve(ROOT, 'assets/tiles/plains.png'),
-    })
+    }),
+    new ESLintPlugin({
+      extensions: ['ts', 'js']
+    }),
   ]
 };

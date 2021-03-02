@@ -5,7 +5,7 @@ import { Technology, Customizable } from './research';
 
 enum Color {
     RED = 0,
-    YELLOW = 1, 
+    YELLOW = 1,
     BLUE = 2,
     GREEN = 3
 }
@@ -21,14 +21,15 @@ class Player {
     public Customizables : Customizable[];
 
     constructor(
-        name : string, 
-        color : Color, 
-        resources : Resources, 
+        name : string,
+        color : Color,
+        resources : Resources,
         is_AI : boolean,
-        units : Unit[], 
-        buildings : Building[], 
-        research : Technology[], 
-        customizables : Customizable[]) {
+        units : Unit[],
+        buildings : Building[],
+        research : Technology[],
+        customizables : Customizable[]
+    ) {
         this.Name = name;
         this.Color = color;
         this.isAI = is_AI;
