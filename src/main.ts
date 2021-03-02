@@ -12,7 +12,7 @@ import {
   Color,
   DirectionalLight,
   Mesh,
-  MeshPhongMaterial,
+  MeshBasicMaterial,
   PerspectiveCamera,
   Scene,
   Vector3,
@@ -24,7 +24,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { textures } from './resources';
 
 const scene = new Scene();
-scene.background = new Color(0xaaaaaa);
+scene.background = new Color(0x000000);
 // Lighting seems optional for now, just as placeholder here.
 const ambientLight = new AmbientLight(0xffffff, 0.4);
 scene.add(ambientLight);
@@ -52,6 +52,7 @@ const init_position = new Vector3(-24, 10);
 range(25).forEach(column => {
   range(10).forEach(row => {
     const [_, texture] = textures_entries[randint(textures_entries.length)];
+    const [__, plain] = textures_entries[15];
     loader.load('./assets/raw.glb', gltf => {
       gltf.scene.traverse(child => {
         if (child instanceof Mesh && child.isMesh) {
@@ -62,18 +63,15 @@ range(25).forEach(column => {
             unit_y = box.getSize(dummy_vector).y;
           }
 
-          child.material = new MeshPhongMaterial({
-            map: texture,
-            // envMap: texture,
-            // normalMap: texture,
-            // color: 0xffffff,
-            // wireframeLinewidth: 3,
-            // wireframe: true,
-          }) as any;
-          child.geometry.center();
-
+          child.geometry.clearGroups();
+          for (let i = 0; i <= 3; i++) {
+              child.geometry.addGroup(0, Infinity, i);
+          }
+          child.material = [new MeshBasicMaterial({ map: plain, transparent: true }) as any, 
+                            new MeshBasicMaterial({ map: texture, transparent: true }) as any];
+          
           child.position.set(
-            init_position.x + unit_y * column,
+            init_position.x + unit_y * column * cos_deg(30),
             init_position.y - unit_x * cos_deg(30) * row - ((column % 2) * unit_x * sin_deg(60) / 2),
             init_position.z
           );
