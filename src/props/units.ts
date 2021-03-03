@@ -1,13 +1,13 @@
 import { Prop } from './prop';
-import { 
-    Point, 
+import {
+    Point,
     Attribute,
-    Cost, 
+    Cost,
     Maneuverability,
     Defense,
     Offense,
     Resources,
-    Spotting
+    Spotting,
 } from '../attr';
 import { Firearm, Module } from '../research';
 
@@ -65,10 +65,10 @@ class Personnel extends Unit {
     private _primary_firearm : Firearm;
     private _secondary_firearm : Firearm;
     private _capture : Attribute;
-    
+
     constructor(personnel? : Partial<Personnel>) {
         super(personnel);
-        
+
     }
 }
 
@@ -85,7 +85,7 @@ class Vessel extends Unit {
 }
 
 class Plane extends Unit {
-    
+
 }
 
 export {

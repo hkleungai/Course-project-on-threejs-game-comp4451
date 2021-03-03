@@ -1,5 +1,3 @@
-"use strict";
-
 class InvalidArgumentException {
     public argname : string;
     public value;

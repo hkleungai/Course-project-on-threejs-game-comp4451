@@ -1,8 +1,8 @@
 import { Texture, TextureLoader } from 'three';
 
-const texture_loader = new TextureLoader();
+const textureLoader = new TextureLoader();
 
-const texture_entries = [
+const textureEntries = [
   'boundary',
   'city_blue',
   'city_green',
@@ -28,13 +28,13 @@ const texture_entries = [
   'suburb_red',
   'suburb_yellow',
   'swamp',
-].map(texture_key => ([
-  texture_key,
-  texture_loader.load(`../assets/tiles/${texture_key}.png`),
+].map(textureKey => ([
+  textureKey,
+  textureLoader.load(`../assets/tiles/${textureKey}.png`),
 ]));
 
-const textures: {
+const textures : {
   [key: string]: Texture
-} = Object.fromEntries(texture_entries);
+} = Object.fromEntries(textureEntries);
 
 export { textures };

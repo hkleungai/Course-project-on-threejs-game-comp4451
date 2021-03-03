@@ -10,11 +10,11 @@ class Point {
             this._y = y;
         } else {
             throw new InvalidArgumentException('coodrinates', x, y);
-        }      
+        }
     }
 
     get X() : number { return this._x };
-    set X(x : number) { 
+    set X(x : number) {
         if (Number.isInteger(x)) {
             this._x = x;
         } else {
@@ -22,7 +22,7 @@ class Point {
         }
     }
     get Y() : number { return this._y };
-    set Y(y : number) { 
+    set Y(y : number) {
         if (Number.isInteger(y)) {
             this._y = y;
         } else {
@@ -46,44 +46,44 @@ class Resources {
             this._money = resources?.Money;
         } else {
             throw new InvalidArgumentException('money', resources.Money);
-        } 
+        }
         if (Number.isInteger(resources.Steel?.Value ?? 0)) {
             this._steel = resources?.Steel;
         } else {
             throw new InvalidArgumentException('steel', resources.Steel);
-        } 
+        }
         if (Number.isInteger(resources.Supplies?.Value ?? 0)) {
             this._supplies = resources.Supplies;
         } else {
             throw new InvalidArgumentException('supplies', resources.Supplies);
-        } 
+        }
         if (Number.isInteger(resources.Ammo?.Value ?? 0)) {
             this._ammo = resources.Ammo;
         } else {
             throw new InvalidArgumentException('ammo', resources.Ammo);
-        } 
+        }
         if (Number.isInteger(resources.Fuel?.Value ?? 0)) {
             this._fuel = resources.Fuel;
         } else {
             throw new InvalidArgumentException('fuel', resources.Fuel);
-        } 
+        }
         if (Number.isInteger(resources.RareMetal?.Value ?? 0)) {
             this._raremetal = resources.RareMetal;
         } else {
             throw new InvalidArgumentException('rare_metal', resources.RareMetal);
-        } 
+        }
         if (Number.isInteger(resources.Manpower?.Value ?? 0)) {
             this._manpower = resources.Manpower;
         } else {
             throw new InvalidArgumentException('manpower', resources.Manpower);
-        }     
+        }
         if (Number.isInteger(resources.Power?.Value ?? 0)) {
             this._power = resources.Power;
         } else {
             throw new InvalidArgumentException('power', resources.Power);
-        } 
+        }
     }
-    
+
     //#region get/set
     get Money() : Attribute { return this._money; }
     set Money(value : Attribute) { this._money = value; }
@@ -103,7 +103,7 @@ class Resources {
     set Power(value : Attribute) { this._power = value; }
 
     Consume(resources : Resources) {
-        
+
     }
     Produce(resources : Resources) {
 
@@ -111,9 +111,9 @@ class Resources {
     //#endregion
 }
 
-enum ModifierType { 
-    FIXED_VALUE = 0, 
-    PERCENTAGE = 1 
+enum ModifierType {
+    FIXED_VALUE = 0,
+    PERCENTAGE = 1
 };
 
 class Modifier {

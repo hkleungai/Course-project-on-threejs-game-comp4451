@@ -3,8 +3,8 @@ import {
   // THREE_BUILD,
   randint,
   range,
-  sin_deg,
-  cos_deg,
+  sinDeg,
+  cosDeg,
 } from './utils';
 import {
   AmbientLight,
@@ -46,42 +46,51 @@ camera.position.set(0, 0, 15);
 
 // A "simple" zig-zag layout
 const loader = new GLTFLoader();
-const textures_entries = Object.entries(textures);
-let unit_x = undefined, unit_y = undefined;
-const init_position = new Vector3(-24, 10);
+const texturesEntries = Object.entries(textures);
+const unit: { x?: number, y?: number } = {};
+const initialPosition = new Vector3(-21, 8.5);
 range(25).forEach(column => {
   range(10).forEach(row => {
-    const [_, texture] = textures_entries[randint(textures_entries.length)];
-    const [__, plain] = textures_entries[15];
     loader.load('./assets/raw.glb', gltf => {
       gltf.scene.traverse(child => {
         if (child instanceof Mesh && child.isMesh) {
-          if (unit_x === undefined || unit_y === undefined) {
+          if (unit.x === undefined || unit.y === undefined) {
             const box = new Box3().setFromObject(child);
-            const dummy_vector = new Vector3();
-            unit_x = box.getSize(dummy_vector).x;
-            unit_y = box.getSize(dummy_vector).y;
+            const dummyVector = new Vector3();
+            unit.x = box.getSize(dummyVector).x;
+            unit.y = box.getSize(dummyVector).y;
           }
 
           child.geometry.clearGroups();
-          for (let i = 0; i <= 3; i++) {
-              child.geometry.addGroup(0, Infinity, i);
-          }
-          child.material = [new MeshBasicMaterial({ map: plain, transparent: true }) as any, 
-                            new MeshBasicMaterial({ map: texture, transparent: true }) as any];
-          
+          range(3).forEach((materialIndex) => {
+            child.geometry.addGroup(0, Infinity, materialIndex);
+          });
+
+          child.material = [
+            new MeshBasicMaterial({
+              map: textures.plains,
+              transparent: true
+            }),
+            new MeshBasicMaterial({
+              map: texturesEntries[randint(texturesEntries.length)][1],
+              transparent: true
+            })
+          ];
+
           child.position.set(
-            init_position.x + unit_y * column * cos_deg(30),
-            init_position.y - unit_x * cos_deg(30) * row - ((column % 2) * unit_x * sin_deg(60) / 2),
-            init_position.z
+            initialPosition.x + unit.y * column * cosDeg(30),
+            initialPosition.y - unit.x * cosDeg(30) * row - ((column % 2) * unit.x * sinDeg(60) / 2),
+            initialPosition.z
           );
           // console.log(child.position);
           scene.add(child);
         }
       });
     }, xhr => {
+      // eslint-disable-next-line no-console
       console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`);
     }, (error) => {
+      // eslint-disable-next-line no-console
       console.error(error);
     });
   });
@@ -90,7 +99,7 @@ range(25).forEach(column => {
 // A rotational-solution inspired by https://jsfiddle.net/prisoner849/jzLdcemb/
 // from https://discourse.threejs.org/t/hexagonal-grid-formation/18396
 // const loader = new GLTFLoader();
-// const textures_entries = Object.entries(textures);
+// const texturesEntries = Object.entries(textures);
 // const circle_count = 4; // Param that determines the number of "layer"
 // let unit = undefined;
 // const angle = Math.PI / 3;
@@ -101,7 +110,7 @@ range(25).forEach(column => {
 //   range(6).forEach(turn => {
 //     range(circle_count).forEach(scaling => {
 //       range(scaling + 1).forEach(bias => {
-//         const [_, texture] = textures_entries[randint(textures_entries.length)];
+//         const [_, texture] = texturesEntries[randint(texturesEntries.length)];
 //         loader.load('../public/raw.glb', gltf => {
 //           gltf.scene.traverse(child => {
 //             if (child.isMesh) {
@@ -144,10 +153,10 @@ range(25).forEach(column => {
 //   });
 // });
 
-const animate = () => {
-  render();
-  requestAnimationFrame(animate);
-};
+// const animate = () => {
+//   render();
+//   requestAnimationFrame(animate);
+// };
 const render = () => {
   requestAnimationFrame(render);
   renderer.render(scene, camera);
