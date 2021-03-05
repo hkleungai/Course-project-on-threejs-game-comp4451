@@ -1,0 +1,870 @@
+{
+  "Data": [
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 0,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 2,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 2,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 2,
+          "Value": 99999
+        },
+        "Fuel": {
+          "Type": 2,
+          "Value": 99999
+        },
+        "Mobility": {
+          "Type": 2,
+          "Value": 0
+        }
+      },
+      "Obstruction": 1,
+      "AllowConstruction": false,
+      "Height": 99999
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 1,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 2
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": 0
+        }
+      },
+      "Obstruction": 0,
+      "AllowConstruction": true,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 2,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 1
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 25
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": -10
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 10
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -5
+        }
+      },
+      "Obstruction": 0,
+      "AllowConstruction": true,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 3,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 50
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": -20
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 20
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -30
+        }
+      },
+      "Obstruction": 0.3,
+      "AllowConstruction": false,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 4,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": -1
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 100
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": -30
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 30
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -50
+        }
+      },
+      "Obstruction": 0.5,
+      "AllowConstruction": false,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 5,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -20
+        }
+      },
+      "Obstruction": 0,
+      "AllowConstruction": false,
+      "Height": 0
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 6,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -10
+        }
+      },
+      "Obstruction": 0,
+      "AllowConstruction": false,
+      "Height": 0
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 7,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 40
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 50
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 100
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -75
+        }
+      },
+      "Obstruction": 0,
+      "AllowConstruction": false,
+      "Height": 0
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 8,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 1
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 20
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 100
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 20
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -30
+        }
+      },
+      "Obstruction": 0.2,
+      "AllowConstruction": false,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 9,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 2
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": -10
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 10
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 50
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -60
+        }
+      },
+      "Obstruction": 0.75,
+      "AllowConstruction": false,
+      "Height": 2
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 10,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 3
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": -20
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 20
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 100
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -70
+        }
+      },
+      "Obstruction": 0.9,
+      "AllowConstruction": false,
+      "Height": 3
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 11,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 4
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": -30
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 30
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 150
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -80
+        }
+      },
+      "Obstruction": 1,
+      "AllowConstruction": false,
+      "Height": 4
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 12,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 2
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": -10
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 10
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 50
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": -40
+        }
+      },
+      "Obstruction": 0.6,
+      "AllowConstruction": true,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 13,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": 0
+        }
+      },
+      "Obstruction": 1,
+      "AllowConstruction": false,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 14,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": 0
+        }
+      },
+      "Obstruction": 1,
+      "AllowConstruction": false,
+      "Height": 1
+    },
+    {
+      "CoOrds": {
+        "X": 0,
+        "Y": 0
+      },
+      "Type": 15,
+      "TerrainMod": {
+        "Recon": {
+          "Type": 0,
+          "Value": 0
+        },
+        "Camouflage": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Supplies": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Fuel": {
+          "Type": 1,
+          "Value": 0
+        },
+        "Mobility": {
+          "Type": 1,
+          "Value": 0
+        }
+      },
+      "Obstruction": 1,
+      "AllowConstruction": false,
+      "Height": 1
+    }
+  ],
+  "TERRAIN_MODS": {
+    "BOUNDARY": {
+      "Recon": {
+        "Type": 2,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 2,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 2,
+        "Value": 99999
+      },
+      "Fuel": {
+        "Type": 2,
+        "Value": 99999
+      },
+      "Mobility": {
+        "Type": 2,
+        "Value": 0
+      }
+    },
+    "PLAINS": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "GRASSLAND": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "FOREST": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "JUNGLE": {
+      "Recon": {
+        "Type": 0,
+        "Value": -1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -50
+      }
+    },
+    "STREAM": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -20
+      }
+    },
+    "RIVER": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -10
+      }
+    },
+    "SWAMP": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "DESERT": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "HILLOCK": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "HILLS": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "MOUNTAIN": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "ROCKS": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -40
+      }
+    },
+    "SUBURB": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "CITY": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "METROPOLIS": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    }
+  }
+}

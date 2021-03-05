@@ -1,12 +1,13 @@
-import { Audio, Mesh } from "three";
+import {
+  Audio,
+  Mesh
+} from "three";
 
-class Prop {
-    private _mesh : Mesh;
-    private _sound_deployed : Audio;
-    private _sound_move : Audio;
-    private _sound_destroyed : Audio;
-
-    constructor() { }
+abstract class Prop {
+  public Mesh?: Mesh;
+  public SoundDeployed?: Audio;
+  public SoundMove?: Audio;
+  public SoundDestroyed?: Audio;
 }
 
-export { Prop }
+export { Prop };

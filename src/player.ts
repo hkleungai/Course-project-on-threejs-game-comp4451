@@ -1,47 +1,47 @@
 import { Resources } from './attr';
 import { Building } from './props/buildings';
 import { Unit } from './props/units';
-import { Technology, Customizable } from './research';
+import { Technology, Customizable } from './researches';
 
 enum Color {
-    RED = 0,
-    YELLOW = 1,
-    BLUE = 2,
-    GREEN = 3
+  RED = 0,
+  YELLOW = 1,
+  BLUE = 2,
+  GREEN = 3
 }
 
 class Player {
-    public readonly Name : string;
-    public readonly Color : Color;
-    public readonly isAI : boolean;
-    public Resources : Resources;
-    public Units : Unit[];
-    public Buildings : Building[];
-    public Researches : Technology[];
-    public Customizables : Customizable[];
+  public readonly Name : string;
+  public readonly Color : Color;
+  public readonly isAI : boolean;
+  public Resources : Resources;
+  public Units : Unit[];
+  public Buildings : Building[];
+  public Researches : Technology[];
+  public Customizables : Customizable[];
 
-    constructor(
-        name : string,
-        color : Color,
-        resources : Resources,
-        is_AI : boolean,
-        units : Unit[],
-        buildings : Building[],
-        research : Technology[],
-        customizables : Customizable[]
-    ) {
-        this.Name = name;
-        this.Color = color;
-        this.isAI = is_AI;
-        this.Resources = resources;
-        this.Units = units;
-        this.Buildings = buildings;
-        this.Researches = research;
-        this.Customizables = customizables;
-    }
+  constructor(
+    name : string,
+    color : Color,
+    resources : Resources,
+    isAI : boolean,
+    units : Unit[],
+    buildings : Building[],
+    research : Technology[],
+    customizables : Customizable[]
+  ) {
+    this.Name = name;
+    this.Color = color;
+    this.isAI = isAI;
+    this.Resources = resources;
+    this.Units = units;
+    this.Buildings = buildings;
+    this.Researches = research;
+    this.Customizables = customizables;
+  }
 }
 
 export {
-    Color,
-    Player
-}
+  Color,
+  Player
+};

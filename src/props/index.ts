@@ -1,4 +1,3 @@
-export * from './buildings';
 export * from './prop';
-export * from './tile';
-export * from './units';
+export * from './tiles';
+export * from './data';

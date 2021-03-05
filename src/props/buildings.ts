@@ -1,5 +1,0 @@
-class Building {
-
-}
-
-export { Building }
