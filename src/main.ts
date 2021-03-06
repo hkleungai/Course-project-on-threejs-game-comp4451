@@ -1,6 +1,5 @@
+import { LoadAllData } from './loaddata';
 import {
-  // THREE,
-  // THREE_BUILD,
   randint,
   range,
   sinDeg,
@@ -95,6 +94,7 @@ range(25).forEach(column => {
     });
   });
 });
+LoadAllData();
 
 // A rotational-solution inspired by https://jsfiddle.net/prisoner849/jzLdcemb/
 // from https://discourse.threejs.org/t/hexagonal-grid-formation/18396
