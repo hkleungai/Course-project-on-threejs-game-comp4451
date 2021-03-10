@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const ROOT = path.resolve(__dirname, 'src');
 
@@ -41,11 +42,15 @@ module.exports = {
       /****************
       * LOADERS
       *****************/
+       {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
       {
         test: /\.ts$/,
         exclude: [ /node_modules/ ],
         use: 'ts-loader'
-      }
+      },
     ]
   },
 
@@ -67,5 +72,6 @@ module.exports = {
     new ESLintPlugin({
       extensions: ['ts', 'js']
     }),
+    new MiniCssExtractPlugin()
   ]
 };

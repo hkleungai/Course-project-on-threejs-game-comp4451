@@ -1,0 +1,92 @@
+@mixin set-gui-font($font-size) {
+  font: $font-size 'Lucida Grande', sans-serif;
+}
+
+@mixin set-gui-width {
+  width: 400px !important;
+}
+
+@mixin set-height-and-lineHeight($height) {
+  height: #{$height}px;
+  line-height: #{$height}px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  div.gui-container {
+    position: absolute;
+    z-index: 0;
+
+    div.dg.main {
+      @include set-gui-width;
+
+      div.dg {
+        @include set-gui-font(25px);
+        background-color: black;
+      }
+
+      li.folder {
+        ul {
+          li.title {
+            @include set-height-and-lineHeight(50);
+            background: none;
+            padding-top: 10px;
+            padding-left: 12px;
+          }
+
+          &.closed li::not(.title) {
+            height: 0;
+            overflow: hidden;
+            border: 0;
+          }
+
+          &:not(.closed) {
+            li {
+              &.cr.number.has-slider {
+                @include set-height-and-lineHeight(50);
+
+                span {
+                  margin-top: 4px;
+                  margin-left: 2%;
+                  width: 38%;
+                }
+
+                div.c {
+                  pointer-events: none;
+
+                  div:not(.slider) {
+                    margin-top: 2px;
+                    input {
+                      @include set-gui-font(25px);
+                      width: 100%;
+                      padding-top: 8px;
+                      text-align: center;
+                      color: purple;
+                    }
+                  }
+
+                  div.slider {
+                    @include set-height-and-lineHeight(0);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      div.close-button.close-bottom {
+        @include set-gui-width;
+        @include set-gui-font(22px);
+        @include set-height-and-lineHeight(50);
+        background-color: black;
+      }
+    }
+  }
+
+  canvas {
+    display: block;
+  }
+}
