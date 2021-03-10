@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const ROOT = path.resolve(__dirname, 'src');
 
@@ -30,26 +31,23 @@ module.exports = {
 
   module: {
     rules: [
-      /****************
-      * PRE-LOADERS
-      *****************/
       {
         enforce: 'pre',
         test: /\.js$/,
         use: 'source-map-loader'
       },
-
-      /****************
-      * LOADERS
-      *****************/
-       {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
       {
         test: /\.ts$/,
+        use: 'ts-loader',
         exclude: [ /node_modules/ ],
-        use: 'ts-loader'
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { sourceMap: true } },
+          { loader: "sass-loader", options: { sourceMap: true } },
+        ],
       },
     ]
   },
@@ -69,9 +67,8 @@ module.exports = {
       template: path.resolve(ROOT, 'index.html'),
       favicon: path.resolve(ROOT, 'assets/tiles/plains.png'),
     }),
-    new ESLintPlugin({
-      extensions: ['ts', 'js']
-    }),
-    new MiniCssExtractPlugin()
+    new ESLintPlugin({ extensions: ['ts', 'js'] }),
+    new MiniCssExtractPlugin(),
+    new StylelintPlugin(),
   ]
 };
