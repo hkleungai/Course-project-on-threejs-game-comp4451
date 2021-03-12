@@ -14,16 +14,13 @@ import {
   sinDeg,
   cosDeg,
 } from '../utils';
-import { textures } from '../resources';
+import { textures, meshes } from '../resources';
 
 interface LoadTilesGlbInputTypes {
   scene: Scene;
-  tileChildrenEntries: { [key: string]: { [innerKey: string]: number } };
 }
 
-const loadTilesGlb = ({
-  scene, tileChildrenEntries
-}: LoadTilesGlbInputTypes): void => {
+const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
   // A 'simple' zig-zag layout
   const loader = new GLTFLoader();
   const texturesEntries = Object.entries(textures);
@@ -42,34 +39,27 @@ const loadTilesGlb = ({
   const traverseGlbScene = (row: number, column: number) => (child: Object3D) => {
     if (child instanceof Mesh && child.isMesh) {
       setUnit(child);
-
-      child.geometry.clearGroups();
-      range(3).forEach(materialIndex => {
-        child.geometry.addGroup(0, Infinity, materialIndex);
-      });
-
-      child.material = [
-        new MeshBasicMaterial({
-          map: textures.plains,
-          transparent: true
-        }),
-        new MeshBasicMaterial({
-          map: texturesEntries[randint(texturesEntries.length)][1],
-          transparent: true
-        })
-      ];
-
       child.position.set(
         initialPosition.x + unit.y * column * cosDeg(30),
         initialPosition.y - unit.x * cosDeg(30) * row - ((column % 2) * unit.x * sinDeg(60) / 2),
         initialPosition.z
       );
 
-      scene.add(child);
+      child.geometry.clearGroups();
+      range(3).forEach(materialIndex => {
+        child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
+      });
 
-      tileChildrenEntries[
-        `${child.position.x}, ${child.position.y}`
-      ] = { row, column };
+      const [name, map] = texturesEntries[randint(texturesEntries.length)];
+      child.material = [
+        meshes.plains,
+        new MeshBasicMaterial({ name, map, transparent: true }),
+        meshes.blank,
+      ];
+
+      child.name = JSON.stringify({ row, column });
+
+      scene.add(child);
     }
   };
 

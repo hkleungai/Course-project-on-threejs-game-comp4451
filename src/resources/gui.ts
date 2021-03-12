@@ -16,10 +16,6 @@ class GUI extends dat.GUI {
 
     // Set the GUI to be invisible initially
     this.hide();
-
-    // Hack for triggering custom onClose
-    const guiCloseDiv: HTMLElement = this.domElement.querySelector('div.close-button');
-    guiCloseDiv.onclick = option?.onClose;
   }
 
   addFolder(
@@ -37,6 +33,14 @@ class GUI extends dat.GUI {
     this.closed = false;
 
     callback?.();
+  }
+
+  listenOnClose(callback?: () => void): void {
+    const guiCloseDiv: HTMLElement = this.domElement.querySelector('div.close-button');
+    guiCloseDiv.onclick = () => {
+      this.hide();
+      callback?.();
+    };
   }
 }
 export {
