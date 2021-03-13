@@ -50,7 +50,7 @@ class Tile extends Prop {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GetNeighbors = (tile : Tile) : Tile[] => {
+const getNeighbors = (tile : Tile) : Tile[] => {
   const neighbors : Tile[] = [];
   const neighborOffset = tile.CoOrds.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
   neighborOffset.forEach(pair => {

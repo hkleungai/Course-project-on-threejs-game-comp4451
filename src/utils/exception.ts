@@ -13,4 +13,17 @@ class InvalidArgumentException extends Error {
   }
 }
 
-export { InvalidArgumentException };
+class InsufficientResourcesException extends Error {
+  constructor(
+    resName: IException['argName'],
+    ...argValue: IException['argValues']
+  ) {
+    super(`Lack of ${resName}: have ${argValue[0]}, need ${argValue[1]}`);
+    this.name = 'InsufficientResourcesException';
+  }
+}
+
+export {
+  InvalidArgumentException,
+  InsufficientResourcesException
+};

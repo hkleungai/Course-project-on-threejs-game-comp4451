@@ -1,5 +1,6 @@
+// import { ResourcesBuilding } from './props/buildings';
 import { Unit } from './props/units';
-import { InvalidArgumentException } from './utils';
+import { InsufficientResourcesException, InvalidArgumentException } from './utils';
 
 class Point {
   public X : number;
@@ -67,18 +68,69 @@ class Resources {
       throw new InvalidArgumentException('power', resources.Power.Value);
     }
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  Consume(resources : Resources): void {
-    // TODO
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  Produce(resources : Resources): void {
-    // TODO
-  }
-
 }
+
+const consumeResources = (
+  original: Resources,
+  consumption: Resources
+): Resources => {
+  if (original.Money.Value >= consumption.Money.Value) {
+    original.Money.Value -= consumption.Money.Value;
+  } else {
+    throw new InsufficientResourcesException('money', original.Money.Value, consumption.Money.Value);
+  }
+  if (original.Steel.Value >= consumption.Steel.Value) {
+    original.Steel.Value -= consumption.Steel.Value;
+  } else {
+    throw new InsufficientResourcesException('steel', original.Steel.Value, consumption.Steel.Value);
+  }
+  if (original.Supplies.Value >= consumption.Supplies.Value) {
+    original.Supplies.Value -= consumption.Supplies.Value;
+  } else {
+    throw new InsufficientResourcesException('supplies', original.Supplies.Value, consumption.Supplies.Value);
+  }
+  if (original.Ammo.Value >= consumption.Ammo.Value) {
+    original.Ammo.Value -= consumption.Ammo.Value;
+  } else {
+    throw new InsufficientResourcesException('ammo', original.Ammo.Value, consumption.Ammo.Value);
+  }
+  if (original.Fuel.Value >= consumption.Fuel.Value) {
+    original.Fuel.Value -= consumption.Fuel.Value;
+  } else {
+    throw new InsufficientResourcesException('fuel', original.Fuel.Value, consumption.Fuel.Value);
+  }
+  if (original.RareMetal.Value >= consumption.RareMetal.Value) {
+    original.RareMetal.Value -= consumption.RareMetal.Value;
+  } else {
+    throw new InsufficientResourcesException('rare_metal', original.RareMetal.Value, consumption.RareMetal.Value);
+  }
+  if (original.Manpower.Value >= consumption.Manpower.Value) {
+    original.Manpower.Value -= consumption.Manpower.Value;
+  } else {
+    throw new InsufficientResourcesException('manpower', original.Manpower.Value, consumption.Manpower.Value);
+  }
+  if (original.Power.Value >= consumption.Power.Value) {
+    original.Power.Value -= consumption.Power.Value;
+  } else {
+    throw new InsufficientResourcesException('power', original.Power.Value, consumption.Power.Value);
+  }
+  return original;
+};
+
+const produceResources = (
+  original : Resources,
+  production: Resources
+): Resources => {
+  original.Money.Value += production.Money.Value;
+  original.Steel.Value += production.Steel.Value;
+  original.Supplies.Value += production.Supplies.Value;
+  original.Ammo.Value += production.Ammo.Value;
+  original.Fuel.Value += production.Fuel.Value;
+  original.RareMetal.Value += production.RareMetal.Value;
+  original.Manpower.Value += production.Manpower.Value;
+  original.Power.Value += original.Power.Value;
+  return original;
+};
 
 enum ModifierType {
   FIXED_VALUE = 0,
@@ -126,18 +178,18 @@ class Attribute {
     this.Value = value;
     this.Mod = mod;
   }
-
-  Apply() : number {
-    switch (this.Mod.Type) {
-      case ModifierType.FIXED_VALUE:
-        return this.Value + this.Mod.Value;
-      case ModifierType.PERCENTAGE:
-        return Math.round(this.Value * (1 + this.Mod.Value / 100));
-      case ModifierType.MULTIPLE:
-        return Math.round(this.Value * this.Mod.Value);
-    }
-  }
 }
+
+const applyMod = (attr: Attribute): number => {
+  switch (attr.Mod.Type) {
+    case ModifierType.FIXED_VALUE:
+      return attr.Value + attr.Mod.Value;
+    case ModifierType.PERCENTAGE:
+      return Math.round(attr.Value * (1 + attr.Mod.Value / 100));
+    case ModifierType.MULTIPLE:
+      return Math.round(attr.Value * attr.Mod.Value);
+  }
+};
 
 class Cost {
   public Base : Resources;
@@ -220,7 +272,7 @@ class Offense {
 }
 
 class Load {
-  public Units : Unit[];
+  public Units : Unit[] = [];
   public Resources : Resources;
 
   constructor(units : Unit[], resources : Resources) {
@@ -253,7 +305,10 @@ class Spotting {
 export {
   Point,
   Resources,
+  consumeResources,
+  produceResources,
   Attribute,
+  applyMod,
   Modifier,
   ModifierType,
   TerrainModifiers,

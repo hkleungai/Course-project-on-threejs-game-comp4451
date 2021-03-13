@@ -1,30 +1,30 @@
-import { DefensiveBuildling } from './buildings';
+import { DefensiveBuilding } from './buildings';
 
-class Trench extends DefensiveBuildling {
-
-}
-
-class Foxhole extends DefensiveBuildling {
+class Trench extends DefensiveBuilding {
 
 }
 
-class Pillbox extends DefensiveBuildling {
+class Foxhole extends DefensiveBuilding {
 
 }
 
-class Bunker extends DefensiveBuildling {
+class Pillbox extends DefensiveBuilding {
 
 }
 
-class Wires extends DefensiveBuildling {
+class Bunker extends DefensiveBuilding {
 
 }
 
-class TankTraps extends DefensiveBuildling {
+class Wires extends DefensiveBuilding {
 
 }
 
-class Minefield extends DefensiveBuildling {
+class TankTraps extends DefensiveBuilding {
+
+}
+
+class Minefield extends DefensiveBuilding {
 
 }
 

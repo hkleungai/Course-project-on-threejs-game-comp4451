@@ -57,19 +57,21 @@ abstract class Personnel extends Unit {
 }
 
 abstract class Artillery extends Unit {
-  public Modules : Module;
+  public Modules : Module[];
 }
 
 abstract class Vehicle extends Unit {
-
+  public Modules : Module[];
 }
 
 abstract class Vessel extends Unit {
-
+  public Modules : Module[];
+  public Altitude : number;
 }
 
 abstract class Plane extends Unit {
-
+  public Modules : Module[];
+  public Altitude : number;
 }
 
 export {

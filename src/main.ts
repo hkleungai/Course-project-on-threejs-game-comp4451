@@ -13,6 +13,9 @@ import {
   drawTileStatistics,
   loadTilesGlb,
   loadTileDataFromJson,
+  loadBuildingDataFromJson,
+  loadUnitDataFromJson,
+  loadCustomizableDataFromJson,
   onWindowResize,
   listenOnMouseEvent,
   touchTileViaRaycaster
@@ -32,6 +35,9 @@ const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight,
 camera.position.set(0, 0, 15);
 
 loadTileDataFromJson();
+loadBuildingDataFromJson();
+loadCustomizableDataFromJson();
+loadUnitDataFromJson();
 
 loadTilesGlb({ scene });
 

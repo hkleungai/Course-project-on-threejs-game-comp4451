@@ -24,7 +24,7 @@ class SelfPropelled extends Artillery {
 
 }
 
-class Railway extends Artillery {
+class Railroad extends Artillery {
 
 }
 
@@ -39,6 +39,6 @@ export {
   AntiAircraft,
   HeavySupport,
   SelfPropelled,
-  Railway,
+  Railroad,
   CoastalGun
 };
