@@ -1,103 +1,96 @@
 import {
+  Camera,
   Object3D,
+  Mesh,
+  Raycaster,
   Scene,
   Vector3,
 } from 'three';
-import { Camera } from 'three/src/cameras/Camera';
-
 import { GUI } from '../resources';
+
+// A special hack given by https://stackoverflow.com/a/56439275
+type datGUI = typeof GUI.datGUI.prototype;
+let tileGridPosition: datGUI;
+let tileCanvasPosition: datGUI;
+let tileScreenPosition: datGUI;
+let currentTile: Object3D;
+let shouldUnsetCurrentTile = false;
+const raycaster = new Raycaster();
 
 interface DrawTileStatisticsInputType {
   camera: Camera;
   scene: Scene;
-  tileChildrenEntries: { [key: string]: { [innerKey: string]: number } };
+  rightClickMouse: Vector3;
+  gui: GUI;
+  guiContainer: HTMLElement;
 }
 
 const drawTileStatistics = ({
-  camera, scene, tileChildrenEntries,
+  camera,
+  scene,
+  rightClickMouse,
+  gui,
+  guiContainer,
 }: DrawTileStatisticsInputType): void => {
-  const gui: GUI = new GUI({
-    onClose: () => gui.hide(),
-    autoPlace: false,
-  });
+  raycaster.setFromCamera(rightClickMouse, camera);
+  const newTile = (
+    raycaster.intersectObjects(scene.children)
+      .map(({ object }) => object)
+      .find(child => child instanceof Mesh && child.isMesh)
+  ) as Mesh;
 
-  const GUIContainer: HTMLElement = document.querySelector('.gui-container');
-  GUIContainer.appendChild(gui.domElement);
+  if (shouldUnsetCurrentTile) {
+    currentTile = undefined;
+    rightClickMouse.x = Infinity;
+    rightClickMouse.y = Infinity;
+    shouldUnsetCurrentTile = false;
+    return;
+  }
+  if (newTile === undefined && currentTile !== undefined) {
+    currentTile = undefined;
+  }
+  if (newTile === currentTile) {
+    return;
+  }
+  currentTile = newTile;
 
-  // A special hack given by https://stackoverflow.com/a/56439275
-  type datGUI = typeof GUI.datGUI.prototype;
-  let tileGridPosition: datGUI;
-  let tileCanvasPosition: datGUI;
-  let tileScreenPosition: datGUI;
+  const screenTile = (
+    (new Vector3())
+      .setFromMatrixPosition(currentTile.matrixWorld)
+      .project(camera)
+  );
+  const { innerWidth: width, innerHeight: height } = window;
+  screenTile.setX(
+    screenTile.x * (width / 2) + width / 2
+  );
+  screenTile.setY(
+    -(screenTile.y * (height / 2)) + height / 2
+  );
 
-  const onMouseMove = (event: MouseEvent) => {
-    event.preventDefault();
+  guiContainer.style.top = `${screenTile.y}px`;
+  guiContainer.style.left = `${screenTile.x}px`;
 
-    const windowIntersect = (new Vector3(
-      (event.clientX / window.innerWidth) * 2 - 1,
-      - (event.clientY / window.innerHeight) * 2 + 1,
-      0,
-    )).unproject(camera)
-      .sub(camera.position)
-      .normalize();
+  const currentTileGridPosition = JSON.parse(currentTile.name);
+  tileGridPosition && gui.removeFolder(tileGridPosition);
+  tileGridPosition = gui.addFolder('Grid position');
+  tileGridPosition.add(currentTileGridPosition, 'row', 0, 25, 1).name('Row');
+  tileGridPosition.add(currentTileGridPosition, 'column', 0, 25, 1).name('Column');
+  tileGridPosition.open();
 
-    const canvasIntersect = (new Vector3()).copy(camera.position).add(
-      windowIntersect.multiplyScalar(-camera.position.z / windowIntersect.z)
-    );
+  tileCanvasPosition && gui.removeFolder(tileCanvasPosition);
+  tileCanvasPosition = gui.addFolder('Canvas position');
+  tileCanvasPosition.add(currentTile.position, 'x', -100, 100, 0.0001).name('X');
+  tileCanvasPosition.add(currentTile.position, 'y', -100, 100, 0.0001).name('Y');
+  tileCanvasPosition.open();
 
-    const mouseTiletances: [Object3D, number][] = (
-      scene.children.map((child) => (
-        [child, canvasIntersect.distanceTo(child.position)]
-      ))
-    );
+  tileScreenPosition && gui.removeFolder(tileScreenPosition);
+  tileScreenPosition = gui.addFolder('Screen position');
+  tileScreenPosition.add(screenTile, 'x', -100, 100, 0.0001).name('X');
+  tileScreenPosition.add(screenTile, 'y', -100, 100, 0.0001).name('Y');
+  tileScreenPosition.open();
 
-    const intersectedTile = mouseTiletances.reduce((prev, curr) => {
-      return prev[1] < curr[1] ? prev : curr;
-    })[0];
-
-    const { position: { x, y }} = intersectedTile;
-    const intersectedTileEntry = tileChildrenEntries[`${x}, ${y}`];
-
-    let screenTile = new Vector3();
-
-    screenTile = screenTile.setFromMatrixPosition( intersectedTile.matrixWorld );
-    screenTile = screenTile.project(camera);
-
-    // const { width, height } = renderer.context.canvas;
-    const { innerWidth: width, innerHeight: height } = window;
-
-    screenTile.setX(
-      screenTile.x * (width / 2) + width / 2
-    );
-    screenTile.setY(
-      -(screenTile.y * (height / 2)) + height / 2
-    );
-
-    GUIContainer.style.top = `${screenTile.y}px`;
-    GUIContainer.style.left = `${screenTile.x}px`;
-
-    tileGridPosition && gui.removeFolder(tileGridPosition);
-    tileGridPosition = gui.addFolder('Grid position');
-    tileGridPosition.add(intersectedTileEntry, 'row', 0, 25, 1).name('Row');
-    tileGridPosition.add(intersectedTileEntry, 'column', 0, 25, 1).name('Column');
-    tileGridPosition.open();
-
-    tileCanvasPosition && gui.removeFolder(tileCanvasPosition);
-    tileCanvasPosition = gui.addFolder('Canvas position');
-    tileCanvasPosition.add(intersectedTile.position, 'x', -100, 100, 0.0001).name('X');
-    tileCanvasPosition.add(intersectedTile.position, 'y', -100, 100, 0.0001).name('Y');
-    tileCanvasPosition.open();
-
-    tileScreenPosition && gui.removeFolder(tileScreenPosition);
-    tileScreenPosition = gui.addFolder('Screen position');
-    tileScreenPosition.add(screenTile, 'x', -100, 100, 0.0001).name('X');
-    tileScreenPosition.add(screenTile, 'y', -100, 100, 0.0001).name('Y');
-    tileScreenPosition.open();
-
-    gui.showGUI();
-  };
-
-  window.addEventListener('contextmenu', onMouseMove, false);
+  gui.showGUI();
+  gui.listenOnClose(() => { shouldUnsetCurrentTile = true; });
 };
 
 export { drawTileStatistics };

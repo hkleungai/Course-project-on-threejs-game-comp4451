@@ -1,4 +1,8 @@
-import { Texture, TextureLoader } from 'three';
+import {
+  MeshBasicMaterial,
+  Texture,
+  TextureLoader
+} from 'three';
 
 const textureLoader = new TextureLoader();
 
@@ -14,7 +18,7 @@ const textureEntries = [
   'desert',
   'hillock',
   'hills',
-  'mountains', 
+  'mountains',
   'rocks',
   'suburb_blue',
   'suburb_green',
@@ -23,18 +27,35 @@ const textureEntries = [
   'city_blue',
   'city_green',
   'city_red',
-  'city_yellow',  
+  'city_yellow',
   'metropolis_blue',
   'metropolis_green',
   'metropolis_red',
-  'metropolis_yellow'
+  'metropolis_yellow',
 ].map(textureKey => ([
   textureKey,
   textureLoader.load(`../assets/tiles/${textureKey}.png`),
 ]));
 
-const textures : {
-  [key: string]: Texture
-} = Object.fromEntries(textureEntries);
+const textures: { [key: string]: Texture } = Object.fromEntries(textureEntries);
 
-export { textures };
+const MeshEntries = [
+  'available',
+  'blank',
+  'plains',
+  'select',
+].map(name => ([
+  name,
+  new MeshBasicMaterial({
+    name,
+    map: textureLoader.load(`../assets/tiles/${name}.png`),
+    transparent: true
+  })
+]));
+
+const meshes: { [key: string]: MeshBasicMaterial } = Object.fromEntries(MeshEntries);
+
+export {
+  meshes,
+  textures,
+};
