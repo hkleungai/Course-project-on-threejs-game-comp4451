@@ -39,7 +39,7 @@ const textureEntries = [
 
 const textures: { [key: string]: Texture } = Object.fromEntries(textureEntries);
 
-const MeshEntries = [
+const meshEntries = [
   'available',
   'blank',
   'plains',
@@ -53,7 +53,7 @@ const MeshEntries = [
   })
 ]));
 
-const meshes: { [key: string]: MeshBasicMaterial } = Object.fromEntries(MeshEntries);
+const meshes: { [key: string]: MeshBasicMaterial } = Object.fromEntries(meshEntries);
 
 export {
   meshes,

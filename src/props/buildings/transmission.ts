@@ -12,7 +12,7 @@ class JammingTower extends TransmissionBuilding {
 
 }
 
-class Radar extends TransmissionBuilding {
+class RadarTower extends TransmissionBuilding {
 
 }
 
@@ -20,5 +20,5 @@ export {
   Watchtower,
   SignalTower,
   JammingTower,
-  Radar
+  RadarTower
 };

@@ -34,7 +34,15 @@ abstract class Customizable {
   }
 }
 
+enum FirearmType {
+  NONE = 0,
+  PRIMARY = 1 << 0,
+  SECONDARY = 1 << 1,
+  BOTH = PRIMARY | SECONDARY,
+}
+
 abstract class Firearm extends Customizable {
+  public FirearmType : FirearmType;
   public Offense : Offense;
   constructor(name : string, cost : Cost, offense : Offense) {
     super(name, cost);
@@ -55,6 +63,7 @@ abstract class Equippment extends Customizable {
 export {
   Technology,
   Customizable,
+  FirearmType,
   Firearm,
   Module,
   Equippment

@@ -2,8 +2,8 @@ import {
   Attribute,
   Cost,
   Defense,
-  Load,
   Offense,
+  Point,
   Resources,
   Spotting
 } from "../../attr";
@@ -12,17 +12,19 @@ import { Prop } from "../prop";
 
 abstract class Building extends Prop {
   public Name : string;
+  public CoOrds : Point;
+  public Level : number;
   public Cost : Cost;
   public Durability : Attribute;
   public Spotting : Spotting;
+  public DestroyTerrainOnBuilt : boolean;
 }
 
 abstract class UnitBuilding extends Building {
-  public Load : Load;
-  public QueueCapacity : number;
+  public QueueCapacity : Attribute;
   public TrainingQueue : Unit[];
   public ReadyToDeploy : Unit[];
-  public DeployRange : number;
+  public DeployRange : Attribute;
 }
 
 abstract class ResourcesBuilding extends Building {
@@ -34,10 +36,10 @@ abstract class Infrastructure extends Building {
 }
 
 abstract class TransmissionBuilding extends Building {
-  public Spotting : Spotting;
+  public EffectiveRange : Attribute;
 }
 
-abstract class DefensiveBuildling extends Building {
+abstract class DefensiveBuilding extends Building {
   public Offense : Offense;
   public Defense : Defense;
 }
@@ -48,5 +50,5 @@ export {
   ResourcesBuilding,
   Infrastructure,
   TransmissionBuilding,
-  DefensiveBuildling
+  DefensiveBuilding
 };

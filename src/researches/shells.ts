@@ -3,7 +3,7 @@ import {
   Attribute
 } from '../attr';
 
-class Shell extends Customizable {
+abstract class Shell extends Customizable {
   public Penetration : Attribute;
   public PenetrationDeviation : Attribute;
   public AmmoConsumption : Attribute;
