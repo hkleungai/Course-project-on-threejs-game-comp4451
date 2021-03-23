@@ -6,6 +6,7 @@ import {
   WebGLRenderer,
   sRGBEncoding
 } from 'three';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import { GUI } from './resources';
 
@@ -33,6 +34,9 @@ document.body.appendChild(renderer.domElement);
 
 const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 0, 15);
+
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.addEventListener('change', () => { renderer.render(scene, camera); });
 
 loadTileDataFromJson();
 loadBuildingDataFromJson();

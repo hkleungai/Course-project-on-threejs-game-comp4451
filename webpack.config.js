@@ -20,7 +20,7 @@ module.exports = {
   },
 
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
 
@@ -66,9 +66,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT, 'index.html'),
       favicon: path.resolve(ROOT, 'assets/tiles/plains.png'),
+      cache: false,
     }),
     new ESLintPlugin({ extensions: ['ts', 'js'] }),
     new MiniCssExtractPlugin(),
     new StylelintPlugin(),
-  ]
+  ],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
+  },
 };
