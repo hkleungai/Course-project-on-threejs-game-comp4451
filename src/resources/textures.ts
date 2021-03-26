@@ -6,7 +6,7 @@ import {
 
 const textureLoader = new TextureLoader();
 
-const textureEntries = [
+const textureEntries: [string, Texture][] = [
   'boundary',
   'plains',
   'grassland',
@@ -36,10 +36,10 @@ const textureEntries = [
   textureKey,
   textureLoader.load(`../assets/tiles/${textureKey}.png`),
 ]));
+const textures = Object.fromEntries(textureEntries);
+textureEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
 
-const textures: { [key: string]: Texture } = Object.fromEntries(textureEntries);
-
-const meshEntries = [
+const meshEntries: [string, MeshBasicMaterial][] = [
   'available',
   'blank',
   'plains',
@@ -52,10 +52,35 @@ const meshEntries = [
     transparent: true
   })
 ]));
+const meshes = Object.fromEntries(meshEntries);
 
-const meshes: { [key: string]: MeshBasicMaterial } = Object.fromEntries(meshEntries);
+const infantryEntries: [string, Texture][] = [
+  'infantry_red',
+  'infantry_blue',
+  'infantry_yellow',
+  'infantry_green',
+].map(unitKey => ([
+  unitKey,
+  textureLoader.load(`../assets/units/${unitKey}.png`),
+]));
+infantryEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const infantries = Object.fromEntries(infantryEntries);
+
+const militiaEntries: [string, Texture][] = [
+  'militia_red',
+  'militia_blue',
+  'militia_yellow',
+  'militia_green',
+].map(unitKey => ([
+  unitKey,
+  textureLoader.load(`../assets/units/${unitKey}.png`),
+]));
+militiaEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const militias = Object.fromEntries(militiaEntries);
 
 export {
   meshes,
   textures,
+  infantries,
+  militias,
 };
