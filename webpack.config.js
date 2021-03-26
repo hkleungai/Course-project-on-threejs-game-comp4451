@@ -21,12 +21,13 @@ module.exports = {
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    clean: true,
   },
 
   resolve: {
     extensions: ['.ts', '.js'],
-    modules: [ROOT, 'node_modules']
+    modules: [ROOT, 'node_modules'],
   },
 
   module: {
@@ -60,6 +61,9 @@ module.exports = {
     progress: true,
     profile: true,
     contentBase: ROOT,
+    open: { app: ['chrome', '--incognito'] },
+    hot: true,
+    watchContentBase: true,
   },
 
   plugins: [
@@ -73,9 +77,5 @@ module.exports = {
     new StylelintPlugin(),
   ],
 
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    }
-  },
+  cache: false,
 };
