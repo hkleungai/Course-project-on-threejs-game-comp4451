@@ -21,21 +21,26 @@ import {
   sinDeg,
   cosDeg,
 } from '../utils';
-import { textures, meshes, infantries, militias } from '../resources';
+import {
+  // infantries,
+  // militias
+  meshes,
+  textures,
+} from '../resources';
+import { GameMap } from '../props';
 
 interface LoadTilesGlbInputTypes {
   scene: Scene;
+  gameMap: GameMap;
 }
 
 type loadFlag = 'tile' | 'unit' | 'building';
 
-const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
-  // A 'simple' zig-zag layout
+const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   const loader = new GLTFLoader();
   const texturesEntries = Object.entries(textures);
-  const infantryEntries = Object.entries(infantries);
-  const militiaEntries = Object.entries(militias);
   const unit: { x?: number, y?: number } = {};
+  // const unit = new Vector3(null, null, null);
 
   // const markChildVertices = (center: Vector3Tuple) => {
   //   const dotGeometry = new BufferGeometry();
@@ -74,7 +79,8 @@ const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
     row: number,
     column: number,
     entries: [string, Texture][],
-    flag: loadFlag
+    flag: loadFlag,
+    gameMap?: GameMap,
   ) => (child: Object3D) => {
     if (child instanceof Mesh && child.isMesh) {
       setMeshChildPosition(child, row, column, flag);
@@ -83,8 +89,9 @@ const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
       range(flag === 'tile' ? 3 : 2).forEach(materialIndex => {
         child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
       });
-
-      const [name, map] = entries[randint(entries.length)];
+      const [name, map] = gameMap === undefined
+        ? entries[randint(entries.length)]
+        : entries[gameMap.Tiles[column][row].Type];
       child.material = [
         flag === 'tile' ? meshes.plains : undefined,
         new MeshBasicMaterial({ name, map, transparent: true }),
@@ -101,22 +108,20 @@ const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
     row: number,
     column: number,
     entries: [string, Texture][],
-    flag: loadFlag
+    flag: loadFlag,
+    gameMap?: GameMap
   ) => ({ scene }: GLTF) => {
-    scene.traverse(traverseGlbScene(row, column, entries, flag));
+    scene.traverse(traverseGlbScene(row, column, entries, flag, gameMap));
   };
 
-  const loadGlbForEachRowAndColumn = (row: number, column: number) => {
-    const bias = (row + column) % 6;
+  const loadGlbForEachRowAndColumn = (row: number, column: number, gameMap?: GameMap) => {
     const { error: consoleError } = console;
-    loader.load('./assets/raw.glb', glbOnLoad(row, column, texturesEntries, 'tile'), undefined, consoleError);
-    bias === 1 && loader.load('./assets/units/militia.glb', glbOnLoad(row, column, militiaEntries, 'unit'), undefined, consoleError);
-    bias === 4 && loader.load('./assets/units/infantry.glb', glbOnLoad(row, column, infantryEntries, 'unit'), undefined, consoleError);
+    loader.load('./assets/raw.glb', glbOnLoad(row, column, texturesEntries, 'tile', gameMap), undefined, consoleError);
   };
 
-  range(25).forEach(column => {
-    range(10).forEach(row => {
-      loadGlbForEachRowAndColumn(row, column);
+  range(GameMap.Width).forEach(column => {
+    range(GameMap.Height).forEach(row => {
+      loadGlbForEachRowAndColumn(row, column, gameMap);
     });
   });
 };

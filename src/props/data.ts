@@ -29,7 +29,7 @@ class TileData {
   public Data : Tile[] = [];
 
   Load(): void {
-    this.Data = tileDataJson.Data;
+    this.Data = tileDataJson;
   }
 }
 
