@@ -1,15 +1,21 @@
 import {
   Box3,
+  // BufferGeometry,
+  // Float32BufferAttribute,
   Mesh,
   MeshBasicMaterial,
   Object3D,
+  // Points,
+  // PointsMaterial,
   Scene,
   Texture,
   Vector3,
+  Vector3Tuple,
 } from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import {
+  // Hexagon,
   randint,
   range,
   sinDeg,
@@ -31,6 +37,15 @@ const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
   const militiaEntries = Object.entries(militias);
   const unit: { x?: number, y?: number } = {};
 
+  // const markChildVertices = (center: Vector3Tuple) => {
+  //   const dotGeometry = new BufferGeometry();
+  //   const vertices = new Hexagon({ center, diameterX: unit.x, diameterY: unit.y }).vertices.flat();
+  //   dotGeometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
+  //   const dotMaterial = new PointsMaterial( { color: 0x888888 , size: 0.5 } );
+  //   const dot = new Points( dotGeometry, dotMaterial );
+  //   scene.add( dot );
+  // };
+
   const setMeshChildPosition = (child: Object3D, row: number, column: number, flag: loadFlag) => {
     const initialPosition = new Vector3(-21, 8.5);
     if (unit.x === undefined || unit.y === undefined) {
@@ -39,11 +54,20 @@ const loadTilesGlb = ({ scene }: LoadTilesGlbInputTypes): void => {
       unit.x = box.getSize(dummyVector).x;
       unit.y = box.getSize(dummyVector).y;
     }
-    child.position.set(
+
+    const childCenter: Vector3Tuple = [
       initialPosition.x + unit.y * column * cosDeg(30),
       initialPosition.y - unit.x * cosDeg(30) * row - ((column % 2) * unit.x * sinDeg(60) / 2),
-      initialPosition.z + +(flag !== 'tile') * 0.1
+      initialPosition.z
+    ];
+
+    child.position.set(
+      childCenter[0],
+      childCenter[1],
+      childCenter[2] + +(flag !== 'tile') * 0.1
     );
+
+    // markChildVertices(childCenter);
   };
 
   const traverseGlbScene = (
