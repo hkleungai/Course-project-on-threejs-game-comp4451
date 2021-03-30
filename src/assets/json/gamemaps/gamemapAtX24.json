@@ -1,0 +1,3302 @@
+[
+  {
+    "Name": "boundary",
+    "CoOrds": {
+      "X": 24,
+      "Y": 0
+    },
+    "Type": 0,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 2,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 2,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 2,
+        "Value": 99999
+      },
+      "Fuel": {
+        "Type": 2,
+        "Value": 99999
+      },
+      "Mobility": {
+        "Type": 2,
+        "Value": 0
+      }
+    },
+    "Obstruction": 3.40282347e+38,
+    "AllowConstruction": false,
+    "Height": 3.40282347e+38
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 1
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 2
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 3
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 4
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 5
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 6
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 7
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 8
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 9
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 10
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 11
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "jungle",
+    "CoOrds": {
+      "X": 24,
+      "Y": 12
+    },
+    "Type": 4,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": -1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -50
+      }
+    },
+    "Obstruction": 0.5,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "jungle",
+    "CoOrds": {
+      "X": 24,
+      "Y": 13
+    },
+    "Type": 4,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": -1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -50
+      }
+    },
+    "Obstruction": 0.5,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 14
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 15
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 16
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 17
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 18
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 19
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 20
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 21
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 22
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 23
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 24
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 25
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 26
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 27
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 28
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 29
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 30
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 31
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 32
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 33
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 34
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 35
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 36
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 37
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 38
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 39
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 40
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 41
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 42
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 43
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "desert",
+    "CoOrds": {
+      "X": 24,
+      "Y": 44
+    },
+    "Type": 8,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.200000003,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 45
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 46
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 47
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 48
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 49
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 50
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 51
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 52
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 53
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 54
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 55
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "mountains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 56
+    },
+    "Type": 11,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 4
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -30
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 30
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 150
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -80
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 4
+  },
+  {
+    "Name": "hills",
+    "CoOrds": {
+      "X": 24,
+      "Y": 57
+    },
+    "Type": 10,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 3
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -70
+      }
+    },
+    "Obstruction": 0.899999976,
+    "AllowConstruction": false,
+    "Height": 3
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 58
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 59
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 60
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 61
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 62
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 63
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 64
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 65
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 66
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 67
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 68
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 69
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 70
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 71
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 72
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 73
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 74
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 75
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 76
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 77
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 78
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "plains",
+    "CoOrds": {
+      "X": 24,
+      "Y": 79
+    },
+    "Type": 1,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "hillock",
+    "CoOrds": {
+      "X": 24,
+      "Y": 80
+    },
+    "Type": 9,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 2
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -60
+      }
+    },
+    "Obstruction": 0.75,
+    "AllowConstruction": false,
+    "Height": 2
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 81
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "grassland",
+    "CoOrds": {
+      "X": 24,
+      "Y": 82
+    },
+    "Type": 2,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 1
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 25
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -10
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 10
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -5
+      }
+    },
+    "Obstruction": 0.100000001,
+    "AllowConstruction": true,
+    "Height": 1
+  },
+  {
+    "Name": "forest",
+    "CoOrds": {
+      "X": 24,
+      "Y": 83
+    },
+    "Type": 3,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": -20
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 20
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -30
+      }
+    },
+    "Obstruction": 0.300000012,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 84
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 85
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 86
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 87
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 88
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 89
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 90
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 91
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 92
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 93
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 94
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 95
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 96
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 97
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "swamp",
+    "CoOrds": {
+      "X": 24,
+      "Y": 98
+    },
+    "Type": 7,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 40
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 50
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 100
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": -75
+      }
+    },
+    "Obstruction": 0,
+    "AllowConstruction": false,
+    "Height": 0
+  },
+  {
+    "Name": "boundary",
+    "CoOrds": {
+      "X": 24,
+      "Y": 99
+    },
+    "Type": 0,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 2,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 2,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 2,
+        "Value": 99999
+      },
+      "Fuel": {
+        "Type": 2,
+        "Value": 99999
+      },
+      "Mobility": {
+        "Type": 2,
+        "Value": 0
+      }
+    },
+    "Obstruction": 3.40282347e+38,
+    "AllowConstruction": false,
+    "Height": 3.40282347e+38
+  }
+]

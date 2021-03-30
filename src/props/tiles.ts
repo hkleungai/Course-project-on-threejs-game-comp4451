@@ -8,6 +8,10 @@ import {
 } from '../attr';
 import { Prop } from './prop';
 import { Player } from '../player';
+import {
+  gameMap,
+  mapDataJson
+} from '../assets/json';
 
 enum TileType {
   BOUNDARY = 0,
@@ -29,6 +33,7 @@ enum TileType {
 }
 
 class Tile extends Prop {
+  public Name : string;
   public CoOrds : Point;
   public Type : TileType;
   public TerrainMod : TerrainModifiers;
@@ -40,6 +45,7 @@ class Tile extends Prop {
 
   constructor(tile?: Partial<Tile>) {
     super();
+    this.Name = tile.Name;
     this.CoOrds = tile.CoOrds;
     this.Type = tile.Type;
     this.TerrainMod = tile.TerrainMod;
@@ -50,14 +56,14 @@ class Tile extends Prop {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getNeighbors = (tile : Tile) : Tile[] => {
+const getNeighbors = (map: GameMap, tile: Tile) : Tile[] => {
   const neighbors : Tile[] = [];
   const neighborOffset = tile.CoOrds.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
   neighborOffset.forEach(pair => {
     const x = tile.CoOrds.X + pair[0];
     const y = tile.CoOrds.Y + pair[1];
     if (x < GameMap.Width && x >= 0 && y < GameMap.Height && y >= 0) {
-      neighbors.push(GameMap[x][y]);
+      neighbors.push(map.Tiles[x][y]);
     }
   });
   return neighbors;
@@ -85,21 +91,19 @@ class Cities extends Tile {
 class GameMap {
   private static _height : number;
   private static _width : number;
-  private static readonly Tiles : Tile[][];
-  private static readonly Players : Player[];
+  private _tiles : Tile[][] = [];
+  private _players : Player[] = [];
 
-  constructor(height : number, width : number) {
-    GameMap._height = height;
-    GameMap._width = width;
-  }
   static get Height() : number { return GameMap._height; }
   static get Width() : number { return GameMap._width; }
+  get Tiles() : Tile[][] { return this._tiles; }
+  get Players() : Player[] { return this._players; }
 
-  static Load(): void {
-    // TODO
-  }
-  static Save(): void {
-    // TODO
+  Load(): void {
+    GameMap._width = mapDataJson.Width;
+    GameMap._height = mapDataJson.Height;
+    this._players = mapDataJson.Players;
+    this._tiles = JSON.parse(JSON.stringify(gameMap));
   }
 }
 

@@ -1,9 +1,16 @@
 import {
   BuildingData,
   CustomizableData,
+  GameMap,
   TileData,
   UnitData
 } from '../props';
+
+const loadGameMapFromJson = (): GameMap => {
+  const gameMap = new GameMap();
+  gameMap.Load();
+  return gameMap;
+};
 
 const loadTileDataFromJson = (): void => {
   const tileData = new TileData();
@@ -26,6 +33,7 @@ const loadUnitDataFromJson = (): void => {
 };
 
 export {
+  loadGameMapFromJson,
   loadTileDataFromJson,
   loadBuildingDataFromJson,
   loadCustomizableDataFromJson,

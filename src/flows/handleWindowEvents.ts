@@ -40,4 +40,42 @@ const listenOnMouseEvent = ({
 };
 
 
-export { onWindowResize, listenOnMouseEvent };
+interface OnKeyboardEventInputType {
+  camera: PerspectiveCamera;
+  delta?: number;
+}
+
+const listenOnKeyboardEvent = ({
+  camera, delta,
+}: OnKeyboardEventInputType): void => {
+  if (delta === undefined) {
+    delta = 1;
+  }
+  const callback = (event: KeyboardEvent): void => {
+    event.preventDefault();
+    switch (event.key) {
+      case "ArrowUp":
+        camera.translateY(delta);
+        break;
+      case "ArrowDown":
+        camera.translateY(-delta);
+        break;
+      case "ArrowLeft":
+        camera.translateX(-delta);
+        break;
+      case "ArrowRight":
+        camera.translateX(delta);
+        break;
+      case "+":
+        camera.translateZ(-delta);
+        break;
+      case "-":
+        camera.translateZ(delta);
+        break;
+    }
+    camera.updateMatrix();
+  };
+  window.addEventListener('keydown', callback, false);
+};
+
+export { onWindowResize, listenOnMouseEvent, listenOnKeyboardEvent };
