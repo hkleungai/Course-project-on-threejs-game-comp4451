@@ -1,0 +1,12 @@
+@mixin set-gui-font($font-size) {
+  font: #{$font-size}rem 'Lucida Grande', sans-serif;
+}
+
+@mixin set-gui-width {
+  width: 25rem !important;
+}
+
+@mixin set-height-and-lineHeight($height) {
+  height: #{$height}rem;
+  line-height: #{$height}rem;
+}

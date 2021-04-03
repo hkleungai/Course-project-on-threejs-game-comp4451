@@ -9,7 +9,6 @@
     ],
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
   "include": [
@@ -20,6 +19,4 @@
   "noImplicitAny": true,
   "module": "commonjs",
   "declaration": true,
-  "allowSyntheticDefaultImports": true,
-  "esModuleInterop": true
 }

@@ -1,32 +1,6 @@
-@mixin set-gui-font($font-size) {
-  font: #{$font-size}rem 'Lucida Grande', sans-serif;
-}
-
-@mixin set-gui-width {
-  width: 25rem !important;
-}
-
-@mixin set-height-and-lineHeight($height) {
-  height: #{$height}rem;
-  line-height: #{$height}rem;
-}
-
-html {
-  font-size: 16px;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-canvas {
-  display: block;
-}
-
 div.gui-container {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
 
   div.dg.main {
     @include set-gui-width;

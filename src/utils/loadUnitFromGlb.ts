@@ -4,7 +4,7 @@ import { Point } from "../attr";
 import { Unit } from "../props/units";
 import { PlayerColor } from "../player";
 import { assaults, engineers, infantries, meshes, militias, mountains, supports } from "../resources";
-import { coordsToScreenPoint, InvalidArgumentException, range } from "./";
+import { parseCoordsToScreenPoint, InvalidArgumentException, range } from "./";
 
 const getEntries = (unit: Unit): { [k: string]: Texture } => {
   switch (unit.Name) {
@@ -47,7 +47,7 @@ const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
           meshes.blank,
           meshes.blank
         ];
-        const screenPos = coordsToScreenPoint(coords);
+        const screenPos = parseCoordsToScreenPoint(coords);
         child.position.set(screenPos.x, screenPos.y, 0.1);
         child.name = meshname;
         mainScene.add(child);

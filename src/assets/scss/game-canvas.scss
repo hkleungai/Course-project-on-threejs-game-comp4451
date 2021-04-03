@@ -1,0 +1,108 @@
+@import '~hamburgers/_sass/hamburgers/hamburgers.scss';
+
+div.canvas-container {
+  position: relative;
+
+  canvas {
+    display: block;
+    position: absolute;
+  }
+
+  div.action-menu {
+    display: none;
+    position: absolute;
+    z-index: 1;
+
+    div.action-menu-button {
+      background: red;
+    }
+  }
+
+  div.player-resource-container {
+    position: absolute;
+    top: 0;
+    left: 3.75rem;
+    width: 100vw;
+    z-index: 1;
+
+    div.player-resource-flex-list {
+      @include set-height-and-lineHeight(3);
+
+      font-size: 2rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 0.6rem;
+
+      div.player-resource-type {
+        display: flex;
+        flex-basis: 15%;
+        margin-left: 2rem;
+        justify-content: center;
+        background: #068;
+        color: #fc0;
+
+        div.player-resource-value {
+          padding-left: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+nav.navigation {
+  display: none;
+  top: 0;
+  left: 0;
+
+  ul {
+    height: auto;
+    width: 30rem;
+    position: absolute;
+    padding-left: 0;
+    padding-right: 0;
+
+    .action-sublist {
+      display: none;
+      top: 0;
+      left: 30rem;
+    }
+
+    li {
+      @include set-height-and-lineHeight(3);
+
+      display: block;
+      width: 100%;
+      font-size: 2rem;
+      text-transform: none;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      background: #068;
+      color: #fc0;
+
+      div {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      &:hover {
+        background: #7a0000;
+        color: white;
+        cursor: pointer;
+      }
+
+      &.with-submenu:hover ul {
+        display: block;
+      }
+
+      &.unavailable-action {
+        opacity: 0.5;
+
+        &:hover {
+          background: #068;
+          color: #fc0;
+        }
+      }
+    }
+  }
+}

@@ -61,7 +61,7 @@ module.exports = {
     progress: true,
     profile: true,
     contentBase: ROOT,
-    open: { app: ['chrome', '--incognito'] },
+    // open: { app: ['chrome', '--incognito'] },
     hot: true,
     watchContentBase: true,
   },
@@ -78,4 +78,10 @@ module.exports = {
   ],
 
   cache: false,
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 };

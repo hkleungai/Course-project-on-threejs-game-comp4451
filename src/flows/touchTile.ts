@@ -10,17 +10,17 @@ import { meshes } from '../resources';
 let currentTile: Mesh;
 const raycaster = new Raycaster();
 
-interface TouchTileViaRaycasterInputType {
+interface TouchTileInputType {
   camera: Camera;
   scene: Scene;
   moveMouse: Vector3;
 }
 
-const touchTileViaRaycaster = ({
+const touchTile = ({
   camera,
   scene: { children },
   moveMouse,
-}: TouchTileViaRaycasterInputType): void => {
+}: TouchTileInputType): void => {
   raycaster.setFromCamera(moveMouse, camera);
 
   const newTile = (
@@ -43,4 +43,4 @@ const touchTileViaRaycaster = ({
   currentTile = newTile;
 };
 
-export { touchTileViaRaycaster };
+export { touchTile };

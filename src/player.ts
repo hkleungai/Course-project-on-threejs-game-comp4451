@@ -1,5 +1,5 @@
 import { Resources } from './attr';
-import { Cities } from './props';
+// import { Cities } from './props';
 import { Building } from './props/buildings';
 import { Unit } from './props/units';
 import { Technology, Customizable } from './researches';
