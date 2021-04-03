@@ -5,7 +5,7 @@ import {
   Offense,
   Point,
   Resources,
-  Spotting
+  Scouting
 } from "../../attr";
 import { Unit } from '../units';
 import { Prop } from "../prop";
@@ -16,7 +16,7 @@ abstract class Building extends Prop {
   public Level : number;
   public Cost : Cost;
   public Durability : Attribute;
-  public Spotting : Spotting;
+  public Scouting : Scouting;
   public DestroyTerrainOnBuilt : boolean;
 }
 

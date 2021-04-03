@@ -3,18 +3,22 @@ import { Shell } from './shells';
 import { Attribute } from '../attr';
 
 class Gun extends Module {
-  public CompatibleShells : Shell[];
+  public CompatibleShells : string[];
   public CurrentShell : Shell;
 }
 
-class Hull extends Module {
-  public Armour : Attribute;
+class MachineGun extends Module {
+
 }
 
 class Engine extends Module {
   public Horsepower : Attribute;
   public FuelConsumption : Attribute;
   public CatchFireChance : Attribute;
+}
+
+class Suspension extends Module {
+
 }
 
 class Radio extends Module {
@@ -54,10 +58,6 @@ class Rudder extends Module {
   public Steering : Attribute;
 }
 
-class Fuselage extends Module {
-  public Armour : Attribute;
-}
-
 class Wings extends Module {
 
 }
@@ -72,8 +72,9 @@ class Radar extends Module {
 
 export {
   Gun,
-  Hull,
+  MachineGun,
   Engine,
+  Suspension,
   Radio,
   Periscope,
   FuelTank,
@@ -83,7 +84,6 @@ export {
   Sonar,
   Propeller,
   Rudder,
-  Fuselage,
   Wings,
   LandingGear,
   Radar

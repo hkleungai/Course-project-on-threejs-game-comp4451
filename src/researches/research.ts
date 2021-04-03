@@ -44,10 +44,13 @@ enum FirearmType {
 abstract class Firearm extends Customizable {
   public FirearmType : FirearmType;
   public Offense : Offense;
-  constructor(name : string, cost : Cost, offense : Offense) {
-    super(name, cost);
-    this.Offense = offense;
-  }
+  public AmmoWeight : number;
+  public ConsumptionNormal : Resources;
+  public ConsumptionSuppress : Resources;
+  public Noise : Attribute;
+  public CamoPenaltyMove : Modifier;
+  public CamoPenaltyFire : Modifier;
+  public MobilityPenalty : Modifier;
 }
 
 abstract class Module extends Customizable {

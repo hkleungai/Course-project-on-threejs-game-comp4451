@@ -1,53 +1,126 @@
 [
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -57,35 +130,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -116,7 +168,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -128,6 +180,22 @@
         "Mod": {
           "Type": 0,
           "Value": 0
+        }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -137,6 +205,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -160,7 +229,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -189,6 +265,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -218,7 +301,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -247,6 +337,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -276,7 +373,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -305,6 +409,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -334,7 +445,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -363,6 +481,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -392,7 +517,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -421,6 +553,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -450,7 +661,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -484,6 +702,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -494,7 +719,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -528,53 +753,126 @@
   },
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -584,35 +882,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -643,7 +920,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -655,6 +932,22 @@
         "Mod": {
           "Type": 0,
           "Value": 0
+        }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -664,6 +957,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -687,7 +981,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -716,6 +1017,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -745,7 +1053,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -774,6 +1089,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -803,7 +1125,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -832,6 +1161,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -861,7 +1197,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -890,6 +1233,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -919,7 +1269,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -948,6 +1305,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -977,7 +1413,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1011,6 +1454,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1021,7 +1471,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -1055,53 +1505,126 @@
   },
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -1111,35 +1634,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -1170,7 +1672,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -1182,6 +1684,22 @@
         "Mod": {
           "Type": 0,
           "Value": 0
+        }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1191,6 +1709,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -1214,7 +1733,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1243,6 +1769,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1272,7 +1805,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1301,6 +1841,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1330,7 +1877,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1359,6 +1913,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1388,7 +1949,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1417,6 +1985,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1446,7 +2021,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1475,6 +2057,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1504,7 +2165,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1538,6 +2206,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1548,7 +2223,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -1582,53 +2257,126 @@
   },
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -1638,35 +2386,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -1697,7 +2424,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -1709,6 +2436,22 @@
         "Mod": {
           "Type": 0,
           "Value": 0
+        }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1718,6 +2461,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -1741,7 +2485,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1770,6 +2521,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1799,7 +2557,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1828,6 +2593,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1857,7 +2629,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1886,6 +2665,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1915,7 +2701,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1944,6 +2737,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1973,7 +2773,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2002,6 +2809,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2031,7 +2917,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2065,6 +2958,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -2075,7 +2975,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -2109,53 +3009,126 @@
   },
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -2165,35 +3138,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -2224,7 +3176,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -2236,6 +3188,22 @@
         "Mod": {
           "Type": 0,
           "Value": 0
+        }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -2245,6 +3213,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -2268,7 +3237,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2297,6 +3273,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2326,7 +3309,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2355,6 +3345,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2384,7 +3381,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2413,6 +3417,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2442,7 +3453,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2471,6 +3489,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2500,7 +3525,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2529,6 +3561,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2558,7 +3669,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2592,6 +3710,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -2602,7 +3727,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -2636,53 +3761,126 @@
   },
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -2692,35 +3890,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -2751,7 +3928,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -2763,6 +3940,22 @@
         "Mod": {
           "Type": 0,
           "Value": 0
+        }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -2772,6 +3965,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -2795,7 +3989,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2824,6 +4025,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2853,7 +4061,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2882,6 +4097,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2911,7 +4133,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2940,6 +4169,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2969,7 +4205,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -2998,6 +4241,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3027,7 +4277,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3056,6 +4313,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3085,7 +4421,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3119,6 +4462,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -3129,7 +4479,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -3163,53 +4513,126 @@
   },
   {
     "Offense": {
-      "Cyclic": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Handling": {
+        "Cyclic": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Clip": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Reload": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Aim": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Salvo": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "ROF": 0,
+        "ROFSuppress": 0
+      },
+      "Damage": {
+        "Soft": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Hard": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Destruction": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Dropoff": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Penetration": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "Firepower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "Accuracy": {
+        "Normal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Suppress": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Deviation": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
-      "DestructionPower": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "DamageDropoff": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "ROF": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "Salvo": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
+      "AOE": {
+        "BlastRadius": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "SplashDecay": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       },
       "Suppression": {
@@ -3219,35 +4642,14 @@
           "Value": 0
         }
       },
-      "Range": {
+      "MinRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
-      "Accurarcy": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AccurarcyDeviation": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "AOE": {
-        "Value": 0,
-        "Mod": {
-          "Type": 0,
-          "Value": 0
-        }
-      },
-      "SplashDecay": {
+      "MaxRange": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -3278,7 +4680,7 @@
           "Value": 0
         }
       },
-      "SuppressionThreshold": {
+      "Hardness": {
         "Value": 0,
         "Mod": {
           "Type": 0,
@@ -3291,6 +4693,22 @@
           "Type": 0,
           "Value": 0
         }
+      },
+      "Suppression": {
+        "Threshold": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Resilience": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
       }
     },
     "Name": "minefield",
@@ -3299,6 +4717,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -3322,7 +4741,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3351,6 +4777,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3380,7 +4813,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3409,6 +4849,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3438,7 +4885,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3467,6 +4921,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3496,7 +4957,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3525,6 +4993,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3554,7 +5029,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3583,6 +5065,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3612,7 +5173,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -3646,6 +5214,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -3656,7 +5231,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {

@@ -5,72 +5,150 @@ import {
   Cost,
   Maneuverability,
   Defense,
-  Offense,
+  // Offense,
   Resources,
-  Spotting,
+  Scouting,
 } from '../../attr';
 import {
   Firearm,
-  Module
+  // Module,
+  Gun,
+  MachineGun,
+  Engine,
+  Suspension,
+  Radio,
+  Periscope,
+  FuelTank,
+  CannonBreech,
+  AmmoRack,
+  Propeller,
+  Rudder,
+  Wings,
+  LandingGear,
+  Radar
 } from '../../researches';
+// import { personnelDataJson } from '../../assets/json';
 
+enum UnitStatus {
+  None,
+  InQueue,
+  CanBeDeployed,
+  Active,
+  Moved,
+  Fired,
+  Wrecked,
+  Destroyed
+}
 abstract class Unit extends Prop {
   public Name : string;
   public Coords : Point;
+  public Status : UnitStatus;
   public Cost : Cost;
-  public TrainingTime : Attribute;
-  public TimeRemaining : number;
   public Maneuverability : Maneuverability;
   public Defense : Defense;
-  public Offense : Offense;
   public Consumption : Resources;
+  public Carrying : Resources;
   public Capacity : Resources;
-  public Spotting : Spotting;
+  public Scouting : Scouting;
   public Morale : Attribute;
+
+  public CurrentSuppressionLevel : number;
+  public LastSuppressedRound : number;
+  public IsSuppressed : boolean;
+  public IsDisconnected : boolean;
+  public TrainingTimeRemaining : number;
 
   protected constructor(unit?: Partial<Unit>) {
     super();
     this.Name = unit.Name;
     this.Coords  = unit.Coords;
+    this.Status = unit.Status;
     this.Cost  = unit.Cost;
     this.Maneuverability  = unit.Maneuverability;
     this.Defense  = unit.Defense;
-    this.Offense  = unit.Offense;
     this.Consumption  = unit.Consumption;
+    this.Carrying = unit.Carrying;
     this.Capacity  = unit.Capacity;
-    this.Spotting  = unit.Spotting;
+    this.Scouting  = unit.Scouting;
     this.Morale  = unit.Morale;
+
+    this.CurrentSuppressionLevel = unit.CurrentSuppressionLevel;
+    this.LastSuppressedRound = unit.LastSuppressedRound;
+    this.IsSuppressed = unit.IsSuppressed;
+    this.IsDisconnected = unit.IsDisconnected;
+    this.TrainingTimeRemaining = unit.TrainingTimeRemaining;
   }
 }
 
 abstract class Personnel extends Unit {
   public PrimaryFirearm : Firearm;
   public SecondaryFirearm : Firearm;
+  public DefaultPrimary : string;
+  public AvailableFirearms : string[];
   public CaptureEfficiency : Attribute;
 
   protected constructor(personnel?: Partial<Personnel>) {
     super(personnel);
     this.PrimaryFirearm = personnel.PrimaryFirearm;
     this.SecondaryFirearm = personnel.SecondaryFirearm;
+    this.DefaultPrimary = personnel.DefaultPrimary;
+    this.AvailableFirearms = personnel.AvailableFirearms;
     this.CaptureEfficiency = personnel.CaptureEfficiency;
   }
 }
 
 abstract class Artillery extends Unit {
-  public Modules : Module[];
+  public IsAssembled : boolean;
+  public AssembleTime : number;
+  public DefaultGun : string;
+  public Gun : Gun;
+  public Radio : Radio;
+  public CannonBreech : CannonBreech;
 }
 
 abstract class Vehicle extends Unit {
-  public Modules : Module[];
+  public DefaultMainArmament : string;
+  public Guns : Gun[];
+  public MachineGuns : MachineGun[];
+  public Engine : Engine;
+  public Suspension : Suspension;
+  public Radio : Radio;
+  public Periscope : Periscope;
+  public FuelTank : FuelTank;
+  public CannonBreech : CannonBreech;
+  public AmmoRack : AmmoRack;
 }
 
 abstract class Vessel extends Unit {
-  public Modules : Module[];
+  public DefaultMainArmaments : string[];
+  public DefaultSecondaryArmaments : string[];
+  public Guns : Gun[];
+  public MachineGuns : MachineGun[];
+  public Engine : Engine;
+  public Radio : Radio;
+  public Periscope : Periscope;
+  public FuelTank : FuelTank;
+  public CannonBreech : CannonBreech;
+  public AmmoRack : AmmoRack;
+  public Propeller : Propeller;
+  public Rudder : Rudder;
+  public Radar : Radar;
   public Altitude : number;
 }
 
 abstract class Plane extends Unit {
-  public Modules : Module[];
+  public Guns : Gun[];
+  public MachineGuns : MachineGun[];
+  public Engine : Engine;
+  public Radio : Radio;
+  public FuelTank : FuelTank;
+  public CannonBreech : CannonBreech;
+  public AmmoRack : AmmoRack;
+  public Propeller : Propeller;
+  public Rudder : Rudder;
+  public Wings : Wings;
+  public LandingGear : LandingGear;
+  public Radar : Radar;
   public Altitude : number;
 }
 
