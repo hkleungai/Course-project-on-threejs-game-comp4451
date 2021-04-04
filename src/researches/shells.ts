@@ -1,13 +1,14 @@
 import { Customizable } from './research';
 import {
-  Attribute
+  Modifier
 } from '../attr';
 
 abstract class Shell extends Customizable {
-  public Penetration : Attribute;
-  public PenetrationDeviation : Attribute;
-  public AmmoConsumption : Attribute;
-  public Dropoff : () => void;
+  public PenetrationCoefficient : Modifier;
+  public PenetrationDeviation : Modifier;
+  public AOEModifier : Modifier;
+  public SplashDecayModifier : Modifier;
+  public DropoffModifier : Modifier;
 }
 
 class AP extends Shell {

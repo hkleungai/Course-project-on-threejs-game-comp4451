@@ -20,7 +20,8 @@ class Resources {
   public Money : Attribute;
   public Steel : Attribute;
   public Supplies : Attribute;
-  public Ammo : Attribute;
+  public Cartridges : Attribute;
+  public Shells : Attribute;
   public Fuel : Attribute;
   public RareMetal : Attribute;
   public Manpower : Attribute;
@@ -32,40 +33,10 @@ class Resources {
     } else {
       throw new InvalidArgumentException('money', resources.Money.Value);
     }
-    if (Number.isInteger(resources.Steel?.Value ?? 0)) {
-      this.Steel = resources?.Steel;
-    } else {
-      throw new InvalidArgumentException('steel', resources.Steel.Value);
-    }
-    if (Number.isInteger(resources.Supplies?.Value ?? 0)) {
-      this.Supplies = resources.Supplies;
-    } else {
-      throw new InvalidArgumentException('supplies', resources.Supplies.Value);
-    }
-    if (Number.isInteger(resources.Ammo?.Value ?? 0)) {
-      this.Ammo = resources.Ammo;
-    } else {
-      throw new InvalidArgumentException('ammo', resources.Ammo.Value);
-    }
-    if (Number.isInteger(resources.Fuel?.Value ?? 0)) {
-      this.Fuel = resources.Fuel;
-    } else {
-      throw new InvalidArgumentException('fuel', resources.Fuel.Value);
-    }
-    if (Number.isInteger(resources.RareMetal?.Value ?? 0)) {
-      this.RareMetal = resources.RareMetal;
-    } else {
-      throw new InvalidArgumentException('rare_metal', resources.RareMetal.Value);
-    }
     if (Number.isInteger(resources.Manpower?.Value ?? 0)) {
       this.Manpower = resources.Manpower;
     } else {
       throw new InvalidArgumentException('manpower', resources.Manpower.Value);
-    }
-    if (Number.isInteger(resources.Power?.Value ?? 0)) {
-      this.Power = resources.Power;
-    } else {
-      throw new InvalidArgumentException('power', resources.Power.Value);
     }
   }
 }
@@ -89,10 +60,15 @@ const consumeResources = (
   } else {
     throw new InsufficientResourcesException('supplies', original.Supplies.Value, consumption.Supplies.Value);
   }
-  if (original.Ammo.Value >= consumption.Ammo.Value) {
-    original.Ammo.Value -= consumption.Ammo.Value;
+  if (original.Cartridges.Value >= consumption.Cartridges.Value) {
+    original.Cartridges.Value -= consumption.Cartridges.Value;
   } else {
-    throw new InsufficientResourcesException('ammo', original.Ammo.Value, consumption.Ammo.Value);
+    throw new InsufficientResourcesException('cartridges', original.Cartridges.Value, consumption.Cartridges.Value);
+  }
+  if (original.Shells.Value >= consumption.Shells.Value) {
+    original.Shells.Value -= consumption.Shells.Value;
+  } else {
+    throw new InsufficientResourcesException('shells', original.Shells.Value, consumption.Shells.Value);
   }
   if (original.Fuel.Value >= consumption.Fuel.Value) {
     original.Fuel.Value -= consumption.Fuel.Value;
@@ -124,7 +100,7 @@ const produceResources = (
   original.Money.Value += production.Money.Value;
   original.Steel.Value += production.Steel.Value;
   original.Supplies.Value += production.Supplies.Value;
-  original.Ammo.Value += production.Ammo.Value;
+  original.Shells.Value += production.Shells.Value;
   original.Fuel.Value += production.Fuel.Value;
   original.RareMetal.Value += production.RareMetal.Value;
   original.Manpower.Value += production.Manpower.Value;
@@ -174,7 +150,7 @@ class Attribute {
   public Value : number;
   public Mod : Modifier;
 
-  constructor(value : number, mod : Modifier) {
+  constructor(value : number, mod : Modifier = null) {
     this.Value = value;
     this.Mod = mod;
   }
@@ -197,6 +173,7 @@ class Cost {
   public Repair : Resources;
   public Fortification : Resources;
   public Manufacture : Resources;
+  public Maintenance : Resources;
   public Recycling : Resources;
 
   constructor(cost?: Partial<Cost>) {
@@ -205,6 +182,7 @@ class Cost {
     this.Repair = cost.Repair;
     this.Fortification = cost.Fortification;
     this.Manufacture = cost.Manufacture;
+    this.Maintenance = cost.Maintenance;
     this.Recycling = cost.Recycling;
   }
 }
@@ -225,52 +203,75 @@ class Defense {
   public Strength : Attribute;
   public Resistance : Attribute;
   public Evasion : Attribute;
-  public SuppressionThreshold : Attribute;
+  public Hardness : Attribute;
   public Integrity : Attribute;
+  public Suppression : Suppression;
 
   constructor(defense?: Partial<Defense>) {
     this.Strength = defense.Strength;
     this.Resistance = defense.Resistance;
     this.Evasion = defense.Evasion;
-    this.SuppressionThreshold = defense.SuppressionThreshold;
+    this.Suppression = defense.Suppression;
     this.Integrity = defense.Integrity;
   }
 }
 
+class Suppression {
+  public Threshold : Attribute;
+  public Resilience : Attribute;
+}
+
 class Offense {
-  public Cyclic : Attribute;
-  public Firepower : Attribute;
-  public DestructionPower : Attribute;
-  public DamageDeviation : Attribute;
-  public DamageDropoff : Attribute;
-  public ROF : Attribute;
-  public Salvo : Attribute;
+  public Handling : Handling;
+  public Damage : Damage;
+  public Accuracy : Accuracy;
+  public AOE : AOE;
   public Suppression : Attribute;
-  public Range : Attribute;
-  public Accurarcy : Attribute;
-  public AccurarcyDeviation : Attribute;
-  public AOE : Attribute;
-  public SplashDecay : Attribute;
+  public MinRange : Attribute;
+  public MaxRange : Attribute;
   public IsDirectFire : boolean;
 
   constructor(offense?: Partial<Offense>) {
-    this.Cyclic = offense.Cyclic;
-    this.Firepower = offense.Firepower;
-    this.DestructionPower = offense.DestructionPower;
-    this.DamageDeviation = offense.DamageDeviation;
-    this.DamageDropoff = offense.DamageDropoff;
-    this.ROF = offense.ROF;
-    this.Salvo = offense.Salvo;
-    this.Suppression = offense.Suppression;
-    this.Range = offense.Range;
-    this.Accurarcy = offense.Accurarcy;
-    this.AccurarcyDeviation = offense.AccurarcyDeviation;
+    this.Handling = offense.Handling;
+    this.Damage = offense.Damage;
+    this.Accuracy = offense.Accuracy;
     this.AOE = offense.AOE;
-    this.SplashDecay = offense.SplashDecay;
+    this.Suppression = offense.Suppression;
+    this.MinRange = offense.MinRange;
+    this.MaxRange = offense.MaxRange;
     this.IsDirectFire = offense.IsDirectFire;
   }
 }
 
+class Handling {
+  public Cyclic : Attribute;
+  public Clip : Attribute;
+  public Reload : Attribute;
+  public Aim : Attribute;
+  public Salvo : Attribute;
+  public ROF : number;
+  public ROFSuppress : number;
+}
+
+class Accuracy {
+  public Normal : Attribute;
+  public Suppress : Attribute;
+  public Deviation : Attribute;
+}
+
+class AOE {
+  public BlastRadius : Attribute;
+  public SplashDecay : Attribute;
+}
+
+class Damage {
+  public Soft : Attribute;
+  public Hard : Attribute;
+  public Destruction : Attribute;
+  public Deviation : Attribute;
+  public Dropoff : Attribute;
+  public Penetration ?: Attribute;
+}
 class Load {
   public Units : Unit[] = [];
   public Resources : Resources;
@@ -288,7 +289,7 @@ class Load {
   }
 }
 
-class Spotting {
+class Scouting {
   public Reconnaissance : Attribute;
   public Camouflage : Attribute;
   public Detection : Attribute;
@@ -317,5 +318,5 @@ export {
   Defense,
   Offense,
   Load,
-  Spotting
+  Scouting
 };

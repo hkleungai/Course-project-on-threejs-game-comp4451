@@ -3,7 +3,13 @@ import {
 } from './tiles';
 import {
   buildingDataJson,
-  tileDataJson
+  firearmsDataJson,
+  gunsDataJson,
+  personnelDataJson,
+  artilleriesDataJson,
+  vehiclesDataJson,
+  tileDataJson,
+  shellsDataJson
 } from "../assets/json";
 import {
   DefensiveBuilding,
@@ -21,10 +27,9 @@ import {
 } from './units';
 import {
   Firearm,
-  Module,
+  Gun,
   Shell
 } from '../researches';
-
 class TileData {
   public Data : Tile[] = [];
 
@@ -50,24 +55,28 @@ class BuildingData {
 }
 
 class UnitData {
-  public PersonnelData : Personnel[] = [];
-  public ArtilleriesData : Artillery[] = [];
-  public VehicleData : Vehicle[] = [];
+  public PersonnelData : { [name: string]: Personnel } = {};
+  public ArtilleriesData : { [name: string]: Artillery } = {};
+  public VehicleData : { [name: string]: Vehicle } = {};
   public VesselData : Vessel[] = [];
   public PlaneData : Plane[] = [];
 
   Load(): void {
-    //TODO
+    this.PersonnelData = personnelDataJson;
+    this.ArtilleriesData = artilleriesDataJson;
+    this.VehicleData = vehiclesDataJson;
   }
 }
 
 class CustomizableData {
-  public FirearmData : Firearm[] = [];
-  public ModuleData : Module[] = [];
-  public ShellData : Shell[] = [];
+  public FirearmData : { [name: string]: Firearm } = {};
+  public GunData : { [name: string]: Gun } = {};
+  public ShellData : { [name: string]: Shell } = {};
 
   Load(): void {
-    //TODO
+    this.FirearmData = firearmsDataJson;
+    this.GunData = gunsDataJson;
+    this.ShellData = shellsDataJson;
   }
 }
 

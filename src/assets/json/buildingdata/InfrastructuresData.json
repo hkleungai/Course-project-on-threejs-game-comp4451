@@ -6,6 +6,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -23,13 +24,20 @@
           }
         },
         "Supplies": {
+          "Value": 5,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
           "Value": 0,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
-        "Ammo": {
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -51,7 +59,7 @@
           }
         },
         "Manpower": {
-          "Value": 0,
+          "Value": 5,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -59,6 +67,13 @@
         },
         "Power": {
           "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0.25,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -87,7 +102,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -116,6 +138,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -145,7 +174,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -174,6 +210,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -203,7 +246,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -232,6 +282,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -261,7 +318,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -290,6 +354,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -319,7 +462,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -353,14 +503,21 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
     "Durability": {
-      "Value": 3.40282347e+38,
+      "Value": 1.7976931348623157E+308,
       "Mod": null
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -396,10 +553,11 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
-          "Value": 0,
+          "Value": 150,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -413,13 +571,20 @@
           }
         },
         "Supplies": {
+          "Value": 10,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
           "Value": 0,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
-        "Ammo": {
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -441,7 +606,7 @@
           }
         },
         "Manpower": {
-          "Value": 0,
+          "Value": 10,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -449,6 +614,13 @@
         },
         "Power": {
           "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0.5,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -477,7 +649,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -506,6 +685,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -535,7 +721,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -564,6 +757,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -593,7 +793,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -622,6 +829,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -651,7 +865,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -680,6 +901,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -709,7 +1009,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -743,17 +1050,21 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
     "Durability": {
-      "Value": 0,
-      "Mod": {
-        "Type": 0,
-        "Value": 0
-      }
+      "Value": 3000,
+      "Mod": null
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -792,6 +1103,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 15,
     "Cost": {
       "Base": {
         "Money": {
@@ -802,20 +1114,27 @@
           }
         },
         "Steel": {
-          "Value": 500,
+          "Value": 100,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Supplies": {
+          "Value": 20,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
           "Value": 0,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
-        "Ammo": {
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -837,7 +1156,7 @@
           }
         },
         "Manpower": {
-          "Value": 0,
+          "Value": 20,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -845,6 +1164,13 @@
         },
         "Power": {
           "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 1,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -873,7 +1199,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -902,6 +1235,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -911,14 +1251,14 @@
       },
       "Repair": {
         "Money": {
-          "Value": 0,
+          "Value": 100,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Steel": {
-          "Value": 0,
+          "Value": 10,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -931,7 +1271,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -960,6 +1307,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -969,14 +1323,14 @@
       },
       "Fortification": {
         "Money": {
-          "Value": 0,
+          "Value": 250,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Steel": {
-          "Value": 0,
+          "Value": 50,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -989,7 +1343,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1018,6 +1379,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1047,7 +1415,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1076,6 +1451,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1105,7 +1559,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1139,6 +1600,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1146,7 +1614,7 @@
       "Value": 1250,
       "Mod": null
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -1155,7 +1623,7 @@
         }
       },
       "Camouflage": {
-        "Value": 80,
+        "Value": 0,
         "Mod": null
       },
       "Detection": {
@@ -1182,6 +1650,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -1205,7 +1674,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1234,6 +1710,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1263,7 +1746,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1292,6 +1782,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1321,7 +1818,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1350,6 +1854,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1379,7 +1890,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1408,6 +1926,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1437,7 +1962,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1466,6 +1998,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1495,7 +2106,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1529,6 +2147,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1539,7 +2164,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
@@ -1578,6 +2203,7 @@
       "Y": 0
     },
     "Level": 0,
+    "Size": 0,
     "Cost": {
       "Base": {
         "Money": {
@@ -1601,7 +2227,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1630,6 +2263,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1659,7 +2299,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1688,6 +2335,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1717,7 +2371,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1746,6 +2407,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1775,7 +2443,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1804,6 +2479,13 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1833,7 +2515,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1862,6 +2551,85 @@
           }
         },
         "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        }
+      },
+      "Maintenance": {
+        "Money": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Steel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Supplies": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Fuel": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "RareMetal": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Manpower": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Power": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Time": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1891,7 +2659,14 @@
             "Value": 0
           }
         },
-        "Ammo": {
+        "Cartridges": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "Shells": {
           "Value": 0,
           "Mod": {
             "Type": 0,
@@ -1925,6 +2700,13 @@
             "Type": 0,
             "Value": 0
           }
+        },
+        "Time": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
         }
       }
     },
@@ -1935,7 +2717,7 @@
         "Value": 0
       }
     },
-    "Spotting": {
+    "Scouting": {
       "Reconnaissance": {
         "Value": 0,
         "Mod": {
