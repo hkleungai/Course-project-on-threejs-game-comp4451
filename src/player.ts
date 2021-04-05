@@ -4,7 +4,7 @@ import { Building } from './props/buildings';
 import { Unit } from './props/units';
 import { Technology, Customizable } from './researches';
 
-enum Color {
+enum PlayerColor {
   RED = 0,
   YELLOW = 1,
   BLUE = 2,
@@ -13,36 +13,25 @@ enum Color {
 
 class Player {
   public readonly Name : string;
-  public readonly Color : Color;
+  public readonly Color : PlayerColor;
   public readonly isAI : boolean;
   public Resources : Resources;
-  public Units : Unit[];
   public Buildings : Building[];
   public Researches : Technology[];
   public Customizables : Customizable[];
 
-  constructor(
-    name : string,
-    color : Color,
-    resources : Resources,
-    isAI : boolean,
-    units : Unit[],
-    buildings : Building[],
-    research : Technology[],
-    customizables : Customizable[]
-  ) {
-    this.Name = name;
-    this.Color = color;
-    this.isAI = isAI;
-    this.Resources = resources;
-    this.Units = units;
-    this.Buildings = buildings;
-    this.Researches = research;
-    this.Customizables = customizables;
+  constructor(player?: Partial<Player>) {
+    this.Name = player.Name;
+    this.Color = player.Color;
+    this.isAI = player.isAI;
+    this.Resources = player.Resources;
+    this.Buildings = player.Buildings;
+    this.Researches = player.Researches;
+    this.Customizables = player.Customizables;
   }
 }
 
 export {
-  Color,
+  PlayerColor,
   Player
 };

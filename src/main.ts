@@ -21,13 +21,24 @@ import {
   listenOnMouseEvent,
   touchTileViaRaycaster,
   loadGameMapFromJson,
-  listenOnKeyboardEvent
+  listenOnKeyboardEvent,
+  instantiateUnit
 } from './flows';
 
 import './style.scss';
-import { GameMap } from './props';
+import {
+  GameMap,
+  TileData,
+  BuildingData,
+  CustomizableData,
+  UnitData
+} from './props';
+import {testGetNeiboursAtRange} from './test';
+import { Point } from './attr';
+import { Infantry, Personnel } from './props/units';
+import { PlayerColor, Player } from './player';
 
-const scene = new Scene();
+let scene = new Scene();
 scene.background = new Color(0x000000);
 
 const renderer = new WebGLRenderer({ antialias: true });
@@ -35,17 +46,16 @@ renderer.outputEncoding = sRGBEncoding;
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 15);
+const camera = new PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(20, 30, 10);
+camera.lookAt(20, 30, 0);
+camera.matrixAutoUpdate = true;
 
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.addEventListener('change', () => { renderer.render(scene, camera); });
-
-const gameMap: GameMap = loadGameMapFromJson();
-loadTileDataFromJson();
-loadBuildingDataFromJson();
-loadCustomizableDataFromJson();
-loadUnitDataFromJson();
+let gameMap: GameMap = loadGameMapFromJson();
+let tileData: TileData = loadTileDataFromJson();
+let buildingData: BuildingData = loadBuildingDataFromJson();
+let customizableData: CustomizableData = loadCustomizableDataFromJson();
+let unitData: UnitData = loadUnitDataFromJson();
 
 loadTilesGlb({ scene, gameMap });
 
@@ -56,6 +66,10 @@ listenOnMouseEvent({ mouse: rightClickMouse, action: 'contextmenu', shouldPreven
 onWindowResize({ camera, renderer });
 listenOnKeyboardEvent({ camera });
 
+let test: Infantry = new Infantry(unitData.PersonnelData['infantry']);
+test.Owner = new Player({Name: 'abc', Color: PlayerColor.RED});
+instantiateUnit(scene, new Point(0, 2), test);
+
 const gui: GUI = new GUI({ autoPlace: false });
 const guiContainer: HTMLElement = document.querySelector('.gui-container');
 guiContainer.appendChild(gui.domElement);
@@ -65,5 +79,6 @@ const render = () => {
   touchTileViaRaycaster({ camera, scene, moveMouse });
   drawTileStatistics({ camera, scene, rightClickMouse, gui, guiContainer });
   renderer.render(scene, camera);
+  //testGetNeiboursAtRange(scene, gameMap, gameMap.Tiles[17][10], 6);
 };
 render();

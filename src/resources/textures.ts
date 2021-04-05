@@ -54,6 +54,54 @@ const meshEntries: [string, MeshBasicMaterial][] = [
 ]));
 const meshes = Object.fromEntries(meshEntries);
 
+const engineerEntries: [string, Texture][] = [
+  'engineer_red',
+  'engineer_blue',
+  'engineer_yellow',
+  'engineer_green'
+].map(unitKey => ([
+  unitKey,
+  textureLoader.load(`../assets/units/${unitKey}.png`),
+]));
+engineerEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const engineers = Object.fromEntries(engineerEntries);
+
+const mountainEntries: [string, Texture][] = [
+  'mountain_red',
+  'mountain_blue',
+  'mountain_yellow',
+  'mountain_green'
+].map(unitKey => ([
+  unitKey,
+  textureLoader.load(`../assets/units/${unitKey}.png`),
+]));
+mountainEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const mountains = Object.fromEntries(mountainEntries);
+
+const supportEntries: [string, Texture][] = [
+  'support_red',
+  'support_blue',
+  'support_yellow',
+  'support_green'
+].map(unitKey => ([
+  unitKey,
+  textureLoader.load(`../assets/units/${unitKey}.png`),
+]));
+supportEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const supports = Object.fromEntries(supportEntries);
+
+const assaultEntries: [string, Texture][] = [
+  'assault_red',
+  'assault_blue',
+  'assault_yellow',
+  'assault_green',
+].map(unitKey => ([
+  unitKey,
+  textureLoader.load(`../assets/units/${unitKey}.png`),
+]));
+assaultEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const assaults = Object.fromEntries(assaultEntries);
+
 const infantryEntries: [string, Texture][] = [
   'infantry_red',
   'infantry_blue',
@@ -81,6 +129,10 @@ const militias = Object.fromEntries(militiaEntries);
 export {
   meshes,
   textures,
+  engineers,
+  mountains,
+  supports,
+  assaults,
   infantries,
   militias,
 };

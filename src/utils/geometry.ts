@@ -1,6 +1,9 @@
-import { Vector3Tuple } from 'three';
+import { Vector3, Vector3Tuple } from 'three';
 import { usolve } from 'mathjs';
 import { cosDeg, range } from './';
+import { Point } from '../attr';
+import { hexScreenSize } from '../flows';
+import { sinDeg } from './helpers';
 
 class Line {
   private falsyValues = [NaN, Infinity, undefined];
@@ -273,4 +276,13 @@ class Hexagon {
   }
 }
 
-export { Hexagon, Line };
+const coordsToScreenPoint = (coords: Point): Vector3 => {
+  const x = hexScreenSize.x;
+  const y = hexScreenSize.y;
+  return new Vector3(
+  y * coords.X * cosDeg(30),
+  x * cosDeg(30) * coords.Y + ((coords.X % 2) * x * sinDeg(60) / 2),
+  0);
+} 
+
+export { Hexagon, Line, coordsToScreenPoint };

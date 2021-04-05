@@ -6,7 +6,7 @@
     "Offense": {
       "Handling": {
         "Cyclic": {
-          "Value": 3.33,
+          "Value": 3.3300000000000001,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -20,14 +20,14 @@
           }
         },
         "Reload": {
-          "Value": 3.2,
+          "Value": 3.2000000000000002,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Aim": {
-          "Value": 1.6,
+          "Value": 1.6000000000000001,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -40,7 +40,7 @@
             "Value": 0
           }
         },
-        "ROF": 0.7934616850934043,
+        "ROF": 0.79346168509340431,
         "ROFSuppress": 1.063490035769034
       },
       "Damage": {
@@ -66,7 +66,7 @@
           }
         },
         "Deviation": {
-          "Value": 0.1,
+          "Value": 0.10000000000000001,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -89,21 +89,21 @@
       },
       "Accuracy": {
         "Normal": {
-          "Value": 0.8,
+          "Value": 0.80000000000000004,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Suppress": {
-          "Value": 0.8,
+          "Value": 0.80000000000000004,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Deviation": {
-          "Value": 0.06,
+          "Value": 0.059999999999999998,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -112,14 +112,14 @@
       },
       "AOE": {
         "BlastRadius": {
-          "Value": 0.2,
+          "Value": 0.20000000000000001,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "SplashDecay": {
-          "Value": 0.8,
+          "Value": 0.80000000000000004,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -158,7 +158,7 @@
       "Mod": null
     },
     "ShellConsumption": {
-      "Value": 1.42,
+      "Value": 1.4199999999999999,
       "Mod": null
     },
     "CompatibleShells": [
@@ -691,6 +691,7 @@
   "Radio": null,
   "CannonBreech": null,
   "Name": "direct_fire",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1218,7 +1219,7 @@
       }
     },
     "Size": {
-      "Value": 2.2,
+      "Value": 2.2000000000000002,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1248,7 +1249,7 @@
       }
     },
     "Evasion": {
-      "Value": 0.025,
+      "Value": 0.025000000000000001,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1270,14 +1271,14 @@
     },
     "Suppression": {
       "Threshold": {
-        "Value": 0.84,
+        "Value": 0.83999999999999997,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Resilience": {
-        "Value": 0.07,
+        "Value": 0.070000000000000007,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -1315,7 +1316,7 @@
       }
     },
     "Shells": {
-      "Value": 1.42,
+      "Value": 1.4199999999999999,
       "Mod": null
     },
     "Fuel": {

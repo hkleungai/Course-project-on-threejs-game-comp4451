@@ -40,7 +40,7 @@
             }
           },
           "ROF": 0.45454545454545453,
-          "ROFSuppress": 0.5882352941176471
+          "ROFSuppress": 0.58823529411764708
         },
         "Damage": {
           "Soft": {
@@ -65,7 +65,7 @@
             }
           },
           "Deviation": {
-            "Value": 0.1,
+            "Value": 0.10000000000000001,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -88,21 +88,21 @@
         },
         "Accuracy": {
           "Normal": {
-            "Value": 0.7,
+            "Value": 0.69999999999999996,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "Suppress": {
-            "Value": 0.7,
+            "Value": 0.69999999999999996,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "Deviation": {
-            "Value": 0.06,
+            "Value": 0.059999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -118,7 +118,7 @@
             }
           },
           "SplashDecay": {
-            "Value": 0.66,
+            "Value": 0.66000000000000003,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -153,7 +153,7 @@
         "Mod": null
       },
       "CamoPenaltyFire": {
-        "Value": -0.64,
+        "Value": -0.64000000000000001,
         "Mod": null
       },
       "ShellConsumption": {
@@ -697,6 +697,7 @@
   "CannonBreech": null,
   "AmmoRack": null,
   "Name": "tank_destroyer",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1224,7 +1225,7 @@
       }
     },
     "Size": {
-      "Value": 3.6,
+      "Value": 3.6000000000000001,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1254,7 +1255,7 @@
       }
     },
     "Evasion": {
-      "Value": 0.015,
+      "Value": 0.014999999999999999,
       "Mod": {
         "Type": 0,
         "Value": 0

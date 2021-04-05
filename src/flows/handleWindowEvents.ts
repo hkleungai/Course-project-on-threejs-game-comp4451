@@ -54,26 +54,25 @@ const listenOnKeyboardEvent = ({
   const callback = (event: KeyboardEvent): void => {
     event.preventDefault();
     switch (event.key) {
-      case "ArrowUp":
+      case "ArrowUp" || "W":
         camera.translateY(delta);
         break;
-      case "ArrowDown":
+      case "ArrowDown" || "S":
         camera.translateY(-delta);
         break;
-      case "ArrowLeft":
+      case "ArrowLeft" || "A":
         camera.translateX(-delta);
         break;
-      case "ArrowRight":
+      case "ArrowRight" || "D":
         camera.translateX(delta);
         break;
-      case "+":
+      case "+" || "E":
         camera.translateZ(-delta);
         break;
-      case "-":
+      case "-" || "Q":
         camera.translateZ(delta);
         break;
     }
-    camera.updateMatrix();
   };
   window.addEventListener('keydown', callback, false);
 };

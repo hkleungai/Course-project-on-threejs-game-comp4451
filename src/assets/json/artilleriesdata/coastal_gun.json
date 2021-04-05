@@ -6,7 +6,7 @@
     "Offense": {
       "Handling": {
         "Cyclic": {
-          "Value": 0.8,
+          "Value": 0.80000000000000004,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -40,8 +40,8 @@
             "Value": 0
           }
         },
-        "ROF": 0.2150537634408602,
-        "ROFSuppress": 0.273972602739726
+        "ROF": 0.21505376344086019,
+        "ROFSuppress": 0.27397260273972601
       },
       "Damage": {
         "Soft": {
@@ -66,7 +66,7 @@
           }
         },
         "Deviation": {
-          "Value": 0.1,
+          "Value": 0.10000000000000001,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -89,21 +89,21 @@
       },
       "Accuracy": {
         "Normal": {
-          "Value": 0.56,
+          "Value": 0.56000000000000005,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Suppress": {
-          "Value": 0.56,
+          "Value": 0.56000000000000005,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Deviation": {
-          "Value": 0.06,
+          "Value": 0.059999999999999998,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -112,14 +112,14 @@
       },
       "AOE": {
         "BlastRadius": {
-          "Value": 0.78,
+          "Value": 0.78000000000000003,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "SplashDecay": {
-          "Value": 0.48,
+          "Value": 0.47999999999999998,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -154,7 +154,7 @@
       "Mod": null
     },
     "CamoPenaltyFire": {
-      "Value": -0.84,
+      "Value": -0.83999999999999997,
       "Mod": null
     },
     "ShellConsumption": {
@@ -691,6 +691,7 @@
   "Radio": null,
   "CannonBreech": null,
   "Name": "coastal_gun",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1255,7 +1256,7 @@
       }
     },
     "Hardness": {
-      "Value": 0.33,
+      "Value": 0.33000000000000002,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1270,14 +1271,14 @@
     },
     "Suppression": {
       "Threshold": {
-        "Value": 0.93,
+        "Value": 0.93000000000000005,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Resilience": {
-        "Value": 0.056,
+        "Value": 0.056000000000000001,
         "Mod": {
           "Type": 0,
           "Value": 0

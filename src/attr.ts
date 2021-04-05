@@ -16,6 +16,10 @@ class Point {
   }
 }
 
+const pointEquals = (p1: Point, p2: Point): boolean => {
+  return p1.X === p2.X && p1.Y === p2.Y;
+}
+
 class Resources {
   public Money : Attribute;
   public Steel : Attribute;
@@ -305,6 +309,7 @@ class Scouting {
 
 export {
   Point,
+  pointEquals,
   Resources,
   consumeResources,
   produceResources,
