@@ -8,6 +8,7 @@
       }
     },
     "Name": "watchtower",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -568,6 +569,7 @@
       }
     },
     "Name": "signal_tower",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1122,6 +1124,7 @@
       }
     },
     "Name": "jamming_tower",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1682,6 +1685,7 @@
       }
     },
     "Name": "radar_tower",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0

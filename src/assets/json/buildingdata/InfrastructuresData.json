@@ -1,6 +1,7 @@
 [
   {
     "Name": "road",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -548,6 +549,7 @@
   },
   {
     "Name": "railway",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1098,6 +1100,7 @@
   },
   {
     "Name": "bridge",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1645,6 +1648,7 @@
   },
   {
     "Name": "depot",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2198,6 +2202,7 @@
   },
   {
     "Name": "outpost",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0

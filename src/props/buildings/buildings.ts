@@ -9,9 +9,11 @@ import {
 } from "../../attr";
 import { Unit } from '../units';
 import { Prop } from "../prop";
+import { Player } from "../../player";
 
 abstract class Building extends Prop {
   public Name : string;
+  public Owner : Player;
   public CoOrds : Point;
   public Level : number;
   public Cost : Cost;

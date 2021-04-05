@@ -74,6 +74,7 @@
       }
     },
     "Name": "foundry",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -599,7 +600,7 @@
         }
       },
       "Camouflage": {
-        "Value": 15,
+        "Value": 1.5,
         "Mod": null
       },
       "Detection": {
@@ -694,6 +695,7 @@
       }
     },
     "Name": "industries",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1219,7 +1221,7 @@
         }
       },
       "Camouflage": {
-        "Value": 15,
+        "Value": 1.5,
         "Mod": null
       },
       "Detection": {
@@ -1314,6 +1316,7 @@
       }
     },
     "Name": "ammo_factory",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1839,7 +1842,7 @@
         }
       },
       "Camouflage": {
-        "Value": 15,
+        "Value": 1.5,
         "Mod": null
       },
       "Detection": {
@@ -1934,6 +1937,7 @@
       }
     },
     "Name": "refinery",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2459,7 +2463,7 @@
         }
       },
       "Camouflage": {
-        "Value": 15,
+        "Value": 1.5,
         "Mod": null
       },
       "Detection": {
@@ -2554,6 +2558,7 @@
       }
     },
     "Name": "quarry",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -3079,7 +3084,7 @@
         }
       },
       "Camouflage": {
-        "Value": 15,
+        "Value": 1.5,
         "Mod": null
       },
       "Detection": {
@@ -3174,6 +3179,7 @@
       }
     },
     "Name": "power_plant",
+    "Owner": null,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -3699,7 +3705,7 @@
         }
       },
       "Camouflage": {
-        "Value": 15,
+        "Value": 1.5,
         "Mod": null
       },
       "Detection": {

@@ -6,7 +6,6 @@ import {
   WebGLRenderer,
   sRGBEncoding
 } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import { GUI } from './resources';
 
@@ -79,6 +78,11 @@ const render = () => {
   touchTileViaRaycaster({ camera, scene, moveMouse });
   drawTileStatistics({ camera, scene, rightClickMouse, gui, guiContainer });
   renderer.render(scene, camera);
-  //testGetNeiboursAtRange(scene, gameMap, gameMap.Tiles[17][10], 6);
+  testGetNeiboursAtRange(scene, gameMap, gameMap.Tiles[17][10], 1);
 };
 render();
+
+export {
+  gameMap,
+  scene
+}

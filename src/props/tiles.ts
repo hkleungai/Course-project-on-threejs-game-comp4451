@@ -15,6 +15,7 @@ import {
 } from '../assets/json';
 import { isInteger } from 'mathjs';
 import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
+import { Building } from './buildings';
 
 enum TileType {
   BOUNDARY = 0,
@@ -57,56 +58,6 @@ class Tile extends Prop {
     this.Height = tile.Height;
   }
 }
-
-const getNeighbors = (map: GameMap, tile: Tile) : Tile[] => {
-  const neighbors : Tile[] = [];
-  const neighborOffset = tile.CoOrds.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
-
-  neighborOffset.forEach(pair => {
-    const x = tile.CoOrds.X + pair[0];
-    const y = tile.CoOrds.Y + pair[1];
-    if (x < GameMap.Width && x >= 0 && y < GameMap.Height && y >= 0) {
-      neighbors.push(map.Tiles[x][y]);
-    }
-  });
-  return neighbors;
-};
-
-const getNeighborsAtRange = (map: GameMap, tile: Tile, range: number) : Tile[] => {
-  if (!isInteger(range)) {
-    throw new InvalidArgumentException('range', range);
-  }
-
-  const neighbors : Tile[] = [];
-  const n_FullXRange: number[] = rangeFromTo(Math.floor(tile.CoOrds.Y - range / 2), Math.floor(tile.CoOrds.Y + range / 2)).filter(x => x >= 0 || x < GameMap.Width);
-  const n_LeftMostX: number = tile.CoOrds.X - range;
-  const n_YLowerRange: number[] = rangeFromTo(tile.CoOrds.Y - range, Math.floor(tile.CoOrds.Y - range / 2) - 1).filter(y => y >= 0 || y < GameMap.Height).reverse();
-  const n_YUpperRange: number[] = rangeFromTo(Math.floor(tile.CoOrds.Y + range / 2) + 1, tile.CoOrds.Y + range).filter(y => y >= 0 || y < GameMap.Height);
-
-  n_FullXRange.forEach(y =>
-    rangeFrom(n_LeftMostX, 2 * range + 1).forEach(x => 
-      neighbors.push(map.Tiles[x][y])
-      )
-  );
-
-  let dummy = (tile.CoOrds.X % 2 && range % 2) || !(tile.CoOrds.X % 2 || range % 2);
-  n_YLowerRange.forEach((y, i) => 
-    rangeFromTo(tile.CoOrds.X - (range - 2 * (i + 1) + +dummy), tile.CoOrds.X + range - 2 * (i + 1) + +dummy)
-      .filter(x => x >= 0 || x < GameMap.Width)
-      .forEach(x =>
-        neighbors.push(map.Tiles[x][y])
-      )
-  );
-  n_YUpperRange.forEach((y, i) => 
-    rangeFromTo(tile.CoOrds.X - (range - 2 * (i + 1) + +(!dummy)), tile.CoOrds.X + range - 2 * (i + 1) + +(!dummy))
-      .filter(x => x >= 0 || x < GameMap.Width)
-      .forEach(x =>
-        neighbors.push(map.Tiles[x][y])
-      )
-  );
-  return neighbors.filter(n => n !== undefined);
-};
-
 class Cities extends Tile {
   public Owner : Player;
   public Population : number;
@@ -132,26 +83,34 @@ class GameMap {
   private _tiles : Tile[][] = [];
   private _players : Player[] = [];
   private _units : Unit[] = [];
+  private _buildings : Building[] = [];
 
   static get Height() : number { return GameMap._height; }
   static get Width() : number { return GameMap._width; }
   get Tiles() : Tile[][] { return this._tiles; }
   get Players() : Player[] { return this._players; }
   get Units() : Unit[] { return this._units; }
+  get Buildings() : Building[] { return this._buildings; }
 
-  Load(): void {
+  public Load(): void {
     GameMap._width = mapDataJson.Width;
     GameMap._height = mapDataJson.Height;
     this._players = mapDataJson.Players;
     this._tiles = JSON.parse(JSON.stringify(gameMap));
+  }
+
+  public addUnit(unit: Unit): void {
+    this._units.push(unit);
+  }
+
+  public addBuilding(building: Building): void {
+    this._buildings.push(building);
   }
 }
 
 export {
   TileType,
   Tile,
-  getNeighbors,
-  getNeighborsAtRange,
   Cities,
   GameMap
 };
