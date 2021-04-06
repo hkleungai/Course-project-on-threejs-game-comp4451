@@ -77,6 +77,37 @@ class Cities extends Tile {
   }
 }
 
+class WeightedCubeTile {
+  public CubeCoords: number[];
+  public BaseCost: number; // base cost for this tile: unit supplies/fule consumption
+  public Weight: number; // tile mod
+  public Cost: number; // cost for reaching this tile so far
+  public DistanceToGoal: number; // remaining distance to goal
+  public DistanceSoFar: number; // distance travelled so far
+  public Parent: WeightedCubeTile;
+  // an overestimate of total cost
+  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 5 }
+
+  constructor(parent: WeightedCubeTile, cube: number[], base: number, mod: number, cost: number, d_goal: number, d_sofar: number) {
+    this.Parent = parent;
+    this.CubeCoords = cube;
+    this.BaseCost = base;
+    this.Weight = mod;
+    this.Cost = cost;
+    this.DistanceToGoal = d_goal;
+    this.DistanceSoFar = d_sofar;
+  }
+}
+
+const cubeTileEquals = (t1: WeightedCubeTile, t2: WeightedCubeTile): boolean => {
+  for (let i = 0; i < 3; i++) {
+    if (t1.CubeCoords[i] !== t2.CubeCoords[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
 class GameMap {
   private static _height : number;
   private static _width : number;
@@ -114,6 +145,8 @@ class GameMap {
 export {
   TileType,
   Tile,
+  WeightedCubeTile,
+  cubeTileEquals,
   Cities,
   GameMap
 };

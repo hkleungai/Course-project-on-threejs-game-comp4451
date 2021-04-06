@@ -81,8 +81,11 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
     x: number,
     entries: [string, Texture][],
     flag: loadFlag,
-    gameMap?: GameMap,
+    gameMap: GameMap,
   ) => (child: Object3D) => {
+    const tilename = `(${x}, ${y})`;
+    gameMap.Tiles[x][y].Name = tilename;
+    
     if (child instanceof Mesh && child.isMesh) {
       setMeshChildPosition(child, y, x, flag);
 
@@ -99,12 +102,7 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
         meshes.blank
       ].filter(Boolean);
 
-      const tilename = `(${x}, ${y})`;
       child.name = tilename;
-      /*
-      if (gameMap !== undefined) {
-        gameMap.Tiles[x][y].Name = tilename;
-      }*/
       scene.add(child);
     }
   };
@@ -114,12 +112,12 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
     x: number,
     entries: [string, Texture][],
     flag: loadFlag,
-    gameMap?: GameMap
+    gameMap: GameMap
   ) => ({ scene }: GLTF) => {
     scene.traverse(traverseGlbScene(y, x, entries, flag, gameMap));
   };
 
-  const loadGlbForEachRowAndColumn = (y: number, x: number, gameMap?: GameMap) => {
+  const loadGlbForEachRowAndColumn = (y: number, x: number, gameMap: GameMap) => {
     const { error: consoleError } = console;
     loader.load('./assets/raw.glb', glbOnLoad(y, x, texturesEntries, 'tile', gameMap), undefined, consoleError);
   };

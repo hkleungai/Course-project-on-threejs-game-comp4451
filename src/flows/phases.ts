@@ -2,7 +2,7 @@ import { isInteger, random } from "mathjs";
 import { Mesh, Object3D, Scene } from "three";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals } from "../attr";
 import { Player, playerEquals } from "../player";
-import { Cities, GameMap, Tile } from "../props"
+import { Cities, cubeTileEquals, GameMap, Tile, WeightedCubeTile } from "../props"
 import { Building, BuildingStatus, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
   Personnel,
@@ -35,13 +35,20 @@ const getHexDistance = (c1: Point, c2: Point): number => {
     Math.abs(cc1[2] - cc2[2]));
 }
 
-const getNeighbors = (map: GameMap, tile: Tile, exclude_inaccessible = true): Tile[] => {
+const getHexDistanceWithCubeCoords = (c1: number[], c2: number[]): number => {
+  return Math.max(
+    Math.abs(c1[0] - c2[0]),
+    Math.abs(c1[1] - c2[1]),
+    Math.abs(c1[2] - c2[2]));
+}
+
+const getNeighbors = (map: GameMap, coords: Point, exclude_inaccessible = true): Tile[] => {
   const neighbors : Tile[] = [];
-  const neighborOffset = tile.CoOrds.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
+  const neighborOffset = coords.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
 
   neighborOffset.forEach(pair => {
-    const x = tile.CoOrds.X + pair[0];
-    const y = tile.CoOrds.Y + pair[1];
+    const x = coords.X + pair[0];
+    const y = coords.Y + pair[1];
     if (x < GameMap.Width && x >= 0 && y < GameMap.Height && y >= 0) {
     neighbors.push(map.Tiles[x][y]);
     }
@@ -91,20 +98,90 @@ const getNeighborsAtRange = (gameMap: GameMap, tile: Tile, range: number, exclud
   return [...new Set(exclude_inaccessible ? raw.filter(t => isAccessible(t)) : raw)];
 };
 
-const getPath = (t1: Tile, t2: Tile): Tile[] => {
-  let active: Tile[] = [];
-  let visited: Tile[] = [];
-  let path: Tile[] = [];
+const getNeighborsWithCubeCoords = (
+  gameMap: GameMap,
+  cube_tile_so_far: WeightedCubeTile,
+  end: WeightedCubeTile): WeightedCubeTile[] => {
+  const neighbors : WeightedCubeTile[] = [];
 
-  active.push(t1);
-  while (active.length !== 0) {
-    let check: Tile;
-  }
-  return path;
+  let hex_neighbors = getNeighbors(gameMap, convertToOffestCoOrds(cube_tile_so_far.CubeCoords));
+  hex_neighbors.forEach(h => 
+    neighbors.push(
+      new WeightedCubeTile(
+        cube_tile_so_far,
+        convertToCudeCoOrds(h.CoOrds),
+        end.BaseCost,
+        h.TerrainMod.Supplies.Value / 100 + 1,
+        cube_tile_so_far.Cost + end.BaseCost * (h.TerrainMod.Supplies.Value / 100 + 1),
+        getHexDistanceWithCubeCoords(convertToCudeCoOrds(h.CoOrds), end.CubeCoords),
+        cube_tile_so_far.DistanceSoFar + 1
+      )
+    )
+  );
+  return neighbors;
 }
 
+const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
+  let active: WeightedCubeTile[] = [];
+  let visited: WeightedCubeTile[] = [];
+  let path: Tile[] = [];
+
+  let start = new WeightedCubeTile(
+    undefined,
+    convertToCudeCoOrds(t1.CoOrds),
+    applyModAttr(unit.Consumption.Supplies),
+    t1.TerrainMod.Supplies.Value / 100 + 1,
+    0,
+    getHexDistance(t1.CoOrds, t2.CoOrds),
+    0);
+  let end = new WeightedCubeTile(
+    undefined,
+    convertToCudeCoOrds(t2.CoOrds),
+    applyModAttr(unit.Consumption.Supplies),
+    t2.TerrainMod.Supplies.Value / 100 + 1,
+    0,
+    0,
+    0); // last 3 parameters aren't important for end;
+
+  active.push(start);
+  while (active.length !== 0) {
+    let check = active.sort((a, b) => a.CostDistance - b.CostDistance)[0];
+    console.log(check);
+    if (cubeTileEquals(check, end)) {
+      console.log('reached destination');
+      console.log(check);
+      // trace back parents to get the path
+      while (check.Parent !== undefined) {
+        let t = getTile(gameMap, convertToOffestCoOrds(check.CubeCoords));
+        path.push(t);
+        console.log(`${t.CoOrds.X}, ${t.CoOrds.Y}`);
+        check = check.Parent;
+      }
+      return path;
+    }
+    visited.push(check);
+    active.splice(active.indexOf(check), 1);
+    
+    getNeighborsWithCubeCoords(gameMap, check, end).forEach(n => {
+      if (visited.some(v => cubeTileEquals(v, n))) { //visited, skip
+        return;
+      }
+      if (active.some(a => cubeTileEquals(a, n))) { // in the active list
+        let exist = active.find(a => cubeTileEquals(a, n));
+        if (exist.CostDistance > check.CostDistance) { // check if it is better than current tile (aka. check)
+          active.splice(active.indexOf(exist), 1);
+          active.push(n);
+        }
+      } else { // new tile, haven't visited
+        active.push(n);
+      }
+    });
+  }
+  console.log('no path found');
+  return path;
+}
 const getTile = (gameMap: GameMap, coords: Point): Tile => {
-  return gameMap[coords.X][coords.Y];
+  return gameMap.Tiles[coords.X][coords.Y];
 }
 
 const getUnitAt = (gameMap: GameMap, coords: Point): Unit => {
@@ -190,7 +267,7 @@ const getUnitsWithStatusInUnitBuilding = (
     : ground.ReadyToDeploy.filter(u => u.Status === status);
 }
 
-///region logic for determining commands available
+//#region logic for determining commands available
 const canMove = (unit: Unit): boolean => {
   return unit.Carrying.Supplies.Value > 0;
   //TODO add check fuel for vehicles and suppression later
@@ -225,7 +302,7 @@ const canDeploy = (gameMap: GameMap, tile: Tile):boolean => {
   }
 }
 
-///endregion
+//#endregion
 
 const executeMovePhase = (map: GameMap) => {
   //TODO
@@ -275,8 +352,10 @@ export {
   convertToCudeCoOrds,
   convertToOffestCoOrds,
   getHexDistance,
+  getHexDistanceWithCubeCoords,
   getNeighbors,
   getNeighborsAtRange,
+  getPath,
   getTile,
   getUnitAt,
   getUnitsWithStatus,

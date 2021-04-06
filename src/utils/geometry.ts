@@ -4,6 +4,7 @@ import { cosDeg, range } from './';
 import { Point } from '../attr';
 import { hexScreenSize } from '../flows';
 import { sinDeg } from './helpers';
+import { Tile } from '../props';
 class Line {
   private falsyValues = [NaN, Infinity, undefined];
 
@@ -282,7 +283,11 @@ const coordsToScreenPoint = (coords: Point): Vector3 => {
   y * coords.X * cosDeg(30),
   x * cosDeg(30) * coords.Y + ((coords.X % 2) * x * sinDeg(60) / 2),
   0);
-} 
+};
+
+const highlightPath = (path: Tile[]) => {
+  // TODO
+}
 
 export {
   Hexagon,

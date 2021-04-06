@@ -22,7 +22,9 @@ import {
   loadGameMapFromJson,
   listenOnKeyboardEvent,
   instantiateUnit,
-  removeDestroyed
+  removeDestroyed,
+  getPath,
+  getTile
 } from './flows';
 
 import './style.scss';
@@ -70,6 +72,9 @@ let test: Infantry = new Infantry(unitData.PersonnelData['infantry']);
 test.Owner = new Player({Name: 'abc', Color: PlayerColor.RED});
 instantiateUnit(scene, new Point(20, 20), test);
 gameMap.Units.push(test);
+
+console.log(gameMap.Tiles);
+let path = getPath(gameMap, getTile(gameMap, new Point(1, 1)), getTile(gameMap, new Point(10, 10)), test);
 
 const gui: GUI = new GUI({ autoPlace: false });
 const guiContainer: HTMLElement = document.querySelector('.gui-container');
