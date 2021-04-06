@@ -18,6 +18,7 @@
     },
     "Name": "barracks",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -582,6 +583,7 @@
     },
     "Name": "arsenal",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1146,6 +1148,7 @@
     },
     "Name": "dockyard",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1710,6 +1713,7 @@
     },
     "Name": "airfield",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0

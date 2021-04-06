@@ -13,8 +13,15 @@ import { Player } from "../../player";
 
 type BuildingType = 'unit' | 'resources' | 'infra' | 'transmit' | 'defensive';
 
+enum BuildingStatus {
+  None,
+  UnderConstruction,
+  Active,
+  Destroyed
+}
 abstract class Building extends Prop {
   public Name : string;
+  public Status : BuildingStatus;
   public Owner : Player;
   public CoOrds : Point;
   public Level : number;
@@ -50,6 +57,7 @@ abstract class DefensiveBuilding extends Building {
 
 export {
   BuildingType,
+  BuildingStatus,
   Building,
   UnitBuilding,
   ResourcesBuilding,

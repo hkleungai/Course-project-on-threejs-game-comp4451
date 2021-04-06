@@ -201,6 +201,7 @@
     },
     "Name": "trench",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -954,6 +955,7 @@
     },
     "Name": "foxhole",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1707,6 +1709,7 @@
     },
     "Name": "pillbox",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2460,6 +2463,7 @@
     },
     "Name": "bunker",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -3213,6 +3217,7 @@
     },
     "Name": "wires",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -3966,6 +3971,7 @@
     },
     "Name": "tank_traps",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -4719,6 +4725,7 @@
     },
     "Name": "minefield",
     "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
