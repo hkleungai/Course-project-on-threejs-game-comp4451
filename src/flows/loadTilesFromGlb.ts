@@ -99,13 +99,12 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
         meshes.blank
       ].filter(Boolean);
 
-      child.name = `(${x}, ${y})`;
-      console.log('enter');
+      const tilename = `(${x}, ${y})`;
+      child.name = tilename;
+      /*
       if (gameMap !== undefined) {
-        console.log('entered');
-        gameMap.Tiles[x][y].Mesh = child;   
-        console.log(gameMap.Tiles[x][y].Mesh); 
-      }
+        gameMap.Tiles[x][y].Name = tilename;
+      }*/
       scene.add(child);
     }
   };

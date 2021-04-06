@@ -1,15 +1,9 @@
 import { Vector3, Vector3Tuple } from 'three';
-import { isInteger, usolve } from 'mathjs';
+import { usolve } from 'mathjs';
 import { cosDeg, range } from './';
-import { Point, pointEquals } from '../attr';
-import { hexScreenSize, instantiateUnit } from '../flows';
-import { rangeFrom, rangeFromTo, sinDeg } from './helpers';
-import { BuildingData, GameMap, Tile } from '../props';
-import { InvalidArgumentException } from './exception';
-import { gameMap } from '../main';
-import { Unit } from '../props/units';
-import { Building, UnitBuilding } from '../props/buildings';
-
+import { Point } from '../attr';
+import { hexScreenSize } from '../flows';
+import { sinDeg } from './helpers';
 class Line {
   private falsyValues = [NaN, Infinity, undefined];
 

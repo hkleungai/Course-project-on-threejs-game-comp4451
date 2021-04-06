@@ -21,7 +21,8 @@ import {
   touchTileViaRaycaster,
   loadGameMapFromJson,
   listenOnKeyboardEvent,
-  instantiateUnit
+  instantiateUnit,
+  removeDestroyed
 } from './flows';
 
 import './style.scss';
@@ -34,7 +35,7 @@ import {
 } from './props';
 import {testGetNeiboursAtRange} from './test';
 import { Point } from './attr';
-import { Infantry, Personnel } from './props/units';
+import { Infantry, Personnel, UnitStatus } from './props/units';
 import { PlayerColor, Player } from './player';
 
 let scene = new Scene();
@@ -67,7 +68,8 @@ listenOnKeyboardEvent({ camera });
 
 let test: Infantry = new Infantry(unitData.PersonnelData['infantry']);
 test.Owner = new Player({Name: 'abc', Color: PlayerColor.RED});
-instantiateUnit(scene, new Point(0, 2), test);
+instantiateUnit(scene, new Point(20, 20), test);
+gameMap.Units.push(test);
 
 const gui: GUI = new GUI({ autoPlace: false });
 const guiContainer: HTMLElement = document.querySelector('.gui-container');
@@ -78,11 +80,6 @@ const render = () => {
   touchTileViaRaycaster({ camera, scene, moveMouse });
   drawTileStatistics({ camera, scene, rightClickMouse, gui, guiContainer });
   renderer.render(scene, camera);
-  testGetNeiboursAtRange(scene, gameMap, gameMap.Tiles[17][10], 1);
+  // testGetNeiboursAtRange(scene, gameMap, gameMap.Tiles[17][10], 1);
 };
 render();
-
-export {
-  gameMap,
-  scene
-}

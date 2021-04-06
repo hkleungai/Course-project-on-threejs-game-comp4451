@@ -17,9 +17,10 @@ import {
   tileExistsInArray
 } from './flows';
 import { Cities, GameMap, Tile } from './props';
-import { scene } from './main';
 import { Player } from './player';
+import { Scene } from 'three';
 abstract class Command {
+  public Scene: Scene;
   public GameMap : GameMap;
   public Player : Player;
   public Source : Point;
@@ -95,8 +96,10 @@ class Train extends Command {
       }
     let nei: string = consumeResources(this.TrainingGround.Owner.Resources, this.Unit.Cost.Base);
     if (nei === '') {
+      this.Unit.Coords = new Point(-1, -1); // indicate not on map
       this.Unit.Status = UnitStatus.InQueue;
       this.TrainingGround.TrainingQueue.push(this.Unit);
+      this.GameMap.Units.push(this.Unit); // add to game map
     } else {
       alert(`not enough ${nei}`);
     }
@@ -121,7 +124,8 @@ class Deploy extends Command {
       return;
     }
     this.Unit.Status = UnitStatus.Active;
-    instantiateUnit(scene, this.Destination, this.Unit);
+    this.Unit.Coords = this.Destination;
+    instantiateUnit(this.Scene, this.Unit.Coords, this.Unit);
   }
 }
 

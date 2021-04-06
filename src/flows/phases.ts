@@ -1,5 +1,5 @@
 import { isInteger, random } from "mathjs";
-import { Mesh, Scene } from "three";
+import { Mesh, Object3D, Scene } from "three";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals } from "../attr";
 import { Player, playerEquals } from "../player";
 import { Cities, GameMap, Tile } from "../props"
@@ -10,6 +10,7 @@ import {
   UnitStatus
 } from "../props/units"
 import { InvalidArgumentException, rangeFrom, rangeFromTo } from "../utils";
+import { instantiateUnit } from "./loadUnitFromGlb";
 
 const convertToCudeCoOrds = (coords: Point): number[] => {
   let z: number = coords.Y - (coords.X - (coords.X % 2)) / 2;
@@ -189,14 +190,6 @@ const getUnitsWithStatusInUnitBuilding = (
     : ground.ReadyToDeploy.filter(u => u.Status === status);
 }
 
-const deployUnit = (scene: Scene, unit: Unit, coords: Point) => {
-  if (unit.Status !== UnitStatus.CanBeDeployed) {
-    return; // TODO add exception maybe
-  }
-
-
-}
-
 ///region logic for determining commands available
 const canMove = (unit: Unit): boolean => {
   return unit.Carrying.Supplies.Value > 0;
@@ -250,9 +243,19 @@ const flee = (unit: Unit) => {
   }
 }
 
-const removeDestroyed = (gameMap: GameMap) => {
+const removeDestroyed = (scene: Scene, gameMap: GameMap) => {
+  gameMap.Units.filter(u => u.Status === UnitStatus.Destroyed).forEach(u => {
+    console.log(u.MeshName);
+    console.log(scene.getObjectByName(u.MeshName));
+    console.log(scene);
+    let o: Mesh = <Mesh>(scene.getObjectByName(u.MeshName));
+    scene.remove(o);
+  });
+  gameMap.Buildings.filter(b => b.Status === BuildingStatus.Destroyed)
+                   .forEach(b => scene.remove(scene.getObjectByName(b.Name)));
   gameMap.Units = gameMap.Units.filter(u => u.Status !== UnitStatus.Destroyed);
   gameMap.Buildings = gameMap.Buildings.filter(b => b.Status !== BuildingStatus.Destroyed);
+  
 }
 
 const deductTrainingTime = (gameMap: GameMap) => {
@@ -271,7 +274,6 @@ const updateTrainingGroundsQueues = () => {
 export {
   convertToCudeCoOrds,
   convertToOffestCoOrds,
-  deployUnit,
   getHexDistance,
   getNeighbors,
   getNeighborsAtRange,
@@ -291,6 +293,7 @@ export {
   hasFriendlyUnit,
   hasFriendlyBuilding,
   getRequiredSupplies,
+  removeDestroyed,
   canMove,
   canFire,
   canCapture,

@@ -88,6 +88,7 @@ class GameMap {
   static get Height() : number { return GameMap._height; }
   static get Width() : number { return GameMap._width; }
   get Tiles() : Tile[][] { return this._tiles; }
+  set Tiles(tiles: Tile[][]) {this._tiles = tiles; }
   get Players() : Player[] { return this._players; }
   get Units() : Unit[] { return this._units; }
   set Units(units: Unit[]) { this._units = units; }
