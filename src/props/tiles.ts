@@ -90,7 +90,9 @@ class GameMap {
   get Tiles() : Tile[][] { return this._tiles; }
   get Players() : Player[] { return this._players; }
   get Units() : Unit[] { return this._units; }
+  set Units(units: Unit[]) { this._units = units; }
   get Buildings() : Building[] { return this._buildings; }
+  set Buildings(buildings: Building[]) { this._buildings = buildings; }
 
   public Load(): void {
     GameMap._width = mapDataJson.Width;

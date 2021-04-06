@@ -100,8 +100,11 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
       ].filter(Boolean);
 
       child.name = `(${x}, ${y})`;
+      console.log('enter');
       if (gameMap !== undefined) {
-        gameMap.Tiles[x][y].Mesh = child;       
+        console.log('entered');
+        gameMap.Tiles[x][y].Mesh = child;   
+        console.log(gameMap.Tiles[x][y].Mesh); 
       }
       scene.add(child);
     }
