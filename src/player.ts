@@ -31,7 +31,12 @@ class Player {
   }
 }
 
+const playerEquals = (p1: Player, p2: Player): boolean => {
+  return p1.Name === p2.Name && p1.Color === p2.Color;
+}
+
 export {
   PlayerColor,
-  Player
+  Player,
+  playerEquals
 };

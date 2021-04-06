@@ -1,10 +1,10 @@
 import { isInteger } from "mathjs";
 import { Mesh, Scene } from "three";
-import { Point, pointEquals } from "../attr"
+import { applyMod, applyModAttr, Point, pointEquals } from "../attr"
 import { gameMap } from "../main";
-import { Player } from "../player";
+import { Player, playerEquals } from "../player";
 import { Cities, GameMap, Tile } from "../props"
-import { Building, UnitBuilding } from "../props/buildings";
+import { Building, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
     Unit,
     UnitStatus
@@ -79,6 +79,25 @@ const getBuildingAt = (coords: Point): Building => {
     return gameMap.Buildings.find(b => pointEquals(b.CoOrds, coords));
 }
 
+const getBuildingsOfSameType = (type: BuildingType): Building[] => {
+    switch (type) {
+        case 'unit':
+            return gameMap.Buildings.filter(b => b instanceof UnitBuilding);
+        case 'resources':
+            return gameMap.Buildings.filter(b => b instanceof ResourcesBuilding);
+        case 'infra':
+            return gameMap.Buildings.filter(b => b instanceof Infrastructure);
+        case 'transmit':
+            return gameMap.Buildings.filter(b => b instanceof TransmissionBuilding);
+        case 'defensive':
+            return gameMap.Buildings.filter(b => b instanceof DefensiveBuilding);
+    }
+}
+
+const filterFriendlyBuildings = (buildings: Building[], self: Player) => {
+    return buildings.filter(b => playerEquals(b.Owner, self));
+}
+
 const isOccupied = (coords: Point): boolean => {
     return getUnitAt(coords) !== undefined || 
         (getBuildingAt(coords) !== undefined && 
@@ -105,6 +124,28 @@ const hasFriendlyBuilding = (coords: Point, self: Player): boolean => {
     return getBuildingAt(coords).Owner === self;
 }
 
+const getRequiredSupplies = (path: Point[], unit: Unit): number => {
+    let supplies: number = 0;
+    path.forEach(p => {
+        supplies += applyMod(getTile(p).TerrainMod.Supplies, 
+                    applyModAttr(unit.Consumption.Supplies))
+    });
+    return supplies;
+}
+
+const getUnitsWithStatus = (status: UnitStatus): Unit[] => {
+    return gameMap.Units.filter(u => u.Status === status);
+}
+
+const getUnitsWithStatusInUnitBuilding = (
+    status: UnitStatus,
+    ground: UnitBuilding,
+    getDeployQueue: boolean = false): Unit[] => {
+    return getDeployQueue 
+        ? ground.TrainingQueue.filter(u => u.Status === status)
+        : ground.ReadyToDeploy.filter(u => u.Status === status);
+}
+
 const deployUnit = (scene: Scene, unit: Unit, coords: Point) => {
     if (unit.Status !== UnitStatus.CanBeDeployed) {
         return; // TODO add exception maybe
@@ -129,17 +170,35 @@ const removeDestroyed = () => {
 
 }
 
+const deductTrainingTime = () => {
+    getUnitsWithStatus(UnitStatus.InQueue).forEach(u => {
+        u.TrainingTimeRemaining -= 1;
+        if (u.TrainingTimeRemaining <= 0) {
+            u.Status = UnitStatus.CanBeDeployed;
+        }
+    });
+}
+
+const updateTrainingGroundsQueues = () => {
+    
+}
+
 export {
   deployUnit,
   getNeighbors,
   getNeighborsAtRange,
   getTile,
   getUnitAt,
+  getUnitsWithStatus,
+  getUnitsWithStatusInUnitBuilding,
   getBuildingAt,
+  getBuildingsOfSameType,
+  filterFriendlyBuildings,
   isOccupied,
   tileExistsInArray,
   isCity,
   isFriendlyCity,
   hasFriendlyUnit,
-  hasFriendlyBuilding
+  hasFriendlyBuilding,
+  getRequiredSupplies
 }

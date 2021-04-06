@@ -11,6 +11,8 @@ import { Unit } from '../units';
 import { Prop } from "../prop";
 import { Player } from "../../player";
 
+type BuildingType = 'unit' | 'resources' | 'infra' | 'transmit' | 'defensive';
+
 abstract class Building extends Prop {
   public Name : string;
   public Owner : Player;
@@ -47,6 +49,7 @@ abstract class DefensiveBuilding extends Building {
 }
 
 export {
+  BuildingType,
   Building,
   UnitBuilding,
   ResourcesBuilding,

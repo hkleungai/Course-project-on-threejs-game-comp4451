@@ -94,14 +94,14 @@ const produceResources = (
   original : Resources,
   production: Resources
 ): void => {
-  original.Money.Value += applyMod(production.Money);
-  original.Steel.Value += applyMod(production.Steel);
-  original.Supplies.Value += applyMod(production.Supplies);
-  original.Shells.Value += applyMod(production.Shells);
-  original.Fuel.Value += applyMod(production.Fuel);
-  original.RareMetal.Value += applyMod(production.RareMetal);
-  original.Manpower.Value += applyMod(production.Manpower);
-  original.Power.Value += applyMod(original.Power);
+  original.Money.Value += applyModAttr(production.Money);
+  original.Steel.Value += applyModAttr(production.Steel);
+  original.Supplies.Value += applyModAttr(production.Supplies);
+  original.Shells.Value += applyModAttr(production.Shells);
+  original.Fuel.Value += applyModAttr(production.Fuel);
+  original.RareMetal.Value += applyModAttr(production.RareMetal);
+  original.Manpower.Value += applyModAttr(production.Manpower);
+  original.Power.Value += applyModAttr(original.Power);
 };
 
 enum ModifierType {
@@ -117,6 +117,17 @@ class Modifier {
   constructor(type : ModifierType, value : number) {
     this.Type = type;
     this.Value = value;
+  }
+}
+
+const applyMod = (m: Modifier, n: number): number => {
+  switch (m.Type) {
+    case ModifierType.FIXED_VALUE:
+      return n + m.Value;
+    case ModifierType.PERCENTAGE:
+      return Math.round(n * (1 + m.Value / 100));
+    case ModifierType.MULTIPLE:
+      return Math.round(n * m.Value);
   }
 }
 
@@ -156,7 +167,7 @@ class Attribute {
   }
 }
 
-const applyMod = (attr: Attribute): number => {
+const applyModAttr = (attr: Attribute): number => {
   switch (attr.Mod?.Type) {
     case ModifierType.FIXED_VALUE:
       return attr.Value + attr.Mod.Value;
@@ -171,19 +182,19 @@ const applyMod = (attr: Attribute): number => {
 
 ///region f**king "operator override"
 const plusAttr = (a1: Attribute, a2: Attribute): number => {
-  return applyMod(a1) + applyMod(a2);
+  return applyModAttr(a1) + applyModAttr(a2);
 }
 
 const minusAttr = (a1: Attribute, a2: Attribute): number => {
-  return applyMod(a1) - applyMod(a2);
+  return applyModAttr(a1) - applyModAttr(a2);
 }
 
 const timesAttr = (a1: Attribute, a2: Attribute): number => {
-  return applyMod(a1) * applyMod(a2);
+  return applyModAttr(a1) * applyModAttr(a2);
 }
 
 const divideAttr = (a1: Attribute, a2: Attribute): number => {
-  return applyMod(a1) / applyMod(a2);
+  return applyModAttr(a1) / applyModAttr(a2);
 }
 
 // note: undefined = throw if mods are diff; flase = keep a2 mod instead
@@ -232,19 +243,19 @@ const divideEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = u
 }
 
 const ltAttr = (a1: Attribute, a2: Attribute): boolean => {
-  return applyMod(a1) < applyMod(a2);
+  return applyModAttr(a1) < applyModAttr(a2);
 }
 
 const leqAttr = (a1: Attribute, a2: Attribute): boolean => {
-  return applyMod(a1) <= applyMod(a2);
+  return applyModAttr(a1) <= applyModAttr(a2);
 }
 
 const gtAttr = (a1: Attribute, a2: Attribute): boolean => {
-  return applyMod(a1) > applyMod(a2);
+  return applyModAttr(a1) > applyModAttr(a2);
 }
 
 const geqAttr = (a1: Attribute, a2: Attribute): boolean => {
-  return applyMod(a1) >= applyMod(a2);
+  return applyModAttr(a1) >= applyModAttr(a2);
 }
 
 ///endregion
@@ -403,9 +414,10 @@ export {
   leqAttr,
   gtAttr,
   geqAttr,
-  applyMod,
+  applyModAttr,
   Modifier,
   ModifierType,
+  applyMod,
   modEquals,
   TerrainModifiers,
   Cost,
