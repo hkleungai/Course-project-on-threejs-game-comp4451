@@ -5,10 +5,12 @@ import {
   minusEqualsAttr,
   Point
 } from './attr';
-import { Building, UnitBuilding } from './props/buildings';
+import { Building, BuildingStatus, UnitBuilding } from './props/buildings';
 import { Personnel, Unit, UnitStatus } from './props/units';
 import {
+  getBuildingAt,
   getNeighborsAtRange,
+  getRequiredSupplies,
   getTile,
   getUnitAt,
   instantiateUnit,
@@ -16,9 +18,10 @@ import {
   isOccupied,
   tileExistsInArray
 } from './flows';
-import { Cities, GameMap, Tile } from './props';
+import { Cities, CustomizableData, GameMap, Tile } from './props';
 import { Player } from './player';
 import { Scene } from 'three';
+import { random } from 'mathjs';
 abstract class Command {
   public Scene: Scene;
   public GameMap : GameMap;
@@ -45,16 +48,45 @@ class Hold extends Command {
 }
 
 class Move extends Command {
-  public path: Point[]; // exclude source, last tile must be destination
+  public Path: Tile[]; // exclude source, last tile must be destination
+  constructor(gameMap: GameMap, player: Player, src: Point, destination: Point, path: Tile[]) {
+    super(gameMap, player, src, destination);
+    this.Path = path;
+  }
   public Execute() {
     let unit: Unit = getUnitAt(this.GameMap, this.Source);
-    
+    unit.Carrying.Supplies.Value -= getRequiredSupplies(this.Path, unit);
+    unit.Coords = this.Destination;
+    unit.Status = UnitStatus.Moved;
   }
 }
 
 class Fire extends Command {
+  // very crude implementation
+  // TODO refine it later
   public Execute() {
-    
+    let friendly = getUnitAt(this.GameMap, this.Source);
+    let hostile: Unit | Building | Cities = getUnitAt(this.GameMap, this.Destination)
+                  ?? getBuildingAt(this.GameMap, this.Destination);
+    if (hostile === undefined) {
+      let t = getTile(this.GameMap, this.Destination);
+      if (t instanceof Cities) {
+        hostile = t as Cities;
+      }
+    }
+    if (friendly instanceof Personnel && hostile !== undefined) {
+      let p = friendly as Personnel;
+      let d = p.PrimaryFirearm.Offense.Damage;
+      let damage = (hostile instanceof Unit ? d.Soft.Value : d.Destruction.Value) 
+                    * random(1 - d.Deviation.Value, 1 + d.Deviation.Value);
+      if (hostile instanceof Unit) {
+        hostile.Defense.Strength.Value -= damage;
+      } else {
+        hostile.Durability.Value -= damage;
+      }
+      friendly.Status = UnitStatus.Fired;
+      consumeResources(friendly.Carrying, friendly.PrimaryFirearm.ConsumptionNormal);
+    }
   }
 }
 
@@ -75,7 +107,7 @@ class Capture extends Command {
         city.Owner = person.Owner;
       }
     } else { // re-capture
-      if (city.Morale.Value != 100) {
+      if (city.Morale.Value < 100) {
         city.Morale = plusEqualsAttr(city.Morale, person.CaptureEfficiency);
       }
       if (city.Morale.Value > 100) {
@@ -94,11 +126,15 @@ class Train extends Command {
         alert('training queue is full');
         return;
       }
-    let nei: string = consumeResources(this.TrainingGround.Owner.Resources, this.Unit.Cost.Base);
+    let nei: string = consumeResources(this.Player.Resources, this.Unit.Cost.Base);
     if (nei === '') {
+      this.Unit.Owner = this.Player;
       this.Unit.Coords = new Point(-1, -1); // indicate not on map
       this.Unit.Status = UnitStatus.InQueue;
       this.TrainingGround.TrainingQueue.push(this.Unit);
+      this.TrainingGround.CurrentQueueTime += this.Unit.Cost.Base.Time.Value;
+      this.Unit.TrainingTimeRemaining = this.TrainingGround.CurrentQueueTime;
+      this.Unit.TrainingGround = this.TrainingGround;
       this.GameMap.Units.push(this.Unit); // add to game map
     } else {
       alert(`not enough ${nei}`);
@@ -107,6 +143,7 @@ class Train extends Command {
 }
 
 class Deploy extends Command {
+  public Custom: CustomizableData;
   public TrainingGround: UnitBuilding;
   public Unit: Unit;
   public Execute() {
@@ -123,6 +160,7 @@ class Deploy extends Command {
       alert('either no available space for deploy or target is occupied.');
       return;
     }
+    (this.Unit as Personnel).PrimaryFirearm = this.Custom.FirearmData[(this.Unit as Personnel).DefaultPrimary];
     this.Unit.Status = UnitStatus.Active;
     this.Unit.Coords = this.Destination;
     instantiateUnit(this.Scene, this.Unit.Coords, this.Unit);
@@ -132,7 +170,15 @@ class Deploy extends Command {
 class Build extends Command {
   public Building: Building;
   public Execute() {
-
+    this.Building.Owner = this.Player;
+    let nei = consumeResources(this.Player.Resources, this.Building.Cost.Base);
+    if (nei === '') {
+      this.Building.CoOrds = this.Destination;
+      this.Building.Status = BuildingStatus.UnderConstruction;
+      this.GameMap.Buildings.push(this.Building);
+    } else {
+      alert(`not enough ${nei}`);
+    }
   }
 }
 

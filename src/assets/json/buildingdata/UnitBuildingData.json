@@ -8,6 +8,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -562,7 +563,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "QueueCapacity": {
@@ -573,6 +575,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -1127,7 +1130,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "QueueCapacity": {
@@ -1138,6 +1142,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -1692,7 +1697,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "QueueCapacity": {
@@ -1703,6 +1709,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -2257,6 +2264,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   }
 ]

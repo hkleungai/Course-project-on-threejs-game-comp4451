@@ -546,7 +546,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "railway",
@@ -1098,7 +1099,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "bridge",
@@ -1647,7 +1649,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "depot",
@@ -2202,7 +2205,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "outpost",
@@ -2757,6 +2761,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   }
 ]

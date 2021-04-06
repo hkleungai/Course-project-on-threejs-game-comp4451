@@ -29,11 +29,13 @@ abstract class Building extends Prop {
   public Durability : Attribute;
   public Scouting : Scouting;
   public DestroyTerrainOnBuilt : boolean;
+  public ConstructionTimeRemaining : number;
 }
 
 abstract class UnitBuilding extends Building {
   public QueueCapacity : Attribute;
   public TrainingQueue : Unit[];
+  public CurrentQueueTime : number;
   public ReadyToDeploy : Unit[];
   public DeployRange : Attribute;
 }

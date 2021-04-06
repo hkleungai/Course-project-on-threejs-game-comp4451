@@ -30,6 +30,7 @@ class Resources {
   public RareMetal : Attribute;
   public Manpower : Attribute;
   public Power : Attribute;
+  public Time : Attribute;
 
   constructor(resources?: Partial<Resources>) {
     if (Number.isInteger(resources.Money?.Value ?? 0)) {

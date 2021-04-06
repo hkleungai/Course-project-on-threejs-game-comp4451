@@ -559,7 +559,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "EffectiveRange": {
@@ -1115,7 +1116,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "EffectiveRange": {
@@ -1677,7 +1679,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "EffectiveRange": {
@@ -2239,6 +2242,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   }
 ]

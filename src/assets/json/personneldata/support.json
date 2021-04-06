@@ -865,5 +865,6 @@
   "LastSuppressedRound": 0,
   "IsSuppressed": false,
   "IsDisconnected": false,
-  "TrainingTimeRemaining": 0
+  "TrainingTimeRemaining": 0,
+  "TrainingGround": null
 }

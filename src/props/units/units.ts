@@ -28,6 +28,7 @@ import {
   Radar
 } from '../../researches';
 import { Player } from '../../player';
+import { UnitBuilding } from '../buildings';
 // import { personnelDataJson } from '../../assets/json';
 
 enum UnitStatus {
@@ -59,6 +60,7 @@ abstract class Unit extends Prop {
   public IsSuppressed : boolean;
   public IsDisconnected : boolean;
   public TrainingTimeRemaining : number;
+  public TrainingGround: UnitBuilding;
 
   public constructor(unit?: Partial<Unit>) {
     super();
@@ -79,6 +81,7 @@ abstract class Unit extends Prop {
     this.IsSuppressed = unit.IsSuppressed;
     this.IsDisconnected = unit.IsDisconnected;
     this.TrainingTimeRemaining = unit.TrainingTimeRemaining;
+    this.TrainingGround = unit.TrainingGround;
   }
 }
 

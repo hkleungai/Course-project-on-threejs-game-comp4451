@@ -619,7 +619,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "BuildingStatus": 0,
@@ -1241,7 +1242,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "BuildingStatus": 0,
@@ -1863,7 +1865,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "BuildingStatus": 0,
@@ -2485,7 +2488,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "BuildingStatus": 0,
@@ -3107,7 +3111,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "BuildingStatus": 0,
@@ -3729,6 +3734,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   }
 ]
