@@ -22,12 +22,12 @@ import { meshes } from '../resources';
 import { GameMap } from '../props';
 import { Point } from '../attr';
 
-interface LoadTilesGlbInputTypes {
+interface LoadTilesFromGlbInputTypes {
   scene: Scene;
-  gameMap: GameMap;
+  gameMap?: GameMap;
 }
 
-const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
+const loadTilesFromGlb = ({ scene, gameMap }: LoadTilesFromGlbInputTypes): void => {
   const loader = new GLTFLoader();
   const unit: { x?: number, y?: number } = {};
 
@@ -97,7 +97,7 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
 
   const loadGlbForEachRowAndColumn = (y: number, x: number, gameMap: GameMap) => {
     const { error: consoleError } = console;
-    loader.load('./assets/raw.glb', glbOnLoad(y, x, gameMap), undefined, consoleError);
+    loader.load('./assets/background.glb', glbOnLoad(y, x, gameMap), undefined, consoleError);
   };
 
   range(GameMap.Width).forEach(x => {
@@ -107,6 +107,4 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   });
 };
 
-export {
-  loadTilesGlb,
-};
+export { loadTilesFromGlb };

@@ -6,7 +6,10 @@ import {
   UnitData
 } from '../props';
 
-const loadGameMapFromJson = (): GameMap => {
+const loadGameMapFromJson = ({ shouldLoad }: { shouldLoad: boolean }): GameMap => {
+  if (!shouldLoad) {
+    return undefined;
+  }
   const gameMap = new GameMap();
   gameMap.Load();
   return gameMap;
@@ -36,10 +39,15 @@ const loadUnitDataFromJson = (): UnitData => {
   return unitData;
 };
 
-export {
-  loadGameMapFromJson,
-  loadTileDataFromJson,
-  loadBuildingDataFromJson,
-  loadCustomizableDataFromJson,
-  loadUnitDataFromJson,
+const loadResourcesFromJsons = ({
+  shouldLoad = true
+}: { shouldLoad?: boolean } = {}): GameMap => {
+  const gameMap = loadGameMapFromJson({ shouldLoad });
+  loadTileDataFromJson();
+  loadBuildingDataFromJson();
+  loadCustomizableDataFromJson();
+  loadUnitDataFromJson();
+  return gameMap;
 };
+
+export { loadResourcesFromJsons };

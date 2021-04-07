@@ -1,0 +1,67 @@
+input#start-menu-visibility-control {
+  display: none;
+}
+
+div.start-menu {
+  $custom-border: 18.75rem solid transparent;
+
+  border-left: $custom-border;
+  border-right: $custom-border;
+  border-top: $custom-border;
+  z-index: 1;
+  width: 0;
+  position: relative;
+  margin: auto;
+  top: 7rem;
+  left: -4rem;
+  transition: all 0.5s ease-out;
+
+  input#start-menu-visibility-control:checked + & {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+div.start-menu-bar {
+  z-index: 2;
+  height: 6.25rem;
+  width: 80rem;
+  background: black;
+  position: absolute;
+  border-top: 0.625rem solid #fc0;
+  top: 10.9375rem;
+
+  &.left {
+    right: -9.7rem;
+    transform: rotate(45deg);
+  }
+
+  &.right {
+    left: -9.7rem;
+    transform: rotate(-45deg);
+  }
+}
+
+@for $ith-option-index from 0 to 4 {
+  div.start-menu-option-#{$ith-option-index} {
+    @include set-height-and-lineHeight(5.125);
+
+    position: relative;
+    bottom: #{8.625 - 6 * $ith-option-index}rem;
+    right: #{50.75 - 11 * $ith-option-index}rem;
+    width: #{101.5 - 22 * $ith-option-index}rem;
+    background: #068;
+    color: #fc0;
+    text-align: center;
+    font-size: 2.875rem;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      background: #7a0000;
+      color: white;
+      transform: rotate(-2deg);
+    }
+  }
+}

@@ -275,7 +275,7 @@ class Hexagon {
   }
 }
 
-const coordsToScreenPoint = (coords: Point): Vector3 => {
+const parseCoordsToScreenPoint = (coords: Point): Vector3 => {
   const x = GameMap.HexScreenSize.x;
   const y = GameMap.HexScreenSize.y;
   return new Vector3(
@@ -285,12 +285,22 @@ const coordsToScreenPoint = (coords: Point): Vector3 => {
   );
 };
 
+const parseMeshnameToCoords = (meshname: string): [number, number] => (
+  meshname
+    .split('_')[0]
+    .replace(/^\(|\)|\s$/g, "")
+    .split(', ')
+    .map(Number)
+) as [number, number];
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const highlightPath = (path: Tile[]) => {
   // TODO
-}
+};
 
 export {
   Hexagon,
   Line,
-  coordsToScreenPoint
+  parseCoordsToScreenPoint,
+  parseMeshnameToCoords,
 };

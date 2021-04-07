@@ -12,7 +12,7 @@ import {
 } from "../props/units";
 import {
   InvalidArgumentException,
-  coordsToScreenPoint,
+  parseCoordsToScreenPoint,
   getCitiesTexturesWithColor,
   rangeFrom,
   rangeFromTo,
@@ -327,7 +327,7 @@ const updateTrainingGroundsQueues = (gameMap: GameMap): void => {
 };
 const updateUnitPositions = (scene: Scene, gameMap: GameMap) => {
   gameMap.Units.forEach(u => {
-    let pos = coordsToScreenPoint(u.Coords);
+    let pos = parseCoordsToScreenPoint(u.Coords);
     getMesh(scene, u).position.set(pos.x, pos.y, pos.z);
   })
 };
