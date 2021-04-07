@@ -5,7 +5,7 @@ import {
   Scene,
 } from 'three';
 import { GameMap } from '../props';
-import { executePhases } from './phases';
+import { executePhases } from '../utils';
 interface OnWindowResizeInputType {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;

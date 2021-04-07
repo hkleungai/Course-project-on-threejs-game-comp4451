@@ -19,7 +19,7 @@ import {
   isFriendlyCity,
   isOccupied,
   tileExistsInArray
-} from './flows';
+} from './utils';
 import { Cities, CustomizableData, GameMap, Tile } from './props';
 import { Player } from './player';
 import { Scene } from 'three';
@@ -79,7 +79,7 @@ class Fire extends Command {
     if (friendly instanceof Personnel && hostile !== undefined) {
       let p = friendly as Personnel;
       let d = p.PrimaryFirearm.Offense.Damage;
-      let damage = (hostile instanceof Unit ? d.Soft.Value : d.Destruction.Value) 
+      let damage = (hostile instanceof Unit ? d.Soft.Value : d.Destruction.Value)
                     * random(1 - d.Deviation.Value, 1 + d.Deviation.Value);
       if (hostile instanceof Unit) {
         hostile.Defense.Strength.Value -= damage;
@@ -123,7 +123,7 @@ class Train extends Command {
   public TrainingGround: UnitBuilding;
   public Unit: Unit;
   public Execute() {
-    if (this.TrainingGround.TrainingQueue.length >= 
+    if (this.TrainingGround.TrainingQueue.length >=
       applyModAttr(this.TrainingGround.QueueCapacity)) {
         alert('training queue is full');
         return;
@@ -153,11 +153,11 @@ class Deploy extends Command {
       alert('not a deployable unit');
       return;
     }
-    let deployable: Tile[] = getNeighborsAtRange(this.GameMap, 
-      getTile(this.GameMap, this.TrainingGround.CoOrds), 
+    let deployable: Tile[] = getNeighborsAtRange(this.GameMap,
+      getTile(this.GameMap, this.TrainingGround.CoOrds),
       Math.floor(applyModAttr(this.TrainingGround.DeployRange))
     ).filter(t => !isOccupied(this.GameMap, t.CoOrds));
-    if (deployable.length == 0 || 
+    if (deployable.length == 0 ||
       !tileExistsInArray(deployable, getTile(this.GameMap, this.Destination))) {
       alert('either no available space for deploy or target is occupied.');
       return;

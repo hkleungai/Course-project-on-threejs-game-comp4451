@@ -22,25 +22,25 @@ import {
   loadGameMapFromJson,
   listenOnKeyboardEvent,
   listenOnKeyboardEventForPlanningPhase,
-  instantiateUnit,
-  getPath,
-  getTile
+  // instantiateUnit,
+  // getPath,
+  // getTile
 } from './flows';
 
 import './style.scss';
 import {
   GameMap,
-  TileData,
-  BuildingData,
-  CustomizableData,
-  UnitData
+  // TileData,
+  // BuildingData,
+  // CustomizableData,
+  // UnitData
 } from './props';
-import {testGetNeiboursAtRange} from './test';
-import { Point } from './attr';
-import { Infantry, Personnel, UnitStatus } from './props/units';
-import { PlayerColor, Player } from './player';
+// import {testGetNeiboursAtRange} from './test';
+// import { Point } from './attr';
+// import { Infantry, Personnel, UnitStatus } from './props/units';
+// import { PlayerColor, Player } from './player';
 
-let scene = new Scene();
+const scene = new Scene();
 scene.background = new Color(0x000000);
 
 const renderer = new WebGLRenderer({ antialias: true });
@@ -53,11 +53,11 @@ camera.position.set(20, 30, 10);
 camera.lookAt(20, 30, 0);
 camera.matrixAutoUpdate = true;
 
-let gameMap: GameMap = loadGameMapFromJson();
-let tileData: TileData = loadTileDataFromJson();
-let buildingData: BuildingData = loadBuildingDataFromJson();
-let customizableData: CustomizableData = loadCustomizableDataFromJson();
-let unitData: UnitData = loadUnitDataFromJson();
+const gameMap: GameMap = loadGameMapFromJson();
+// let tileData: TileData = loadTileDataFromJson();
+// let buildingData: BuildingData = loadBuildingDataFromJson();
+// let customizableData: CustomizableData = loadCustomizableDataFromJson();
+// let unitData: UnitData = loadUnitDataFromJson();
 
 loadTilesGlb({ scene, gameMap });
 

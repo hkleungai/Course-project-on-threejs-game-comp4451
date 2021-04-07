@@ -1,23 +1,26 @@
 import { isInteger, random } from "mathjs";
-import { Mesh, MeshBasicMaterial, Object3D, Scene } from "three";
-import { gameMap } from "../assets/json";
+import { Mesh, MeshBasicMaterial, Scene } from "three";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals } from "../attr";
 import { Fire, Hold, Move } from "../command";
 import { Player, playerEquals } from "../player";
-import { Cities, cubeTileEquals, GameMap, Prop, Tile, WeightedCubeTile } from "../props"
+import { Cities, cubeTileEquals, GameMap, Prop, Tile, WeightedCubeTile } from "../props";
 import { Building, BuildingStatus, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
   Personnel,
   Unit,
   UnitStatus
-} from "../props/units"
-import { testGetNeiboursAtRange } from "../test";
-import { coordsToScreenPoint, InvalidArgumentException, rangeFrom, rangeFromTo } from "../utils";
-import { getCitiesTexturesWithColor } from "./loadTilesFromglb";
+} from "../props/units";
+import {
+  InvalidArgumentException,
+  coordsToScreenPoint,
+  getCitiesTexturesWithColor,
+  rangeFrom,
+  rangeFromTo,
+} from "./";
 
 const convertToCudeCoOrds = (coords: Point): number[] => {
-  let z: number = coords.Y - (coords.X - (coords.X % 2)) / 2;
-  let y: number = -coords.X - z;
+  const z: number = coords.Y - (coords.X - (coords.X % 2)) / 2;
+  const y: number = -coords.X - z;
   return [coords.X, y, z];
 };
 const convertToOffestCoOrds = (cube_coords: number[]): Point => {
@@ -103,7 +106,7 @@ const getNeighborsWithCubeCoords = (
   const neighbors : WeightedCubeTile[] = [];
 
   let hex_neighbors = getNeighbors(gameMap, convertToOffestCoOrds(cube_tile_so_far.CubeCoords));
-  hex_neighbors.forEach(h => 
+  hex_neighbors.forEach(h =>
     neighbors.push(
       new WeightedCubeTile(
         cube_tile_so_far,
@@ -155,7 +158,7 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
     }
     visited.push(check);
     active.splice(active.indexOf(check), 1);
-    
+
     getNeighborsWithCubeCoords(gameMap, check, end).forEach(n => {
       if (visited.some(v => cubeTileEquals(v, n))) { //visited, skip
         return;
@@ -295,18 +298,18 @@ const flee = (unit: Unit) => {
 };
 const getMesh = (scene: Scene, prop: Prop): Mesh => {
   return scene.getObjectByName(prop.MeshName) as Mesh;
-}
-const removeDestroyed = (scene: Scene, gameMap: GameMap) => {
+};
+const removeDestroyed = (scene: Scene, gameMap: GameMap): void => {
   gameMap.Units.filter(u => u.Status === UnitStatus.Destroyed).forEach(u => {
     scene.remove(getMesh(scene, u));
   });
-  gameMap.Buildings.filter(b => b.Status === BuildingStatus.Destroyed)
-                   .forEach(b => scene.remove(scene.getObjectByName(b.Name)));
+  gameMap.Buildings
+    .filter(b => b.Status === BuildingStatus.Destroyed)
+    .forEach(b => scene.remove(scene.getObjectByName(b.Name)));
   gameMap.Units = gameMap.Units.filter(u => u.Status !== UnitStatus.Destroyed);
   gameMap.Buildings = gameMap.Buildings.filter(b => b.Status !== BuildingStatus.Destroyed);
-  
 };
-const updateTrainingTime = (gameMap: GameMap) => {
+const updateTrainingTime = (gameMap: GameMap): void => {
   getUnitsWithStatus(gameMap, UnitStatus.InQueue).forEach(u => {
     u.TrainingTimeRemaining -= 1;
     if (u.TrainingTimeRemaining <= 0) {
@@ -316,7 +319,7 @@ const updateTrainingTime = (gameMap: GameMap) => {
     }
   });
 };
-const updateTrainingGroundsQueues = (gameMap: GameMap) => {
+const updateTrainingGroundsQueues = (gameMap: GameMap): void => {
   gameMap.Buildings.filter(b => b instanceof UnitBuilding).forEach(b => {
     let ub = b as UnitBuilding;
     ub.CurrentQueueTime = ub.TrainingQueue[ub.TrainingQueue.length - 1].TrainingTimeRemaining ?? 0;
@@ -328,7 +331,7 @@ const updateUnitPositions = (scene: Scene, gameMap: GameMap) => {
     getMesh(scene, u).position.set(pos.x, pos.y, pos.z);
   })
 };
-const updateConstructionTime = (gameMap: GameMap) => {
+const updateConstructionTime = (gameMap: GameMap): void => {
   gameMap.Buildings.filter(b => b.Status === BuildingStatus.UnderConstruction).forEach(b => {
     b.ConstructionTimeRemaining -= 1;
     if (b.ConstructionTimeRemaining <= 0) {
@@ -336,7 +339,7 @@ const updateConstructionTime = (gameMap: GameMap) => {
     }
   });
 };
-const updateDestroyed = (gameMap: GameMap) => {
+const updateDestroyed = (gameMap: GameMap): void => {
   gameMap.Units.filter(u => u.Defense.Strength.Value <= 0).forEach(u => {
     u.Status = UnitStatus.Destroyed;
   });
@@ -345,14 +348,14 @@ const updateDestroyed = (gameMap: GameMap) => {
   });
   // TODO add logic for city destroyed
 };
-const updateCities = (scene: Scene, gameMap: GameMap) => {
+const updateCities = (scene: Scene, gameMap: GameMap): void => {
   gameMap.Cities.forEach(c => {
     getMesh(scene, c).material[1] = new MeshBasicMaterial({
       map: getCitiesTexturesWithColor(c),
       transparent: true
-    })
+    });
   });
-}
+};
 const getWinner = (gameMap: GameMap): Player => {
   let eliminated: Player[];
   gameMap.Players.forEach(p => {
@@ -369,7 +372,7 @@ const getWinner = (gameMap: GameMap): Player => {
       gameMap.Players.forEach(p => numUnits.push(getNumUnits(gameMap, p)));
       let player_index_with_most_units = numUnits.reduce((iMax, x, i, arr) => x > arr[iMax] ? i : iMax, 0);
       return gameMap.Players[player_index_with_most_units];
-      // TODO can consider more cases but it's already very rare 
+      // TODO can consider more cases but it's already very rare
       // to have same num units && all players' cities are destroyed in the same round
     }
     gameMap.Units = gameMap.Units.filter(u => remaining_players.includes(u.Owner));
@@ -379,7 +382,7 @@ const getWinner = (gameMap: GameMap): Player => {
 };
 const clearCommands = (gameMap: GameMap) => {
   gameMap.Commands = [];
-}
+};
 
 const executePhases = (scene: Scene, gameMap: GameMap) => {
   gameMap.Commands.filter(h => h instanceof Hold).forEach(h => h.Execute());

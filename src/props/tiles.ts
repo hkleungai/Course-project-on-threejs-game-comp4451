@@ -1,3 +1,4 @@
+import { Vector3 } from 'three';
 import {
   Attribute,
   Modifier, // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -15,8 +16,8 @@ import {
   mapDataJson,
   playerDataJson
 } from '../assets/json';
-import { isInteger } from 'mathjs';
-import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
+// import { isInteger } from 'mathjs';
+// import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
 import { Building } from './buildings';
 import { Command } from '../command';
 
@@ -120,6 +121,7 @@ class GameMap {
   private _units : Unit[] = [];
   private _buildings : Building[] = [];
   private _commands : Command[] = [];
+  private static _hexScreenSize: Vector3;
 
   static get Height() : number { return GameMap._height; }
   static get Width() : number { return GameMap._width; }
@@ -134,6 +136,8 @@ class GameMap {
   set Buildings(buildings: Building[]) { this._buildings = buildings; }
   get Commands() : Command[] { return this._commands; }
   set Commands(commands: Command[]) { this._commands = commands; }
+  static get HexScreenSize() : Vector3 { return GameMap._hexScreenSize; }
+  static set HexScreenSize(hexScreenSize: Vector3) { GameMap._hexScreenSize = hexScreenSize; }
 
   public Load(): void {
     GameMap._width = mapDataJson.Width;
