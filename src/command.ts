@@ -3,12 +3,14 @@ import {
   consumeResources,
   plusEqualsAttr,
   minusEqualsAttr,
-  Point
+  Point,
+  pointEquals
 } from './attr';
 import { Building, BuildingStatus, UnitBuilding } from './props/buildings';
 import { Personnel, Unit, UnitStatus } from './props/units';
 import {
   getBuildingAt,
+  getCityAt,
   getNeighborsAtRange,
   getRequiredSupplies,
   getTile,
@@ -28,7 +30,7 @@ abstract class Command {
   public Player : Player;
   public Source : Point;
   public Destination : Point;
-  protected Execute?() : void;
+  public Execute?() : void;
 
   protected constructor(gameMap: GameMap, player: Player, src: Point, destination: Point) {
     this.GameMap = gameMap;
@@ -69,9 +71,9 @@ class Fire extends Command {
     let hostile: Unit | Building | Cities = getUnitAt(this.GameMap, this.Destination)
                   ?? getBuildingAt(this.GameMap, this.Destination);
     if (hostile === undefined) {
-      let t = getTile(this.GameMap, this.Destination);
-      if (t instanceof Cities) {
-        hostile = t as Cities;
+      let c = getCityAt(this.GameMap, this.Destination);
+      if (c !== undefined) {
+        hostile = c;
       }
     }
     if (friendly instanceof Personnel && hostile !== undefined) {
@@ -93,18 +95,18 @@ class Fire extends Command {
 // this class included re-capture as well
 class Capture extends Command {
   public Execute() {
-    let tile: Tile = getTile(this.GameMap, this.Source); // on top of city
+    let city: Cities = getCityAt(this.GameMap, this.Source); // on top of city
     let unit: Unit = getUnitAt(this.GameMap, this.Source); // self unit
-    if (!(tile instanceof Cities) || !(unit instanceof Personnel)) {
+    if (city === undefined || !(unit instanceof Personnel)) {
       alert('target is not a city or unit is not personnel');
       return;
     }
-    let city: Cities = tile as Cities;
     let person: Personnel = unit as Personnel;
     if (!isFriendlyCity(this.GameMap, this.Source, this.Player)) {
       city.Morale = minusEqualsAttr(city.Morale, person.CaptureEfficiency);
-      if (city.Morale.Value < 0) {
+      if (city.Morale.Value <= 0) {
         city.Owner = person.Owner;
+        city.Morale.Value = Math.abs(city.Morale.Value);
       }
     } else { // re-capture
       if (city.Morale.Value < 100) {

@@ -12,9 +12,9 @@ enum PlayerColor {
 }
 
 class Player {
-  public readonly Name : string;
-  public readonly Color : PlayerColor;
-  public readonly isAI : boolean;
+  public Name : string;
+  public Color : PlayerColor;
+  public IsAI : boolean;
   public Resources : Resources;
   public Buildings : Building[];
   public Researches : Technology[];
@@ -23,7 +23,7 @@ class Player {
   constructor(player?: Partial<Player>) {
     this.Name = player.Name;
     this.Color = player.Color;
-    this.isAI = player.isAI;
+    this.IsAI = player.IsAI;
     this.Resources = player.Resources;
     this.Buildings = player.Buildings;
     this.Researches = player.Researches;

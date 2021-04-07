@@ -20,22 +20,52 @@ import {
   range,
   sinDeg,
   cosDeg,
+  InvalidArgumentException,
 } from '../utils';
 import {
   // infantries,
   // militias
   meshes,
   textures,
+  suburbs,
+  cities,
+  metropolises
 } from '../resources';
-import { GameMap } from '../props';
+import { Cities, GameMap, Tile, TileType } from '../props';
+import { PlayerColor } from '../player';
+import { Point, pointEquals } from '../attr';
+import { getCityAt } from './phases';
 
 interface LoadTilesGlbInputTypes {
   scene: Scene;
   gameMap: GameMap;
 }
 
-type loadFlag = 'tile' | 'unit' | 'building';
 let hexScreenSize: Vector3;
+
+const getTileTexture = (tile: Tile): Texture => {
+  let type = TileType[tile.Type].toLowerCase();
+  return textures[type];
+};
+
+const getCitiesTextures = (type: TileType): { [k: string]: Texture } => {
+  switch (type) {
+    case TileType.SUBURB:
+      return suburbs;
+    case TileType.CITY:
+      return cities;
+    case TileType.METROPOLIS:
+      return metropolises;
+    default:
+      throw new InvalidArgumentException('tile.Type', type);
+  }
+};
+
+const getCitiesTexturesWithColor = (city: Cities): Texture => {
+  let type = TileType[city.Type].toLowerCase();
+  let color = PlayerColor[city.Owner.Color].toLowerCase();
+  return getCitiesTextures(city.Type)[`${type}_${color}`];
+};
 
 const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   const loader = new GLTFLoader();
@@ -52,7 +82,7 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   //   scene.add( dot );
   // };
 
-  const setMeshChildPosition = (child: Object3D, y: number, x: number, flag: loadFlag) => {
+  const setMeshChildPosition = (child: Object3D, y: number, x: number) => {
     if (unit.x === undefined || unit.y === undefined) {
       const box = new Box3().setFromObject(child);
       const dummyVector = new Vector3();
@@ -70,7 +100,7 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
     child.position.set(
       childCenter[0],
       childCenter[1],
-      childCenter[2] + +(flag !== 'tile') * 0.1
+      childCenter[2]
     );
 
     // markChildVertices(childCenter);
@@ -79,30 +109,33 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   const traverseGlbScene = (
     y: number,
     x: number,
-    entries: [string, Texture][],
-    flag: loadFlag,
     gameMap: GameMap,
   ) => (child: Object3D) => {
     const tilename = `(${x}, ${y})`;
+    const meshname = `${tilename}_${Date.now().toString()}`;
     gameMap.Tiles[x][y].Name = tilename;
+    gameMap.Tiles[x][y].MeshName = meshname;
     
     if (child instanceof Mesh && child.isMesh) {
-      setMeshChildPosition(child, y, x, flag);
+      setMeshChildPosition(child, y, x);
 
       child.geometry.clearGroups();
-      range(flag === 'tile' ? 3 : 2).forEach(materialIndex => {
+      range(3).forEach(materialIndex => {
         child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
       });
-      const [name, map] = gameMap === undefined
-        ? entries[randint(entries.length)]
-        : entries[gameMap.Tiles[x][y].Type];
+
+      let t = gameMap.Tiles[x][y];
+      let c = getCityAt(gameMap, new Point(x, y));
+      let tex: Texture = c !== undefined
+                          ? getCitiesTexturesWithColor(c)
+                          : getTileTexture(t);
       child.material = [
-        flag === 'tile' ? meshes.plains : undefined,
-        new MeshBasicMaterial({ name, map, transparent: true }),
+        meshes.plains,
+        new MeshBasicMaterial({ map: tex, transparent: true }),
         meshes.blank
       ].filter(Boolean);
 
-      child.name = tilename;
+      child.name = meshname;
       scene.add(child);
     }
   };
@@ -110,16 +143,14 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   const glbOnLoad = (
     y: number,
     x: number,
-    entries: [string, Texture][],
-    flag: loadFlag,
     gameMap: GameMap
   ) => ({ scene }: GLTF) => {
-    scene.traverse(traverseGlbScene(y, x, entries, flag, gameMap));
+    scene.traverse(traverseGlbScene(y, x, gameMap));
   };
 
   const loadGlbForEachRowAndColumn = (y: number, x: number, gameMap: GameMap) => {
     const { error: consoleError } = console;
-    loader.load('./assets/raw.glb', glbOnLoad(y, x, texturesEntries, 'tile', gameMap), undefined, consoleError);
+    loader.load('./assets/raw.glb', glbOnLoad(y, x, gameMap), undefined, consoleError);
   };
 
   range(GameMap.Width).forEach(x => {
@@ -129,4 +160,9 @@ const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   });
 };
 
-export { loadTilesGlb, hexScreenSize };
+export {
+  loadTilesGlb,
+  hexScreenSize,
+  getCitiesTexturesWithColor,
+  getTileTexture
+};

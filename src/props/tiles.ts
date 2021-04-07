@@ -11,11 +11,14 @@ import { Player } from '../player';
 import { Unit } from './units';
 import {
   gameMap,
-  mapDataJson
+  mapCities,
+  mapDataJson,
+  playerDataJson
 } from '../assets/json';
 import { isInteger } from 'mathjs';
 import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
 import { Building } from './buildings';
+import { Command } from '../command';
 
 enum TileType {
   BOUNDARY = 0,
@@ -29,7 +32,7 @@ enum TileType {
   DESERT = 8,
   HILLOCK = 9,
   HILLS = 10,
-  MOUNTAIN = 11,
+  MOUNTAINS = 11,
   ROCKS = 12,
   SUBURB = 13,
   CITY = 14,
@@ -112,25 +115,34 @@ class GameMap {
   private static _height : number;
   private static _width : number;
   private _tiles : Tile[][] = [];
+  private _cities : Cities[] = [];
   private _players : Player[] = [];
   private _units : Unit[] = [];
   private _buildings : Building[] = [];
+  private _commands : Command[] = [];
 
   static get Height() : number { return GameMap._height; }
   static get Width() : number { return GameMap._width; }
   get Tiles() : Tile[][] { return this._tiles; }
-  set Tiles(tiles: Tile[][]) {this._tiles = tiles; }
+  set Tiles(tiles: Tile[][]) { this._tiles = tiles; }
+  get Cities() : Cities[] { return this._cities; }
+  set Cities(cities: Cities[]) { this._cities = cities; }
   get Players() : Player[] { return this._players; }
   get Units() : Unit[] { return this._units; }
   set Units(units: Unit[]) { this._units = units; }
   get Buildings() : Building[] { return this._buildings; }
   set Buildings(buildings: Building[]) { this._buildings = buildings; }
+  get Commands() : Command[] { return this._commands; }
+  set Commands(commands: Command[]) { this._commands = commands; }
 
   public Load(): void {
     GameMap._width = mapDataJson.Width;
     GameMap._height = mapDataJson.Height;
-    this._players = mapDataJson.Players;
+    this._players = playerDataJson;
     this._tiles = JSON.parse(JSON.stringify(gameMap));
+    this._cities = mapCities;
+    this._cities[0].Owner = this._players[0];
+    this._cities[1].Owner = this._players[1];
   }
 
   public addUnit(unit: Unit): void {

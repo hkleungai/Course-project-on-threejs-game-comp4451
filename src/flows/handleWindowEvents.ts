@@ -2,8 +2,10 @@ import {
   PerspectiveCamera,
   WebGLRenderer,
   Vector3,
+  Scene,
 } from 'three';
-
+import { GameMap } from '../props';
+import { executePhases } from './phases';
 interface OnWindowResizeInputType {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
@@ -41,12 +43,14 @@ const listenOnMouseEvent = ({
 
 
 interface OnKeyboardEventInputType {
+  scene?: Scene;
+  gameMap?: GameMap;
   camera: PerspectiveCamera;
   delta?: number;
 }
 
 const listenOnKeyboardEvent = ({
-  camera, delta,
+  camera, delta
 }: OnKeyboardEventInputType): void => {
   if (delta === undefined) {
     delta = 1;
@@ -72,9 +76,37 @@ const listenOnKeyboardEvent = ({
       case "-" || "Q":
         camera.translateZ(delta);
         break;
+      default:
+        console.log(event.key);
     }
   };
   window.addEventListener('keydown', callback, false);
 };
 
-export { onWindowResize, listenOnMouseEvent, listenOnKeyboardEvent };
+interface OnKeyboardEventInputTypeForPlanningPhase {
+  scene: Scene;
+  gameMap: GameMap;
+}
+
+const listenOnKeyboardEventForPlanningPhase = ({
+  scene, gameMap
+}: OnKeyboardEventInputTypeForPlanningPhase): void => {
+  const callback = (event: KeyboardEvent): void => {
+    event.preventDefault();
+    switch (event.key) {
+      case "Enter":
+        if (scene !== undefined && gameMap !== undefined) {
+          executePhases(scene, gameMap);
+        }
+        return;
+    }
+  };
+  window.addEventListener('keydown', callback, false);
+};
+
+export {
+  onWindowResize,
+  listenOnMouseEvent,
+  listenOnKeyboardEvent,
+  listenOnKeyboardEventForPlanningPhase
+};

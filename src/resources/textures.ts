@@ -19,25 +19,49 @@ const textureEntries: [string, Texture][] = [
   'hillock',
   'hills',
   'mountains',
-  'rocks',
-  'suburb_blue',
-  'suburb_green',
-  'suburb_red',
-  'suburb_yellow',
-  'city_blue',
-  'city_green',
-  'city_red',
-  'city_yellow',
-  'metropolis_blue',
-  'metropolis_green',
-  'metropolis_red',
-  'metropolis_yellow',
+  'rocks'
 ].map(textureKey => ([
   textureKey,
   textureLoader.load(`../assets/tiles/${textureKey}.png`),
 ]));
 const textures = Object.fromEntries(textureEntries);
 textureEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+// TODO refactor entries with color to color only, load ${type}_${color}
+const suburbEntries: [string, Texture][] = [
+  'suburb_blue',
+  'suburb_green',
+  'suburb_red',
+  'suburb_yellow'
+].map(textureKey => ([
+  textureKey,
+  textureLoader.load(`../assets/tiles/${textureKey}.png`),
+]));
+const suburbs = Object.fromEntries(suburbEntries);
+suburbEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+
+const cityEntries: [string, Texture][] = [
+  'city_blue',
+  'city_green',
+  'city_red',
+  'city_yellow'
+].map(textureKey => ([
+  textureKey,
+  textureLoader.load(`../assets/tiles/${textureKey}.png`),
+]));
+const cities = Object.fromEntries(cityEntries);
+cityEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+
+const metropolisEntries: [string, Texture][] = [
+  'metropolis_blue',
+  'metropolis_green',
+  'metropolis_red',
+  'metropolis_yellow'
+].map(textureKey => ([
+  textureKey,
+  textureLoader.load(`../assets/tiles/${textureKey}.png`),
+]));
+const metropolises = Object.fromEntries(metropolisEntries);
+metropolisEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
 
 const meshEntries: [string, MeshBasicMaterial][] = [
   'available',
@@ -129,6 +153,9 @@ const militias = Object.fromEntries(militiaEntries);
 export {
   meshes,
   textures,
+  suburbs,
+  cities,
+  metropolises,
   engineers,
   mountains,
   supports,

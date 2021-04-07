@@ -1,16 +1,19 @@
 import { isInteger, random } from "mathjs";
-import { Mesh, Object3D, Scene } from "three";
+import { Mesh, MeshBasicMaterial, Object3D, Scene } from "three";
 import { gameMap } from "../assets/json";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals } from "../attr";
+import { Fire, Hold, Move } from "../command";
 import { Player, playerEquals } from "../player";
-import { Cities, cubeTileEquals, GameMap, Tile, WeightedCubeTile } from "../props"
+import { Cities, cubeTileEquals, GameMap, Prop, Tile, WeightedCubeTile } from "../props"
 import { Building, BuildingStatus, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
   Personnel,
   Unit,
   UnitStatus
 } from "../props/units"
-import { InvalidArgumentException, rangeFrom, rangeFromTo } from "../utils";
+import { testGetNeiboursAtRange } from "../test";
+import { coordsToScreenPoint, InvalidArgumentException, rangeFrom, rangeFromTo } from "../utils";
+import { getCitiesTexturesWithColor } from "./loadTilesFromglb";
 
 const convertToCudeCoOrds = (coords: Point): number[] => {
   let z: number = coords.Y - (coords.X - (coords.X % 2)) / 2;
@@ -140,15 +143,12 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
   active.push(start);
   while (active.length !== 0) {
     let check = active.sort((a, b) => a.CostDistance - b.CostDistance)[0];
-    console.log(check);
     if (cubeTileEquals(check, end)) {
       console.log('reached destination');
-      console.log(check);
       // trace back parents to get the path
       while (check.Parent !== undefined) {
         let t = getTile(gameMap, convertToOffestCoOrds(check.CubeCoords));
         path.push(t);
-        console.log(`${t.CoOrds.X}, ${t.CoOrds.Y}`);
         check = check.Parent;
       }
       return path;
@@ -178,13 +178,8 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
 const getTile = (gameMap: GameMap, coords: Point): Tile => {
   return gameMap.Tiles[coords.X][coords.Y];
 };
-const getCities = (gameMap: GameMap): Cities[] => {
-  let c: Cities[];
-  gameMap.Tiles.forEach(ts => ts.filter(t => t instanceof Cities).forEach(t => c.push(t as Cities)));
-  return c;
-}
 const getPlayersCities = (gameMap: GameMap, self: Player): Cities[] => {
-  return getCities(gameMap).filter(c => playerEquals(c.Owner, self));
+  return gameMap.Cities.filter(c => playerEquals(c.Owner, self));
 }
 const getUnitAt = (gameMap: GameMap, coords: Point): Unit => {
   return gameMap.Units.find(u => pointEquals(u.Coords, coords));
@@ -209,6 +204,9 @@ const getBuildingsOfSameType = (gameMap: GameMap, type: BuildingType): Building[
       return gameMap.Buildings.filter(b => b instanceof DefensiveBuilding);
   }
 };
+const getCityAt = (gameMap: GameMap, coords: Point): Cities => {
+  return gameMap.Cities.find(c => pointEquals(c.CoOrds, coords));
+};
 const filterFriendlyBuildings = (buildings: Building[], self: Player) => {
   return buildings.filter(b => playerEquals(b.Owner, self));
 };
@@ -227,10 +225,10 @@ const tileExistsInArray = (arr: Tile[], t: Tile): boolean => {
   return arr.filter(tile => pointEquals(t.CoOrds, tile.CoOrds)).length > 0;
 };
 const isCity = (gameMap: GameMap, coords: Point): boolean => {
-  return getTile(gameMap, coords) instanceof Cities;
+  return getCityAt(gameMap, coords) !== undefined;
 };
 const isFriendlyCity = (gameMap: GameMap, coords: Point, self: Player): boolean => {
-  return (isCity(gameMap, coords) && (getTile(gameMap, coords) as Cities).Owner === self);
+  return (isCity(gameMap, coords) && (getCityAt(gameMap, coords)?.Owner === self));
 };
 const hasFriendlyUnit = (gameMap: GameMap, coords: Point, self: Player): boolean => {
   return getUnitAt(gameMap, coords).Owner === self;
@@ -295,9 +293,12 @@ const flee = (unit: Unit) => {
     }
   }
 };
+const getMesh = (scene: Scene, prop: Prop): Mesh => {
+  return scene.getObjectByName(prop.MeshName) as Mesh;
+}
 const removeDestroyed = (scene: Scene, gameMap: GameMap) => {
   gameMap.Units.filter(u => u.Status === UnitStatus.Destroyed).forEach(u => {
-    scene.remove(scene.getObjectByName(u.MeshName));
+    scene.remove(getMesh(scene, u));
   });
   gameMap.Buildings.filter(b => b.Status === BuildingStatus.Destroyed)
                    .forEach(b => scene.remove(scene.getObjectByName(b.Name)));
@@ -321,6 +322,12 @@ const updateTrainingGroundsQueues = (gameMap: GameMap) => {
     ub.CurrentQueueTime = ub.TrainingQueue[ub.TrainingQueue.length - 1].TrainingTimeRemaining ?? 0;
   });
 };
+const updateUnitPositions = (scene: Scene, gameMap: GameMap) => {
+  gameMap.Units.forEach(u => {
+    let pos = coordsToScreenPoint(u.Coords);
+    getMesh(scene, u).position.set(pos.x, pos.y, pos.z);
+  })
+};
 const updateConstructionTime = (gameMap: GameMap) => {
   gameMap.Buildings.filter(b => b.Status === BuildingStatus.UnderConstruction).forEach(b => {
     b.ConstructionTimeRemaining -= 1;
@@ -336,7 +343,16 @@ const updateDestroyed = (gameMap: GameMap) => {
   gameMap.Buildings.filter(b => b.Durability.Value <= 0).forEach(b => {
     b.Status = BuildingStatus.Destroyed;
   });
+  // TODO add logic for city destroyed
 };
+const updateCities = (scene: Scene, gameMap: GameMap) => {
+  gameMap.Cities.forEach(c => {
+    getMesh(scene, c).material[1] = new MeshBasicMaterial({
+      map: getCitiesTexturesWithColor(c),
+      transparent: true
+    })
+  });
+}
 const getWinner = (gameMap: GameMap): Player => {
   let eliminated: Player[];
   gameMap.Players.forEach(p => {
@@ -358,19 +374,41 @@ const getWinner = (gameMap: GameMap): Player => {
     }
     gameMap.Units = gameMap.Units.filter(u => remaining_players.includes(u.Owner));
     gameMap.Buildings = gameMap.Buildings.filter(b => remaining_players.includes(b.Owner));
-    // TODO update scene
   }
   return undefined;
 };
+const clearCommands = (gameMap: GameMap) => {
+  gameMap.Commands = [];
+}
 
-const executeMovePhase = (map: GameMap) => {
-  //TODO
+const executePhases = (scene: Scene, gameMap: GameMap) => {
+  gameMap.Commands.filter(h => h instanceof Hold).forEach(h => h.Execute());
+  executeFirePhase(gameMap);
+  executeMovePhase(gameMap);
+  executeMiscPhase(scene, gameMap);
+};
+
+const executeMovePhase = (gameMap: GameMap) => {
+  gameMap.Commands.filter(c => c instanceof Move).forEach(m => m.Execute());
 };
 const executeFirePhase = (gameMap: GameMap) => {
-  //TODO
+  gameMap.Commands.filter(c => c instanceof Fire).forEach(f => f.Execute());
 };
-const executeMiscPhase = (gameMap: GameMap) => {
-  //TODO
+const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
+  gameMap.Units.forEach(u => flee(u));
+  updateConstructionTime(gameMap);
+  updateTrainingGroundsQueues(gameMap);
+  updateTrainingTime(gameMap);
+  updateDestroyed(gameMap);
+  updateCities(scene, gameMap);
+  clearCommands(gameMap);
+  removeDestroyed(scene, gameMap);
+  let p = getWinner(gameMap);
+  if (p !== undefined) {
+    alert(`${p.Name} won!!`);
+    // TODO return to main menu
+  }
+  updateUnitPositions(scene, gameMap);
 };
 export {
   convertToCudeCoOrds,
@@ -381,10 +419,10 @@ export {
   getNeighborsAtRange,
   getPath,
   getTile,
-  getCities,
   getPlayersCities,
   getUnitAt,
   getUnitsWithStatus,
+  getCityAt,
   getNumUnits,
   getUnitsWithStatusInUnitBuilding,
   getBuildingAt,
@@ -406,9 +444,13 @@ export {
   canTrain,
   canDeploy,
   flee,
+  getMesh,
   updateConstructionTime,
   updateTrainingGroundsQueues,
   updateTrainingTime,
   updateDestroyed,
-  getWinner
+  updateCities,
+  clearCommands,
+  getWinner,
+  executePhases
 };

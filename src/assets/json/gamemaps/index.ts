@@ -98,6 +98,7 @@ import gamemapAtX96 from './gamemapAtX96.json';
 import gamemapAtX97 from './gamemapAtX97.json';
 import gamemapAtX98 from './gamemapAtX98.json';
 import gamemapAtX99 from './gamemapAtX99.json';
+import mapCities from './mapcities.json';
 
 const gameMap = [
   gamemapAtX0,
@@ -202,4 +203,4 @@ const gameMap = [
   gamemapAtX99,
 ];
 
-export { gameMap };
+export { gameMap, mapCities };
