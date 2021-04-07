@@ -5,7 +5,7 @@
       "Offense": {
         "Handling": {
           "Cyclic": {
-            "Value": 0.8,
+            "Value": 0.80000000000000004,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -40,7 +40,7 @@
             }
           },
           "ROF": 0.2247191011235955,
-          "ROFSuppress": 0.2898550724637681
+          "ROFSuppress": 0.28985507246376813
         },
         "Damage": {
           "Soft": {
@@ -65,7 +65,7 @@
             }
           },
           "Deviation": {
-            "Value": 0.05,
+            "Value": 0.050000000000000003,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -88,21 +88,21 @@
         },
         "Accuracy": {
           "Normal": {
-            "Value": 0.6,
+            "Value": 0.59999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "Suppress": {
-            "Value": 0.6,
+            "Value": 0.59999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "Deviation": {
-            "Value": 0.08,
+            "Value": 0.080000000000000002,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -111,14 +111,14 @@
         },
         "AOE": {
           "BlastRadius": {
-            "Value": 0.6,
+            "Value": 0.59999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "SplashDecay": {
-            "Value": 0.4,
+            "Value": 0.40000000000000002,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -157,7 +157,7 @@
         "Mod": null
       },
       "ShellConsumption": {
-        "Value": 1.41,
+        "Value": 1.4099999999999999,
         "Mod": null
       },
       "CompatibleShells": [
@@ -696,6 +696,7 @@
   "CannonBreech": null,
   "AmmoRack": null,
   "Name": "assualt_gun",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1223,7 +1224,7 @@
       }
     },
     "Size": {
-      "Value": 3.8,
+      "Value": 3.7999999999999998,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1253,14 +1254,14 @@
       }
     },
     "Evasion": {
-      "Value": 0.015,
+      "Value": 0.014999999999999999,
       "Mod": {
         "Type": 0,
         "Value": 0
       }
     },
     "Hardness": {
-      "Value": 0.8,
+      "Value": 0.80000000000000004,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1320,7 +1321,7 @@
       }
     },
     "Shells": {
-      "Value": 1.41,
+      "Value": 1.4099999999999999,
       "Mod": null
     },
     "Fuel": {
@@ -1541,5 +1542,6 @@
   "LastSuppressedRound": 0,
   "IsSuppressed": false,
   "IsDisconnected": false,
-  "TrainingTimeRemaining": 0
+  "TrainingTimeRemaining": 0,
+  "TrainingGround": null
 }

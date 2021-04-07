@@ -28,9 +28,9 @@
         "Value": 0
       }
     },
-    "Obstruction": 3.40282347E+38,
+    "Obstruction": 1.7976931348623157E+308,
     "AllowConstruction": false,
-    "Height": 3.40282347E+38
+    "Height": 1.7976931348623157E+308
   },
   {
     "Name": "plains",
@@ -94,7 +94,7 @@
         "Value": -5
       }
     },
-    "Obstruction": 0.100000001,
+    "Obstruction": 0.10000000000000001,
     "AllowConstruction": true,
     "Height": 1
   },
@@ -127,7 +127,7 @@
         "Value": -30
       }
     },
-    "Obstruction": 0.300000012,
+    "Obstruction": 0.29999999999999999,
     "AllowConstruction": false,
     "Height": 1
   },
@@ -162,7 +162,7 @@
     },
     "Obstruction": 0.5,
     "AllowConstruction": false,
-    "Height": 3.40282347E+38
+    "Height": 1
   },
   {
     "Name": "stream",
@@ -195,7 +195,7 @@
     },
     "Obstruction": 0,
     "AllowConstruction": false,
-    "Height": 0
+    "Height": -1
   },
   {
     "Name": "river",
@@ -228,7 +228,7 @@
     },
     "Obstruction": 0,
     "AllowConstruction": false,
-    "Height": 0
+    "Height": -2
   },
   {
     "Name": "swamp",
@@ -292,7 +292,7 @@
         "Value": -30
       }
     },
-    "Obstruction": 0.200000003,
+    "Obstruction": 0.20000000000000001,
     "AllowConstruction": false,
     "Height": 1
   },
@@ -358,7 +358,7 @@
         "Value": -70
       }
     },
-    "Obstruction": 0.899999976,
+    "Obstruction": 0.90000000000000002,
     "AllowConstruction": false,
     "Height": 3
   },
@@ -424,107 +424,8 @@
         "Value": -40
       }
     },
-    "Obstruction": 0.600000024,
+    "Obstruction": 0.59999999999999998,
     "AllowConstruction": false,
     "Height": 2
-  },
-  {
-    "Name": "suburb",
-    "CoOrds": {
-      "X": 0,
-      "Y": 0
-    },
-    "Type": 13,
-    "TerrainMod": {
-      "Recon": {
-        "Type": 0,
-        "Value": 0
-      },
-      "Camouflage": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Supplies": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Fuel": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Mobility": {
-        "Type": 1,
-        "Value": 0
-      }
-    },
-    "Obstruction": 1,
-    "AllowConstruction": false,
-    "Height": 1
-  },
-  {
-    "Name": "city",
-    "CoOrds": {
-      "X": 0,
-      "Y": 0
-    },
-    "Type": 14,
-    "TerrainMod": {
-      "Recon": {
-        "Type": 0,
-        "Value": 0
-      },
-      "Camouflage": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Supplies": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Fuel": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Mobility": {
-        "Type": 1,
-        "Value": 0
-      }
-    },
-    "Obstruction": 1,
-    "AllowConstruction": false,
-    "Height": 1
-  },
-  {
-    "Name": "metropolis",
-    "CoOrds": {
-      "X": 0,
-      "Y": 0
-    },
-    "Type": 15,
-    "TerrainMod": {
-      "Recon": {
-        "Type": 0,
-        "Value": 0
-      },
-      "Camouflage": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Supplies": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Fuel": {
-        "Type": 1,
-        "Value": 0
-      },
-      "Mobility": {
-        "Type": 1,
-        "Value": 0
-      }
-    },
-    "Obstruction": 1,
-    "AllowConstruction": false,
-    "Height": 1
   }
 ]

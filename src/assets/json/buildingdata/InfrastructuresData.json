@@ -1,6 +1,8 @@
 [
   {
     "Name": "road",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -544,10 +546,13 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "railway",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1094,10 +1099,13 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "bridge",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1641,10 +1649,13 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "depot",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2194,10 +2205,13 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Name": "outpost",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2747,6 +2761,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   }
 ]

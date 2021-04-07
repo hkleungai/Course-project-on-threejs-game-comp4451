@@ -12,24 +12,28 @@ const loadGameMapFromJson = (): GameMap => {
   return gameMap;
 };
 
-const loadTileDataFromJson = (): void => {
+const loadTileDataFromJson = (): TileData => {
   const tileData = new TileData();
   tileData.Load();
+  return tileData;
 };
 
-const loadBuildingDataFromJson = (): void => {
+const loadBuildingDataFromJson = (): BuildingData => {
   const buildingData = new BuildingData();
   buildingData.Load();
+  return buildingData;
 };
 
-const loadCustomizableDataFromJson = (): void => {
+const loadCustomizableDataFromJson = (): CustomizableData => {
   const customizableData = new CustomizableData();
   customizableData.Load();
+  return customizableData;
 };
 
-const loadUnitDataFromJson = (): void => {
+const loadUnitDataFromJson = (): UnitData => {
   const unitData = new UnitData();
   unitData.Load();
+  return unitData;
 };
 
 export {

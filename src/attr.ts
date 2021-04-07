@@ -16,6 +16,10 @@ class Point {
   }
 }
 
+const pointEquals = (p1: Point, p2: Point): boolean => {
+  return p1.X === p2.X && p1.Y === p2.Y;
+}
+
 class Resources {
   public Money : Attribute;
   public Steel : Attribute;
@@ -26,6 +30,7 @@ class Resources {
   public RareMetal : Attribute;
   public Manpower : Attribute;
   public Power : Attribute;
+  public Time : Attribute;
 
   constructor(resources?: Partial<Resources>) {
     if (Number.isInteger(resources.Money?.Value ?? 0)) {
@@ -44,68 +49,60 @@ class Resources {
 const consumeResources = (
   original: Resources,
   consumption: Resources
-): Resources => {
-  if (original.Money.Value >= consumption.Money.Value) {
-    original.Money.Value -= consumption.Money.Value;
-  } else {
-    throw new InsufficientResourcesException('money', original.Money.Value, consumption.Money.Value);
+): string => {
+  if (original.Money.Value < consumption.Money.Value) {
+    return 'money';
   }
-  if (original.Steel.Value >= consumption.Steel.Value) {
-    original.Steel.Value -= consumption.Steel.Value;
-  } else {
-    throw new InsufficientResourcesException('steel', original.Steel.Value, consumption.Steel.Value);
+  if (original.Steel.Value < consumption.Steel.Value) {
+    return 'steel';
   }
-  if (original.Supplies.Value >= consumption.Supplies.Value) {
-    original.Supplies.Value -= consumption.Supplies.Value;
-  } else {
-    throw new InsufficientResourcesException('supplies', original.Supplies.Value, consumption.Supplies.Value);
+  if (original.Supplies.Value < consumption.Supplies.Value) {
+    return 'supplies';
   }
-  if (original.Cartridges.Value >= consumption.Cartridges.Value) {
-    original.Cartridges.Value -= consumption.Cartridges.Value;
-  } else {
-    throw new InsufficientResourcesException('cartridges', original.Cartridges.Value, consumption.Cartridges.Value);
+  if (original.Cartridges.Value < consumption.Cartridges.Value) {
+    return 'cartridges';
   }
-  if (original.Shells.Value >= consumption.Shells.Value) {
-    original.Shells.Value -= consumption.Shells.Value;
-  } else {
-    throw new InsufficientResourcesException('shells', original.Shells.Value, consumption.Shells.Value);
+  if (original.Shells.Value < consumption.Shells.Value) {
+    return 'shells';
   }
-  if (original.Fuel.Value >= consumption.Fuel.Value) {
-    original.Fuel.Value -= consumption.Fuel.Value;
-  } else {
-    throw new InsufficientResourcesException('fuel', original.Fuel.Value, consumption.Fuel.Value);
+  if (original.Fuel.Value < consumption.Fuel.Value) {
+    return 'fuel';
   }
-  if (original.RareMetal.Value >= consumption.RareMetal.Value) {
-    original.RareMetal.Value -= consumption.RareMetal.Value;
-  } else {
-    throw new InsufficientResourcesException('rare_metal', original.RareMetal.Value, consumption.RareMetal.Value);
+  if (original.RareMetal.Value < consumption.RareMetal.Value) {
+    return 'rare_metal';
   }
-  if (original.Manpower.Value >= consumption.Manpower.Value) {
-    original.Manpower.Value -= consumption.Manpower.Value;
-  } else {
-    throw new InsufficientResourcesException('manpower', original.Manpower.Value, consumption.Manpower.Value);
+  if (original.Manpower.Value < consumption.Manpower.Value) {
+    return 'manpower';
   }
-  if (original.Power.Value >= consumption.Power.Value) {
-    original.Power.Value -= consumption.Power.Value;
-  } else {
-    throw new InsufficientResourcesException('power', original.Power.Value, consumption.Power.Value);
+  if (original.Power.Value < consumption.Power.Value) {
+    return 'power';
   }
-  return original;
+
+  original.Money.Value -= consumption.Money.Value;
+  original.Steel.Value -= consumption.Steel.Value;
+  original.Supplies.Value -= consumption.Supplies.Value;
+  original.Cartridges.Value -= consumption.Cartridges.Value;
+  original.Shells.Value -= consumption.Shells.Value;
+  original.Fuel.Value -= consumption.Fuel.Value;
+  original.RareMetal.Value -= consumption.RareMetal.Value;
+  original.Manpower.Value -= consumption.Manpower.Value;
+  original.Power.Value -= consumption.Power.Value;
+
+  return '';
 };
 
 const produceResources = (
   original : Resources,
   production: Resources
-): Resources => {
-  original.Money.Value += production.Money.Value;
-  original.Steel.Value += production.Steel.Value;
-  original.Supplies.Value += production.Supplies.Value;
-  original.Shells.Value += production.Shells.Value;
-  original.Fuel.Value += production.Fuel.Value;
-  original.RareMetal.Value += production.RareMetal.Value;
-  original.Manpower.Value += production.Manpower.Value;
-  original.Power.Value += original.Power.Value;
-  return original;
+): void => {
+  original.Money.Value += applyModAttr(production.Money);
+  original.Steel.Value += applyModAttr(production.Steel);
+  original.Supplies.Value += applyModAttr(production.Supplies);
+  original.Shells.Value += applyModAttr(production.Shells);
+  original.Fuel.Value += applyModAttr(production.Fuel);
+  original.RareMetal.Value += applyModAttr(production.RareMetal);
+  original.Manpower.Value += applyModAttr(production.Manpower);
+  original.Power.Value += applyModAttr(original.Power);
 };
 
 enum ModifierType {
@@ -122,6 +119,21 @@ class Modifier {
     this.Type = type;
     this.Value = value;
   }
+}
+
+const applyMod = (m: Modifier, n: number): number => {
+  switch (m.Type) {
+    case ModifierType.FIXED_VALUE:
+      return n + m.Value;
+    case ModifierType.PERCENTAGE:
+      return Math.round(n * (1 + m.Value / 100));
+    case ModifierType.MULTIPLE:
+      return Math.round(n * m.Value);
+  }
+}
+
+const modEquals = (m1: Modifier, m2: Modifier): boolean => {
+  return m1.Type === m2.Type && m1.Value === m2.Value;
 }
 
 class TerrainModifiers {
@@ -156,17 +168,98 @@ class Attribute {
   }
 }
 
-const applyMod = (attr: Attribute): number => {
-  switch (attr.Mod.Type) {
+const applyModAttr = (attr: Attribute): number => {
+  switch (attr.Mod?.Type) {
     case ModifierType.FIXED_VALUE:
       return attr.Value + attr.Mod.Value;
     case ModifierType.PERCENTAGE:
       return Math.round(attr.Value * (1 + attr.Mod.Value / 100));
     case ModifierType.MULTIPLE:
       return Math.round(attr.Value * attr.Mod.Value);
+    default:
+      return attr.Value;
   }
 };
 
+///region f**king "operator override"
+const plusAttr = (a1: Attribute, a2: Attribute): number => {
+  return applyModAttr(a1) + applyModAttr(a2);
+}
+
+const minusAttr = (a1: Attribute, a2: Attribute): number => {
+  return applyModAttr(a1) - applyModAttr(a2);
+}
+
+const timesAttr = (a1: Attribute, a2: Attribute): number => {
+  return applyModAttr(a1) * applyModAttr(a2);
+}
+
+const divideAttr = (a1: Attribute, a2: Attribute): number => {
+  return applyModAttr(a1) / applyModAttr(a2);
+}
+
+// note: undefined = throw if mods are diff; flase = keep a2 mod instead
+const plusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
+  let val: number = plusAttr(a1, a2);
+  if (!modEquals(a1.Mod, a2.Mod)) {
+    if (keep_a1_mod === undefined) {
+      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
+    }
+    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
+  }
+  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
+}
+
+const minusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
+  let val: number = minusAttr(a1, a2);
+  if (!modEquals(a1.Mod, a2.Mod)) {
+    if (keep_a1_mod === undefined) {
+      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
+    }
+    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
+  }
+  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
+}
+
+const timesEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
+  let val: number = timesAttr(a1, a2);
+  if (!modEquals(a1.Mod, a2.Mod)) {
+    if (keep_a1_mod === undefined) {
+      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
+    }
+    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
+  }
+  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
+}
+
+const divideEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
+  let val: number = divideAttr(a1, a2);
+  if (!modEquals(a1.Mod, a2.Mod)) {
+    if (keep_a1_mod === undefined) {
+      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
+    }
+    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
+  }
+  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
+}
+
+const ltAttr = (a1: Attribute, a2: Attribute): boolean => {
+  return applyModAttr(a1) < applyModAttr(a2);
+}
+
+const leqAttr = (a1: Attribute, a2: Attribute): boolean => {
+  return applyModAttr(a1) <= applyModAttr(a2);
+}
+
+const gtAttr = (a1: Attribute, a2: Attribute): boolean => {
+  return applyModAttr(a1) > applyModAttr(a2);
+}
+
+const geqAttr = (a1: Attribute, a2: Attribute): boolean => {
+  return applyModAttr(a1) >= applyModAttr(a2);
+}
+
+///endregion
 class Cost {
   public Base : Resources;
   public Research : Resources;
@@ -305,13 +398,28 @@ class Scouting {
 
 export {
   Point,
+  pointEquals,
   Resources,
   consumeResources,
   produceResources,
   Attribute,
-  applyMod,
+  plusAttr,
+  minusAttr,
+  timesAttr,
+  divideAttr,
+  plusEqualsAttr,
+  minusEqualsAttr,
+  timesEqualsAttr,
+  divideEqualsAttr,
+  ltAttr,
+  leqAttr,
+  gtAttr,
+  geqAttr,
+  applyModAttr,
   Modifier,
   ModifierType,
+  applyMod,
+  modEquals,
   TerrainModifiers,
   Cost,
   Maneuverability,

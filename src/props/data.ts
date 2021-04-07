@@ -1,4 +1,5 @@
 import {
+  Cities,
   Tile
 } from './tiles';
 import {
@@ -9,7 +10,8 @@ import {
   artilleriesDataJson,
   vehiclesDataJson,
   tileDataJson,
-  shellsDataJson
+  shellsDataJson,
+  citiesDataJson
 } from "../assets/json";
 import {
   DefensiveBuilding,
@@ -31,10 +33,12 @@ import {
   Shell
 } from '../researches';
 class TileData {
-  public Data : Tile[] = [];
+  public TilesData : Tile[] = [];
+  public CitiesData : Cities[] = [];
 
   Load(): void {
-    this.Data = tileDataJson;
+    this.TilesData = tileDataJson;
+    this.CitiesData = citiesDataJson;
   }
 }
 

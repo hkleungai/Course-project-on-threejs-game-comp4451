@@ -1,4 +1,92 @@
 {
+  "LoadLimit": {
+    "Size": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Weight": {
+      "Value": 1,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "CargoCapacity": {
+      "Money": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 1500,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 400,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 200,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 250,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    }
+  },
   "DefaultMainArmament": "C20mm",
   "Guns": [
     {
@@ -65,7 +153,7 @@
             }
           },
           "Deviation": {
-            "Value": 0.1,
+            "Value": 0.10000000000000001,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -102,7 +190,7 @@
             }
           },
           "Deviation": {
-            "Value": 0.06,
+            "Value": 0.059999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -111,14 +199,14 @@
         },
         "AOE": {
           "BlastRadius": {
-            "Value": 0.1,
+            "Value": 0.10000000000000001,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "SplashDecay": {
-            "Value": 0.9,
+            "Value": 0.90000000000000002,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -153,7 +241,7 @@
         "Mod": null
       },
       "CamoPenaltyFire": {
-        "Value": -0.4,
+        "Value": -0.40000000000000002,
         "Mod": null
       },
       "ShellConsumption": {
@@ -697,6 +785,7 @@
   "CannonBreech": null,
   "AmmoRack": null,
   "Name": "utility",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1231,7 +1320,7 @@
       }
     },
     "Weight": {
-      "Value": 3.2,
+      "Value": 3.2000000000000002,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1254,14 +1343,14 @@
       }
     },
     "Evasion": {
-      "Value": 0.045,
+      "Value": 0.044999999999999998,
       "Mod": {
         "Type": 0,
         "Value": 0
       }
     },
     "Hardness": {
-      "Value": 0.45,
+      "Value": 0.45000000000000001,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1542,5 +1631,6 @@
   "LastSuppressedRound": 0,
   "IsSuppressed": false,
   "IsDisconnected": false,
-  "TrainingTimeRemaining": 0
+  "TrainingTimeRemaining": 0,
+  "TrainingGround": null
 }

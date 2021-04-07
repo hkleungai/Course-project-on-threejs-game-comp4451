@@ -200,6 +200,8 @@
       }
     },
     "Name": "trench",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -749,7 +751,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Offense": {
@@ -952,6 +955,8 @@
       }
     },
     "Name": "foxhole",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1501,7 +1506,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Offense": {
@@ -1704,6 +1710,8 @@
       }
     },
     "Name": "pillbox",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2253,7 +2261,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Offense": {
@@ -2456,6 +2465,8 @@
       }
     },
     "Name": "bunker",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -3005,7 +3016,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Offense": {
@@ -3208,6 +3220,8 @@
       }
     },
     "Name": "wires",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -3757,7 +3771,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Offense": {
@@ -3960,6 +3975,8 @@
       }
     },
     "Name": "tank_traps",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -4509,7 +4526,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   },
   {
     "Offense": {
@@ -4712,6 +4730,8 @@
       }
     },
     "Name": "minefield",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -5261,6 +5281,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": false
+    "DestroyTerrainOnBuilt": false,
+    "ConstructionTimeRemaining": 0
   }
 ]

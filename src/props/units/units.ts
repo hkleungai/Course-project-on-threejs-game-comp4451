@@ -27,6 +27,8 @@ import {
   LandingGear,
   Radar
 } from '../../researches';
+import { Player } from '../../player';
+import { UnitBuilding } from '../buildings';
 // import { personnelDataJson } from '../../assets/json';
 
 enum UnitStatus {
@@ -41,6 +43,7 @@ enum UnitStatus {
 }
 abstract class Unit extends Prop {
   public Name : string;
+  public Owner : Player;
   public Coords : Point;
   public Status : UnitStatus;
   public Cost : Cost;
@@ -57,8 +60,9 @@ abstract class Unit extends Prop {
   public IsSuppressed : boolean;
   public IsDisconnected : boolean;
   public TrainingTimeRemaining : number;
+  public TrainingGround: UnitBuilding;
 
-  protected constructor(unit?: Partial<Unit>) {
+  public constructor(unit?: Partial<Unit>) {
     super();
     this.Name = unit.Name;
     this.Coords  = unit.Coords;
@@ -77,6 +81,7 @@ abstract class Unit extends Prop {
     this.IsSuppressed = unit.IsSuppressed;
     this.IsDisconnected = unit.IsDisconnected;
     this.TrainingTimeRemaining = unit.TrainingTimeRemaining;
+    this.TrainingGround = unit.TrainingGround;
   }
 }
 
@@ -87,7 +92,7 @@ abstract class Personnel extends Unit {
   public AvailableFirearms : string[];
   public CaptureEfficiency : Attribute;
 
-  protected constructor(personnel?: Partial<Personnel>) {
+  public constructor(personnel?: Partial<Personnel>) {
     super(personnel);
     this.PrimaryFirearm = personnel.PrimaryFirearm;
     this.SecondaryFirearm = personnel.SecondaryFirearm;
@@ -154,6 +159,7 @@ abstract class Plane extends Unit {
 
 export {
   Unit,
+  UnitStatus,
   Personnel,
   Artillery,
   Vehicle,

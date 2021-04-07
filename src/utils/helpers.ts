@@ -1,5 +1,8 @@
 const randint = (upperBound: number): number => Math.floor(Math.random() * upperBound);
 const range = (upperBound: number): number[] => [...Array(upperBound).keys()];
+const rangeFrom = (lowerBound: number, length: number): number[] => Array.from({length: length}, (_, i) => i + lowerBound);
+const rangeFromTo = (from: number, to: number): number[] => rangeFrom(from, getLength([from, to]));
+const getLength = (bounds: [number, number]): number => bounds[1] - bounds[0] + 1;
 
 const sinDeg = (deg: number): number => Math.sin(deg / 180 * Math.PI);
 const cosDeg = (deg: number): number => Math.cos(deg / 180 * Math.PI);
@@ -54,4 +57,14 @@ class Dictionary<T, U> {
   }
 }
 
-export { randint, range, sinDeg, cosDeg, KeyValuePair, Dictionary };
+export {
+  randint,
+  range,
+  rangeFrom,
+  rangeFromTo,
+  getLength,
+  sinDeg,
+  cosDeg,
+  KeyValuePair,
+  Dictionary
+};

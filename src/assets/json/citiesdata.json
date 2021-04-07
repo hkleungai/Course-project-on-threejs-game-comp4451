@@ -1,0 +1,125 @@
+[
+  {
+    "Owner": null,
+    "Population": 0,
+    "ConstructionRange": null,
+    "Production": null,
+    "Durability": null,
+    "Morale": null,
+    "Name": "suburb",
+    "CoOrds": {
+      "X": 0,
+      "Y": 0
+    },
+    "Type": 13,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Owner": null,
+    "Population": 0,
+    "ConstructionRange": null,
+    "Production": null,
+    "Durability": null,
+    "Morale": null,
+    "Name": "city",
+    "CoOrds": {
+      "X": 0,
+      "Y": 0
+    },
+    "Type": 14,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 1
+  },
+  {
+    "Owner": null,
+    "Population": 0,
+    "ConstructionRange": null,
+    "Production": null,
+    "Durability": {
+      "Value": 3000,
+      "Mod": null
+    },
+    "Morale": {
+      "Value": 100,
+      "Mod": null
+    },
+    "Name": "metropolis",
+    "CoOrds": {
+      "X": 0,
+      "Y": 0
+    },
+    "Type": 15,
+    "TerrainMod": {
+      "Recon": {
+        "Type": 0,
+        "Value": 0
+      },
+      "Camouflage": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Supplies": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Fuel": {
+        "Type": 1,
+        "Value": 0
+      },
+      "Mobility": {
+        "Type": 1,
+        "Value": 0
+      }
+    },
+    "Obstruction": 1,
+    "AllowConstruction": false,
+    "Height": 1
+  }
+]

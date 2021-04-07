@@ -8,6 +8,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -17,6 +18,8 @@
       }
     },
     "Name": "barracks",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -542,7 +545,7 @@
         }
       },
       "Camouflage": {
-        "Value": 20,
+        "Value": 2,
         "Mod": null
       },
       "Detection": {
@@ -560,7 +563,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "QueueCapacity": {
@@ -571,6 +575,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -580,6 +585,8 @@
       }
     },
     "Name": "arsenal",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1105,7 +1112,7 @@
         }
       },
       "Camouflage": {
-        "Value": 20,
+        "Value": 2,
         "Mod": null
       },
       "Detection": {
@@ -1123,7 +1130,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "QueueCapacity": {
@@ -1134,6 +1142,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -1143,6 +1152,8 @@
       }
     },
     "Name": "dockyard",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -1668,7 +1679,7 @@
         }
       },
       "Camouflage": {
-        "Value": 20,
+        "Value": 2,
         "Mod": null
       },
       "Detection": {
@@ -1686,7 +1697,8 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   },
   {
     "QueueCapacity": {
@@ -1697,6 +1709,7 @@
       }
     },
     "TrainingQueue": [],
+    "CurrentQueueTime": 0,
     "ReadyToDeploy": [],
     "DeployRange": {
       "Value": 1,
@@ -1706,6 +1719,8 @@
       }
     },
     "Name": "airfield",
+    "Owner": null,
+    "Status": 0,
     "CoOrds": {
       "X": 0,
       "Y": 0
@@ -2231,7 +2246,7 @@
         }
       },
       "Camouflage": {
-        "Value": 20,
+        "Value": 2,
         "Mod": null
       },
       "Detection": {
@@ -2249,6 +2264,7 @@
         }
       }
     },
-    "DestroyTerrainOnBuilt": true
+    "DestroyTerrainOnBuilt": true,
+    "ConstructionTimeRemaining": 0
   }
 ]

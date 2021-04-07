@@ -1,3 +1,4 @@
+import { Vector3 } from 'three';
 import {
   Attribute,
   Modifier, // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -8,10 +9,17 @@ import {
 } from '../attr';
 import { Prop } from './prop';
 import { Player } from '../player';
+import { Unit } from './units';
 import {
   gameMap,
-  mapDataJson
+  mapCities,
+  mapDataJson,
+  playerDataJson
 } from '../assets/json';
+// import { isInteger } from 'mathjs';
+// import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
+import { Building } from './buildings';
+import { Command } from '../command';
 
 enum TileType {
   BOUNDARY = 0,
@@ -25,7 +33,7 @@ enum TileType {
   DESERT = 8,
   HILLOCK = 9,
   HILLS = 10,
-  MOUNTAIN = 11,
+  MOUNTAINS = 11,
   ROCKS = 12,
   SUBURB = 13,
   CITY = 14,
@@ -54,21 +62,6 @@ class Tile extends Prop {
     this.Height = tile.Height;
   }
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getNeighbors = (map: GameMap, tile: Tile) : Tile[] => {
-  const neighbors : Tile[] = [];
-  const neighborOffset = tile.CoOrds.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
-  neighborOffset.forEach(pair => {
-    const x = tile.CoOrds.X + pair[0];
-    const y = tile.CoOrds.Y + pair[1];
-    if (x < GameMap.Width && x >= 0 && y < GameMap.Height && y >= 0) {
-      neighbors.push(map.Tiles[x][y]);
-    }
-  });
-  return neighbors;
-};
-
 class Cities extends Tile {
   public Owner : Player;
   public Population : number;
@@ -88,28 +81,88 @@ class Cities extends Tile {
   }
 }
 
+class WeightedCubeTile {
+  public CubeCoords: number[];
+  public BaseCost: number; // base cost for this tile: unit supplies/fule consumption
+  public Weight: number; // tile mod
+  public Cost: number; // cost for reaching this tile so far
+  public DistanceToGoal: number; // remaining distance to goal
+  public DistanceSoFar: number; // distance travelled so far
+  public Parent: WeightedCubeTile;
+  // an overestimate of total cost
+  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 5 }
+
+  constructor(parent: WeightedCubeTile, cube: number[], base: number, mod: number, cost: number, d_goal: number, d_sofar: number) {
+    this.Parent = parent;
+    this.CubeCoords = cube;
+    this.BaseCost = base;
+    this.Weight = mod;
+    this.Cost = cost;
+    this.DistanceToGoal = d_goal;
+    this.DistanceSoFar = d_sofar;
+  }
+}
+
+const cubeTileEquals = (t1: WeightedCubeTile, t2: WeightedCubeTile): boolean => {
+  for (let i = 0; i < 3; i++) {
+    if (t1.CubeCoords[i] !== t2.CubeCoords[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
 class GameMap {
   private static _height : number;
   private static _width : number;
   private _tiles : Tile[][] = [];
+  private _cities : Cities[] = [];
   private _players : Player[] = [];
+  private _units : Unit[] = [];
+  private _buildings : Building[] = [];
+  private _commands : Command[] = [];
+  private static _hexScreenSize: Vector3;
 
   static get Height() : number { return GameMap._height; }
   static get Width() : number { return GameMap._width; }
   get Tiles() : Tile[][] { return this._tiles; }
+  set Tiles(tiles: Tile[][]) { this._tiles = tiles; }
+  get Cities() : Cities[] { return this._cities; }
+  set Cities(cities: Cities[]) { this._cities = cities; }
   get Players() : Player[] { return this._players; }
+  get Units() : Unit[] { return this._units; }
+  set Units(units: Unit[]) { this._units = units; }
+  get Buildings() : Building[] { return this._buildings; }
+  set Buildings(buildings: Building[]) { this._buildings = buildings; }
+  get Commands() : Command[] { return this._commands; }
+  set Commands(commands: Command[]) { this._commands = commands; }
+  static get HexScreenSize() : Vector3 { return GameMap._hexScreenSize; }
+  static set HexScreenSize(hexScreenSize: Vector3) { GameMap._hexScreenSize = hexScreenSize; }
 
-  Load(): void {
+  public Load(): void {
     GameMap._width = mapDataJson.Width;
     GameMap._height = mapDataJson.Height;
-    this._players = mapDataJson.Players;
+    this._players = playerDataJson;
     this._tiles = JSON.parse(JSON.stringify(gameMap));
+    this._cities = mapCities;
+    this._cities[0].Owner = this._players[0];
+    this._cities[1].Owner = this._players[1];
+  }
+
+  public addUnit(unit: Unit): void {
+    this._units.push(unit);
+  }
+
+  public addBuilding(building: Building): void {
+    this._buildings.push(building);
   }
 }
 
 export {
   TileType,
   Tile,
+  WeightedCubeTile,
+  cubeTileEquals,
   Cities,
   GameMap
 };

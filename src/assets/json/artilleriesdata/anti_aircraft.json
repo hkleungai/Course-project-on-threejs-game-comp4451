@@ -40,8 +40,8 @@
             "Value": 0
           }
         },
-        "ROF": 0.5555555555555556,
-        "ROFSuppress": 0.7692307692307693
+        "ROF": 0.55555555555555558,
+        "ROFSuppress": 0.76923076923076927
       },
       "Damage": {
         "Soft": {
@@ -66,7 +66,7 @@
           }
         },
         "Deviation": {
-          "Value": 0.1,
+          "Value": 0.10000000000000001,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -89,21 +89,21 @@
       },
       "Accuracy": {
         "Normal": {
-          "Value": 0.72,
+          "Value": 0.71999999999999997,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Suppress": {
-          "Value": 0.72,
+          "Value": 0.71999999999999997,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "Deviation": {
-          "Value": 0.06,
+          "Value": 0.059999999999999998,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -112,14 +112,14 @@
       },
       "AOE": {
         "BlastRadius": {
-          "Value": 0.33,
+          "Value": 0.33000000000000002,
           "Mod": {
             "Type": 0,
             "Value": 0
           }
         },
         "SplashDecay": {
-          "Value": 0.72,
+          "Value": 0.71999999999999997,
           "Mod": {
             "Type": 0,
             "Value": 0
@@ -154,11 +154,11 @@
       "Mod": null
     },
     "CamoPenaltyFire": {
-      "Value": -0.58,
+      "Value": -0.57999999999999996,
       "Mod": null
     },
     "ShellConsumption": {
-      "Value": 2.24,
+      "Value": 2.2400000000000002,
       "Mod": null
     },
     "CompatibleShells": [
@@ -691,6 +691,7 @@
   "Radio": null,
   "CannonBreech": null,
   "Name": "anti_aircraft",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1225,7 +1226,7 @@
       }
     },
     "Weight": {
-      "Value": 3.6,
+      "Value": 3.6000000000000001,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1248,14 +1249,14 @@
       }
     },
     "Evasion": {
-      "Value": 0.03,
+      "Value": 0.029999999999999999,
       "Mod": {
         "Type": 0,
         "Value": 0
       }
     },
     "Hardness": {
-      "Value": 0.3,
+      "Value": 0.29999999999999999,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1277,7 +1278,7 @@
         }
       },
       "Resilience": {
-        "Value": 0.064,
+        "Value": 0.064000000000000001,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -1315,7 +1316,7 @@
       }
     },
     "Shells": {
-      "Value": 2.24,
+      "Value": 2.2400000000000002,
       "Mod": null
     },
     "Fuel": {
@@ -1536,5 +1537,6 @@
   "LastSuppressedRound": 0,
   "IsSuppressed": false,
   "IsDisconnected": false,
-  "TrainingTimeRemaining": 0
+  "TrainingTimeRemaining": 0,
+  "TrainingGround": null
 }

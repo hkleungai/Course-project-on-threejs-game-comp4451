@@ -39,7 +39,7 @@
               "Value": 0
             }
           },
-          "ROF": 0.3614457831325301,
+          "ROF": 0.36144578313253012,
           "ROFSuppress": 0.46153846153846156
         },
         "Damage": {
@@ -65,7 +65,7 @@
             }
           },
           "Deviation": {
-            "Value": 0.1,
+            "Value": 0.10000000000000001,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -88,21 +88,21 @@
         },
         "Accuracy": {
           "Normal": {
-            "Value": 0.66,
+            "Value": 0.66000000000000003,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "Suppress": {
-            "Value": 0.66,
+            "Value": 0.66000000000000003,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "Deviation": {
-            "Value": 0.06,
+            "Value": 0.059999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -111,14 +111,14 @@
         },
         "AOE": {
           "BlastRadius": {
-            "Value": 0.6,
+            "Value": 0.59999999999999998,
             "Mod": {
               "Type": 0,
               "Value": 0
             }
           },
           "SplashDecay": {
-            "Value": 0.64,
+            "Value": 0.64000000000000001,
             "Mod": {
               "Type": 0,
               "Value": 0
@@ -153,7 +153,7 @@
         "Mod": null
       },
       "CamoPenaltyFire": {
-        "Value": -0.68,
+        "Value": -0.68000000000000005,
         "Mod": null
       },
       "ShellConsumption": {
@@ -697,6 +697,7 @@
   "CannonBreech": null,
   "AmmoRack": null,
   "Name": "heavy_tank",
+  "Owner": null,
   "Coords": {
     "X": 0,
     "Y": 0
@@ -1224,7 +1225,7 @@
       }
     },
     "Size": {
-      "Value": 4.2,
+      "Value": 4.2000000000000002,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1254,14 +1255,14 @@
       }
     },
     "Evasion": {
-      "Value": 0.005,
+      "Value": 0.0050000000000000001,
       "Mod": {
         "Type": 0,
         "Value": 0
       }
     },
     "Hardness": {
-      "Value": 0.99,
+      "Value": 0.98999999999999999,
       "Mod": {
         "Type": 0,
         "Value": 0
@@ -1542,5 +1543,6 @@
   "LastSuppressedRound": 0,
   "IsSuppressed": false,
   "IsDisconnected": false,
-  "TrainingTimeRemaining": 0
+  "TrainingTimeRemaining": 0,
+  "TrainingGround": null
 }

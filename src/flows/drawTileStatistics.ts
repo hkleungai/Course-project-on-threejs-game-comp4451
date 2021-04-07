@@ -7,6 +7,7 @@ import {
   Vector3,
 } from 'three';
 import { GUI } from '../resources';
+import { Point } from '../attr';
 
 // A special hack given by https://stackoverflow.com/a/56439275
 type datGUI = typeof GUI.datGUI.prototype;
@@ -69,14 +70,15 @@ const drawTileStatistics = ({
 
   guiContainer.style.top = `${screenTile.y}px`;
   guiContainer.style.left = `${screenTile.x}px`;
-
-  const currentTileGridPosition = JSON.parse(currentTile.name);
+  
+  let currentTileGridPosition = currentTile.name.match(/\((\d+), (\d+)\)/);
+  let pos: Point = new Point(parseInt(currentTileGridPosition[1]), parseInt(currentTileGridPosition[2]));
   tileGridPosition && gui.removeFolder(tileGridPosition);
   tileGridPosition = gui.addFolder('Grid position');
-  tileGridPosition.add(currentTileGridPosition, 'row', 0, 25, 1).name('Row');
-  tileGridPosition.add(currentTileGridPosition, 'column', 0, 25, 1).name('Column');
+  tileGridPosition.add(pos, 'X', 0, 25, 1).name('X');
+  tileGridPosition.add(pos, 'Y', 0, 25, 1).name('Y');
   tileGridPosition.open();
-
+  
   tileCanvasPosition && gui.removeFolder(tileCanvasPosition);
   tileCanvasPosition = gui.addFolder('Canvas position');
   tileCanvasPosition.add(currentTile.position, 'x', -100, 100, 0.0001).name('X');

@@ -4,7 +4,7 @@ import {
 } from "three";
 
 abstract class Prop {
-  public Mesh?: Mesh;
+  public MeshName?: string = "default";
   public SoundDeployed?: Audio;
   public SoundMove?: Audio;
   public SoundDestroyed?: Audio;

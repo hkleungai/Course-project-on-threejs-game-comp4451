@@ -1,12 +1,8 @@
 import {
   Box3,
-  // BufferGeometry,
-  // Float32BufferAttribute,
   Mesh,
   MeshBasicMaterial,
   Object3D,
-  // Points,
-  // PointsMaterial,
   Scene,
   Texture,
   Vector3,
@@ -15,115 +11,102 @@ import {
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import {
-  // Hexagon,
-  randint,
   range,
   sinDeg,
   cosDeg,
+  getCityAt,
+  getTileTexture,
+  getCitiesTexturesWithColor,
 } from '../utils';
-import {
-  // infantries,
-  // militias
-  meshes,
-  textures,
-} from '../resources';
+import { meshes } from '../resources';
 import { GameMap } from '../props';
+import { Point } from '../attr';
 
 interface LoadTilesGlbInputTypes {
   scene: Scene;
   gameMap: GameMap;
 }
 
-type loadFlag = 'tile' | 'unit' | 'building';
-
 const loadTilesGlb = ({ scene, gameMap }: LoadTilesGlbInputTypes): void => {
   const loader = new GLTFLoader();
-  const texturesEntries = Object.entries(textures);
   const unit: { x?: number, y?: number } = {};
-  // const unit = new Vector3(null, null, null);
 
-  // const markChildVertices = (center: Vector3Tuple) => {
-  //   const dotGeometry = new BufferGeometry();
-  //   const vertices = new Hexagon({ center, diameterX: unit.x, diameterY: unit.y }).vertices.flat();
-  //   dotGeometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
-  //   const dotMaterial = new PointsMaterial( { color: 0x888888 , size: 0.5 } );
-  //   const dot = new Points( dotGeometry, dotMaterial );
-  //   scene.add( dot );
-  // };
-
-  const setMeshChildPosition = (child: Object3D, row: number, column: number, flag: loadFlag) => {
-    const initialPosition = new Vector3(-21, 8.5);
+  const setMeshChildPosition = (child: Object3D, y: number, x: number) => {
     if (unit.x === undefined || unit.y === undefined) {
       const box = new Box3().setFromObject(child);
       const dummyVector = new Vector3();
+      GameMap.HexScreenSize = box.getSize(dummyVector);
       unit.x = box.getSize(dummyVector).x;
       unit.y = box.getSize(dummyVector).y;
     }
 
     const childCenter: Vector3Tuple = [
-      initialPosition.x + unit.y * column * cosDeg(30),
-      initialPosition.y - unit.x * cosDeg(30) * row - ((column % 2) * unit.x * sinDeg(60) / 2),
-      initialPosition.z
+      unit.y * x * cosDeg(30),
+      unit.x * cosDeg(30) * y + ((x % 2) * unit.x * sinDeg(60) / 2),
+      0
     ];
 
     child.position.set(
       childCenter[0],
       childCenter[1],
-      childCenter[2] + +(flag !== 'tile') * 0.1
+      childCenter[2]
     );
-
-    // markChildVertices(childCenter);
   };
 
   const traverseGlbScene = (
-    row: number,
-    column: number,
-    entries: [string, Texture][],
-    flag: loadFlag,
-    gameMap?: GameMap,
+    y: number,
+    x: number,
+    gameMap: GameMap,
   ) => (child: Object3D) => {
+    const tilename = `(${x}, ${y})`;
+    const meshname = `${tilename}_${Date.now().toString()}`;
+    gameMap.Tiles[x][y].Name = tilename;
+    gameMap.Tiles[x][y].MeshName = meshname;
+
     if (child instanceof Mesh && child.isMesh) {
-      setMeshChildPosition(child, row, column, flag);
+      setMeshChildPosition(child, y, x);
 
       child.geometry.clearGroups();
-      range(flag === 'tile' ? 3 : 2).forEach(materialIndex => {
+      range(3).forEach(materialIndex => {
         child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
       });
-      const [name, map] = gameMap === undefined
-        ? entries[randint(entries.length)]
-        : entries[gameMap.Tiles[column][row].Type];
+
+      const t = gameMap.Tiles[x][y];
+      const c = getCityAt(gameMap, new Point(x, y));
+      const tex: Texture = c !== undefined
+        ? getCitiesTexturesWithColor(c)
+        : getTileTexture(t);
       child.material = [
-        flag === 'tile' ? meshes.plains : undefined,
-        new MeshBasicMaterial({ name, map, transparent: true }),
+        meshes.plains,
+        new MeshBasicMaterial({ map: tex, transparent: true }),
         meshes.blank
       ].filter(Boolean);
 
-      child.name = JSON.stringify({ row, column });
-
+      child.name = meshname;
       scene.add(child);
     }
   };
 
   const glbOnLoad = (
-    row: number,
-    column: number,
-    entries: [string, Texture][],
-    flag: loadFlag,
-    gameMap?: GameMap
+    y: number,
+    x: number,
+    gameMap: GameMap
   ) => ({ scene }: GLTF) => {
-    scene.traverse(traverseGlbScene(row, column, entries, flag, gameMap));
+    scene.traverse(traverseGlbScene(y, x, gameMap));
   };
 
-  const loadGlbForEachRowAndColumn = (row: number, column: number, gameMap?: GameMap) => {
+  const loadGlbForEachRowAndColumn = (y: number, x: number, gameMap: GameMap) => {
     const { error: consoleError } = console;
-    loader.load('./assets/raw.glb', glbOnLoad(row, column, texturesEntries, 'tile', gameMap), undefined, consoleError);
+    loader.load('./assets/raw.glb', glbOnLoad(y, x, gameMap), undefined, consoleError);
   };
 
-  range(GameMap.Width).forEach(column => {
-    range(GameMap.Height).forEach(row => {
-      loadGlbForEachRowAndColumn(row, column, gameMap);
+  range(GameMap.Width).forEach(x => {
+    range(GameMap.Height).forEach(y => {
+      loadGlbForEachRowAndColumn(y, x, gameMap);
     });
   });
 };
 
-export { loadTilesGlb };
+export {
+  loadTilesGlb,
+};

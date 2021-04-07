@@ -2,8 +2,10 @@ import {
   PerspectiveCamera,
   WebGLRenderer,
   Vector3,
+  Scene,
 } from 'three';
-
+import { GameMap } from '../props';
+import { executePhases } from '../utils';
 interface OnWindowResizeInputType {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
@@ -41,12 +43,14 @@ const listenOnMouseEvent = ({
 
 
 interface OnKeyboardEventInputType {
+  scene?: Scene;
+  gameMap?: GameMap;
   camera: PerspectiveCamera;
   delta?: number;
 }
 
 const listenOnKeyboardEvent = ({
-  camera, delta,
+  camera, delta
 }: OnKeyboardEventInputType): void => {
   if (delta === undefined) {
     delta = 1;
@@ -54,28 +58,55 @@ const listenOnKeyboardEvent = ({
   const callback = (event: KeyboardEvent): void => {
     event.preventDefault();
     switch (event.key) {
-      case "ArrowUp":
+      case "ArrowUp" || "W":
         camera.translateY(delta);
         break;
-      case "ArrowDown":
+      case "ArrowDown" || "S":
         camera.translateY(-delta);
         break;
-      case "ArrowLeft":
+      case "ArrowLeft" || "A":
         camera.translateX(-delta);
         break;
-      case "ArrowRight":
+      case "ArrowRight" || "D":
         camera.translateX(delta);
         break;
-      case "+":
+      case "+" || "E":
         camera.translateZ(-delta);
         break;
-      case "-":
+      case "-" || "Q":
         camera.translateZ(delta);
         break;
+      default:
+        console.log(event.key);
     }
-    camera.updateMatrix();
   };
   window.addEventListener('keydown', callback, false);
 };
 
-export { onWindowResize, listenOnMouseEvent, listenOnKeyboardEvent };
+interface OnKeyboardEventInputTypeForPlanningPhase {
+  scene: Scene;
+  gameMap: GameMap;
+}
+
+const listenOnKeyboardEventForPlanningPhase = ({
+  scene, gameMap
+}: OnKeyboardEventInputTypeForPlanningPhase): void => {
+  const callback = (event: KeyboardEvent): void => {
+    event.preventDefault();
+    switch (event.key) {
+      case "Enter":
+        if (scene !== undefined && gameMap !== undefined) {
+          executePhases(scene, gameMap);
+        }
+        return;
+    }
+  };
+  window.addEventListener('keydown', callback, false);
+};
+
+export {
+  onWindowResize,
+  listenOnMouseEvent,
+  listenOnKeyboardEvent,
+  listenOnKeyboardEventForPlanningPhase
+};
