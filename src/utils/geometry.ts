@@ -4,6 +4,15 @@ import { cosDeg, range } from './';
 import { Point } from '../attr';
 import { sinDeg } from './helpers';
 import { Tile, GameMap } from '../props';
+
+enum Direction {
+  'w',
+  'e',
+  'd',
+  's',
+  'a',
+  'q'
+} 
 class Line {
   private falsyValues = [NaN, Infinity, undefined];
 
@@ -299,6 +308,7 @@ const highlightPath = (path: Tile[]) => {
 };
 
 export {
+  Direction,
   Hexagon,
   Line,
   parseCoordsToScreenPoint,

@@ -14,16 +14,14 @@ import {
   drawTileStatistics,
   loadTilesFromGlb,
   loadResourcesFromJsons,
-  touchTile,
-  selectTile,
+  touchTile
 } from './flows';
 import {
   GameMap,
 } from './props';
-// import {testGetNeiboursAtRange} from './test';
-// import { Point } from './attr';
-// import { Infantry, Personnel, UnitStatus } from './props/units';
-// import { PlayerColor, Player } from './player';
+import { instantiateBuilding, instantiateUnit, updateResources } from './utils';
+import { Point } from './attr';
+import { Barracks } from './props/buildings';
 
 const scene = new Scene();
 scene.background = new Color(0x000000);
@@ -37,13 +35,13 @@ camera.position.set(20, 30, 10);
 camera.lookAt(20, 30, 0);
 camera.matrixAutoUpdate = true;
 
-// const gameMap: GameMap = loadGameMapFromJson();
-// let tileData: TileData = loadTileDataFromJson();
-// let buildingData: BuildingData = loadBuildingDataFromJson();
-// let customizableData: CustomizableData = loadCustomizableDataFromJson();
-// let unitData: UnitData = loadUnitDataFromJson();
-
-const gameMap: GameMap = loadResourcesFromJsons();
+const {
+  gameMap,
+  tileData,
+  buildingData,
+  customData,
+  unitData
+} = loadResourcesFromJsons();
 loadTilesFromGlb({ scene, gameMap });
 
 const moveMouse = new Vector3(Infinity, Infinity, 0);
@@ -57,7 +55,6 @@ guiContainer.appendChild(gui.domElement);
 const render = () => {
   window.requestAnimationFrame(render);
   touchTile({ camera, scene, moveMouse });
-  selectTile({ camera, scene, leftClickMouse, gameMap });
   drawTileStatistics({ camera, scene, rightClickMouse, gui, guiContainer });
   renderer.render(scene, camera);
   document.querySelector('.canvas-container').appendChild(renderer.domElement);
@@ -75,6 +72,7 @@ const gameStart = () => {
       gameMap,
       scene,
     });
+    updateResources(gameMap.Players[0].Resources);
     render();
   };
   setTimeout(renderWithCssChanges, 1500);

@@ -5,3 +5,4 @@ export * from './helpers';
 export * from './phases';
 export * from './textures';
 export * from './loadUnitFromGlb';
+export * from './loadBuildingFromGlb';

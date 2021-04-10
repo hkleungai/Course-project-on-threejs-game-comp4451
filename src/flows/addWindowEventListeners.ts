@@ -5,7 +5,8 @@ import {
   Scene,
 } from 'three';
 import { GameMap } from '../props';
-import { executePhases } from '../utils';
+import { Direction, executePhases } from '../utils';
+import { selectTile } from './selectTile';
 
 interface OnWindowResizeInputType {
   camera: PerspectiveCamera;
@@ -64,34 +65,82 @@ const listenOnKeyboardEvent = ({
     event.preventDefault();
     switch (event.key) {
       case 'ArrowUp':
-      case 'W':
+      case '8':
         camera.translateY(delta);
         break;
       case 'ArrowDown':
-      case 'S':
+      case '5':
         camera.translateY(-delta);
         break;
       case 'ArrowLeft':
-      case 'A':
+      case '4':
         camera.translateX(-delta);
         break;
       case 'ArrowRight':
-      case 'D':
+      case '6':
         camera.translateX(delta);
         break;
       case '+':
-      case 'E':
+      case '9':
         camera.translateZ(-delta);
         break;
       case '-':
-      case 'Q':
+      case '7':
         camera.translateZ(delta);
+        break;
+      case 'w':
+        selectTile({ 
+          camera,
+          gameMap,
+          direction: Direction.w,
+          scene
+        });
+        break;
+      case 'e':
+        selectTile({
+          camera,
+          gameMap,
+          direction: Direction.e,
+          scene
+        });
+        break;
+      case 'd':
+        selectTile({
+          camera,
+          gameMap,
+          direction: Direction.d,
+          scene
+        });
+        break;
+      case 's':
+        selectTile({
+          camera,
+          gameMap,
+          direction: Direction.s,
+          scene
+        });
+        break;
+      case 'a':
+        selectTile({
+          camera,
+          gameMap,
+          direction: Direction.a,
+          scene
+        });
+        break;
+      case 'q':
+        selectTile({
+          camera,
+          gameMap,
+          direction: Direction.q,
+          scene
+        });
         break;
       case 'Enter':
         scene !== undefined && gameMap !== undefined && executePhases(scene, gameMap);
         break;
       default:
-        // console.log(event.key);
+        console.log(event.key); //eslint-disable-line no-console
         break;
     }
   };
@@ -137,5 +186,5 @@ const addWindowEventListeners = ({
 };
 
 export {
-  addWindowEventListeners,
+  addWindowEventListeners
 };

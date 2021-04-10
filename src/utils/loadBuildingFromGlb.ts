@@ -1,20 +1,20 @@
 import { Mesh, MeshBasicMaterial, Object3D, Scene, Texture } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Point } from "../attr";
-import { Unit } from "../props/units";
+import { Building } from "../props/buildings";
 import { PlayerColor } from "../player";
 import { meshes } from "../resources";
 import { parseCoordsToScreenPoint, InvalidArgumentException, range } from "./";
-import { getUnitEntries } from "./textures";
+import { getBuildingEntries } from "./textures";
 
-const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
-  if (unit.Owner === undefined) {
-    throw new InvalidArgumentException('unit.Owner', unit);
+const instantiateBuilding = (mainScene: Scene, coords: Point, building: Building) => {
+  if (building.Owner === undefined) {
+    throw new InvalidArgumentException('building.Owner', building);
   }
 
-  const meshname = `${unit.Name}_${Date.now().toString()}`;
-  const textureEntries = getUnitEntries(unit);
-  new GLTFLoader().load(`./assets/units/${unit.Name}.glb`, glb => {
+  const meshname = `${building.Name}_${Date.now().toString()}`;
+  const textureEntries = getBuildingEntries(building);
+  new GLTFLoader().load(`./assets/buildings/${building.Name}.glb`, glb => {
     glb.scene.traverse((child: Object3D) => {
       if (child instanceof Mesh && child.isMesh) {
         child.geometry.clearGroups();
@@ -22,7 +22,7 @@ const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
           child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
         });
 
-        let name = `${unit.Name}_${PlayerColor[unit.Owner.Color].toLowerCase()}`;
+        let name = `${building.Name}_${PlayerColor[building.Owner.Color].toLowerCase()}`;
         const map: Texture = textureEntries[name];
         child.material = [
           new MeshBasicMaterial({ map, transparent: true }),
@@ -36,10 +36,9 @@ const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
       }
     });
   }, undefined, () => { console.log('error') });
-  unit.MeshName = meshname;
+  building.MeshName = meshname;
 }
 
 export {
-  instantiateUnit
+  instantiateBuilding
 };
-
