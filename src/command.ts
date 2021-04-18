@@ -4,7 +4,9 @@ import {
   plusEqualsAttr,
   minusEqualsAttr,
   Point,
-  pointEquals
+  pointEquals,
+  timesAttr,
+  applyMod
 } from './attr';
 import { Building, BuildingStatus, UnitBuilding } from './props/buildings';
 import { Personnel, Unit, UnitStatus } from './props/units';
@@ -42,7 +44,14 @@ abstract class Command {
 
 class Hold extends Command {
   public Execute() {
-    getUnitAt(this.GameMap, this.Destination).Status = UnitStatus.Active;
+    let unit = getUnitAt(this.GameMap, this.Destination);
+    unit.Status = UnitStatus.Active;
+    unit.Carrying.Supplies.Value -= 
+      applyMod(getTile(this.GameMap, this.Destination).TerrainMod.Supplies, 
+      applyModAttr(unit.Consumption.Supplies));
+    if (unit.Carrying.Supplies.Value < 0) {
+      unit.Carrying.Supplies.Value = 0;
+    }
   }
   constructor(gameMap: GameMap, player: Player, src: Point, destination: Point) {
     super(gameMap, player, src, destination);

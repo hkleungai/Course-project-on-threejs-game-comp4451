@@ -25,6 +25,8 @@ import { Point } from './attr';
 import { Infantry, Unit } from './props/units';
 import { Player } from './player';
 import { ResourcesOutputType } from './flows';
+import { Hold } from './command';
+import { gameMap } from './assets/json';
 
 const testGetNeiboursAtRange = (scene: Scene, map: GameMap, tile: Tile, range: number): void => {
   getNeighborsAtRange(map, tile, range).forEach(t => {
@@ -35,6 +37,7 @@ const testGetNeiboursAtRange = (scene: Scene, map: GameMap, tile: Tile, range: n
 
 const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Unit, owner: Player) => {
   unit.Owner = owner;
+  unit.Carrying.Supplies.Value = unit.Cost.Base.Supplies.Value;
   unit.Carrying.Cartridges.Value = unit.Cost.Base.Cartridges.Value;
   unit.Carrying.Shells.Value = unit.Cost.Base.Shells.Value;
   unit.Carrying.Fuel.Value = unit.Cost.Base.Fuel.Value;
@@ -56,7 +59,7 @@ const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player) => {
     console.log(`can construct buildings by selecting tile at (${coords.X}, ${coords.Y})`);
   }
   let o = isOccupied(gameMap, coords);
-  console.log(`(${coords.X}, ${coords.Y}) is ${o ? '' : 'not'} occupied`);
+  console.log(`(${coords.X}, ${coords.Y}) is ${o ? '' : 'not '}occupied`);
   if (o) {   
     let u = hasUnit(gameMap, coords);
     console.log(`(${coords.X}, ${coords.Y}) ${u ? 'has' : 'does not have'} unit`);
@@ -76,11 +79,16 @@ const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player) => {
       console.log(`building at (${coords.X}, ${coords.Y}) can${r ? '' : 'not'} train`);
       console.log(`building at (${coords.X}, ${coords.Y}) can${d ? '' : 'not'} deploy`);
     } else {
-      console.log(`something wetn wrong at (${coords.X}, ${coords.Y}): no units or buildings but is occupied.`);
+      console.log(`something went wrong at (${coords.X}, ${coords.Y}): no units or buildings but is occupied.`);
     }
   } else {
     console.log(`(${coords.X}, ${coords.Y}) has no units or buildings`);
   }
+};
+
+const testCommands = (scene: Scene, data: ResourcesOutputType) => {
+  let p = data.gameMap.Players[0];
+  data.gameMap.Commands.push(new Hold(data.gameMap, p, new Point(17, 8), new Point(17, 8)))
 };
 
 const executeTests = (scene: Scene, data: ResourcesOutputType) => {
@@ -90,6 +98,7 @@ const executeTests = (scene: Scene, data: ResourcesOutputType) => {
   getNeighbors(data.gameMap, new Point(17, 7)).forEach(n => {
     testButtonLogic(data.gameMap, n.CoOrds, p);
   });
+  testButtonLogic(data.gameMap, new Point(17, 7), p);
 };
 
 export {
@@ -97,5 +106,6 @@ export {
   testCreateBuilding,
   testCreateUnit,
   testButtonLogic,
+  testCommands,
   executeTests
 };

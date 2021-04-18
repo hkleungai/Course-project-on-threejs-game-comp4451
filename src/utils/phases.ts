@@ -54,7 +54,7 @@ const getHexDistanceWithCubeCoords = (c1: number[], c2: number[]): number => {
 //#endregion
 
 //#region getNeibors
-const getNeighbors = (map: GameMap, coords: Point, exclude_inaccessible = true): Tile[] => {
+const getNeighbors = (map: GameMap, coords: Point, exclude_inaccessible = true, exclude_undefined = true): Tile[] => {
   const neighbors : Tile[] = [];
   const neighborOffset = coords.X % 2 ? Tile._NeighborOffsetOddX : Tile._NeighborOffsetEvenX;
 
@@ -62,7 +62,9 @@ const getNeighbors = (map: GameMap, coords: Point, exclude_inaccessible = true):
     const x = coords.X + pair[0];
     const y = coords.Y + pair[1];
     if (x < GameMap.Width && x >= 0 && y < GameMap.Height && y >= 0) {
-    neighbors.push(map.Tiles[x][y]);
+      neighbors.push(map.Tiles[x][y]);
+    } else if (!exclude_undefined) {
+      neighbors.push(undefined);
     }
   });
   return exclude_inaccessible ? neighbors.filter(t => isAccessible(t)) : neighbors;
@@ -213,8 +215,7 @@ const isWithinBoundary = (coords: Point): boolean => {
 };
 const isOccupied = (gameMap: GameMap, coords: Point): boolean => {
   return getUnitAt(gameMap, coords) !== undefined ||
-    (getBuildingAt(gameMap, coords) !== undefined &&
-    !(getBuildingAt(gameMap, coords) instanceof UnitBuilding));
+    getBuildingAt(gameMap, coords) !== undefined;
 };
 const tileExistsInArray = (arr: Tile[], t: Tile): boolean => {
   return arr.filter(tile => pointEquals(t.CoOrds, tile.CoOrds)).length > 0;
@@ -363,9 +364,17 @@ const canDeploy = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
 };
 //#endregion
 
+const calculateMorale = (gameMap: GameMap) => {
+  gameMap.Units.filter(u => u.Carrying.Supplies.Value <= 0).forEach(u => {
+    u.Morale.Value -= 10; // -10 for now, can vary with different types of units later
+    if (u.Morale.Value < 0) {
+      u.Morale.Value = 0;
+    }
+  });
+};
 const flee = (unit: Unit) => {
   if (unit.Morale.Value === 0) {
-    if (random(0, 1) <= 0.1) {
+    if (random(0, 1) <= 0.1) { // 0.1 for now, can vary with different types of units later
       unit.Status = UnitStatus.Destroyed;
     }
   }
@@ -482,6 +491,7 @@ const executeFirePhase = (gameMap: GameMap) => {
   gameMap.Commands.filter(c => c instanceof Fire).forEach(f => f.Execute());
 };
 const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
+  calculateMorale(gameMap);
   gameMap.Units.forEach(u => flee(u));
   updateConstructionTime(gameMap);
   updateTrainingGroundsQueues(gameMap);
@@ -538,6 +548,7 @@ export {
   canBuild,
   canTrain,
   canDeploy,
+  calculateMorale,
   flee,
   getMesh,
   updateConstructionTime,

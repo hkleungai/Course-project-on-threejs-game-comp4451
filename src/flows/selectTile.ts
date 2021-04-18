@@ -48,7 +48,10 @@ const selectTile = ({
   direction,
   scene,
 }: SelectTileInputType): void => {
-  let t = getNeighbors(gameMap, currentCoOrds)[direction];
+  let t = getNeighbors(gameMap, currentCoOrds, false, false)[direction];
+  if (t === undefined) {
+    return;
+  }
   const newTile = getMesh(scene, t);
   currentCoOrds = t.CoOrds;
 
