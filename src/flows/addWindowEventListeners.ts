@@ -5,7 +5,9 @@ import {
   Scene,
 } from 'three';
 import { GameMap } from '../props';
+import { executeTests } from '../test';
 import { Direction, executePhases } from '../utils';
+import { ResourcesOutputType } from './loadResourcesFromJsons';
 import { selectTile } from './selectTile';
 
 interface OnWindowResizeInputType {
@@ -51,12 +53,12 @@ const listenOnMouseEvent = ({
 interface OnKeyboardEventInputType {
   camera: PerspectiveCamera;
   delta?: number;
-  gameMap?: GameMap;
   scene?: Scene;
+  data?: ResourcesOutputType;
 }
 
 const listenOnKeyboardEvent = ({
-  camera, delta, gameMap, scene
+  camera, delta, scene, data
 }: OnKeyboardEventInputType): void => {
   if (delta === undefined) {
     delta = 0.5;
@@ -91,7 +93,7 @@ const listenOnKeyboardEvent = ({
       case 'w':
         selectTile({ 
           camera,
-          gameMap,
+          gameMap: data.gameMap,
           direction: Direction.w,
           scene
         });
@@ -99,7 +101,7 @@ const listenOnKeyboardEvent = ({
       case 'e':
         selectTile({
           camera,
-          gameMap,
+          gameMap: data.gameMap,
           direction: Direction.e,
           scene
         });
@@ -107,7 +109,7 @@ const listenOnKeyboardEvent = ({
       case 'd':
         selectTile({
           camera,
-          gameMap,
+          gameMap: data.gameMap,
           direction: Direction.d,
           scene
         });
@@ -115,7 +117,7 @@ const listenOnKeyboardEvent = ({
       case 's':
         selectTile({
           camera,
-          gameMap,
+          gameMap: data.gameMap,
           direction: Direction.s,
           scene
         });
@@ -123,7 +125,7 @@ const listenOnKeyboardEvent = ({
       case 'a':
         selectTile({
           camera,
-          gameMap,
+          gameMap: data.gameMap,
           direction: Direction.a,
           scene
         });
@@ -131,13 +133,16 @@ const listenOnKeyboardEvent = ({
       case 'q':
         selectTile({
           camera,
-          gameMap,
+          gameMap: data.gameMap,
           direction: Direction.q,
           scene
         });
         break;
+      case 't': //test
+        scene !== undefined && data.gameMap !== undefined && executeTests(scene, data);
+        break;
       case 'Enter':
-        scene !== undefined && gameMap !== undefined && executePhases(scene, gameMap);
+        scene !== undefined && data.gameMap !== undefined && executePhases(scene, data);
         break;
       default:
         console.log(event.key); //eslint-disable-line no-console
@@ -153,8 +158,8 @@ interface AddWindowEventListenersInputType {
   rightClickMouse: Vector3;
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
-  gameMap?: GameMap;
   scene?: Scene;
+  data?: ResourcesOutputType;
 }
 
 const addWindowEventListeners = ({
@@ -163,8 +168,8 @@ const addWindowEventListeners = ({
   rightClickMouse,
   camera,
   renderer,
-  gameMap,
   scene,
+  data
 }: AddWindowEventListenersInputType): void => {
   listenOnMouseEvent({
     mouse: moveMouse,
@@ -182,7 +187,7 @@ const addWindowEventListeners = ({
     shouldPreventDefault: true
   });
   listenOnWindowResize({ camera, renderer });
-  listenOnKeyboardEvent({ camera, gameMap, scene });
+  listenOnKeyboardEvent({ camera, scene, data });
 };
 
 export {

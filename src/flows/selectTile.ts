@@ -76,7 +76,7 @@ const selectTile = ({
     scene
   });
   // focus camera on selected tile
-  camera.position.set(center[0], center[1], 10);
+  camera.position.set(center[0], center[1], camera.position.z);
   camera.lookAt(center[0], center[1], 0);
 
   const coords = new Point(...parseMeshnameToCoords(currentTile.name));
@@ -89,14 +89,14 @@ const selectTile = ({
       }
     }
   ));
-
+  let p = gameMap.Players[0]; // use human player first so far, change later
   let u = getUnitAt(gameMap, coords);
   if (u !== undefined) {
     document.querySelector('.unavailable-action.hold').classList.remove('unavailable-action');
-    if (canMove(u) && getNeighbors(gameMap, coords).some(n => !isOccupied(gameMap, n.CoOrds))) {
+    if (canMove(gameMap, tileObject, p)) {
       document.querySelector('.unavailable-action.move').classList.remove('unavailable-action');
     }
-    if (canCapture(gameMap, tileObject, u, gameMap.Players[0])) {
+    if (canCapture(gameMap, tileObject, p)) {
       document.querySelector('.unavailable-action.capture').classList.remove('unavailable-action');
     }
   }
@@ -107,9 +107,9 @@ const selectTile = ({
     document.querySelector('.unavailable-action.fortify').classList.remove('unavailable-action');
     document.querySelector('.unavailable-action.demolish').classList.remove('unavailable-action');
     console.log(b instanceof UnitBuilding);
-    if (canTrain(gameMap, tileObject)) {
+    if (canTrain(gameMap, tileObject, p)) {
       document.querySelector('.unavailable-action.train-manufacture').classList.remove('unavailable-action');
-      if (canDeploy(gameMap, tileObject)) {
+      if (canDeploy(gameMap, tileObject, p)) {
         document.querySelector('.unavailable-action.deploy').classList.remove('unavailable-action');
       }
     }

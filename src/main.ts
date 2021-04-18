@@ -14,7 +14,8 @@ import {
   drawTileStatistics,
   loadTilesFromGlb,
   loadResourcesFromJsons,
-  touchTile
+  touchTile,
+  ResourcesOutputType
 } from './flows';
 import {
   GameMap,
@@ -35,14 +36,8 @@ camera.position.set(20, 30, 10);
 camera.lookAt(20, 30, 0);
 camera.matrixAutoUpdate = true;
 
-const {
-  gameMap,
-  tileData,
-  buildingData,
-  customData,
-  unitData
-} = loadResourcesFromJsons();
-loadTilesFromGlb({ scene, gameMap });
+const data: ResourcesOutputType = loadResourcesFromJsons();
+loadTilesFromGlb({ scene, gameMap: data.gameMap });
 
 const moveMouse = new Vector3(Infinity, Infinity, 0);
 const leftClickMouse = new Vector3(Infinity, Infinity, 0);
@@ -69,10 +64,10 @@ const gameStart = () => {
       rightClickMouse,
       camera,
       renderer,
-      gameMap,
       scene,
+      data
     });
-    updateResources(gameMap.Players[0].Resources);
+    updateResources(data.gameMap.Players[0].Resources);
     render();
   };
   setTimeout(renderWithCssChanges, 1500);
