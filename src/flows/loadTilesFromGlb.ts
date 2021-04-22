@@ -28,6 +28,10 @@ interface LoadTilesFromGlbInputTypes {
 }
 
 const loadTilesFromGlb = ({ scene, gameMap }: LoadTilesFromGlbInputTypes): void => {
+  if (gameMap === undefined) {
+    return;
+  }
+
   const loader = new GLTFLoader();
   const unit: { x?: number, y?: number } = {};
 
