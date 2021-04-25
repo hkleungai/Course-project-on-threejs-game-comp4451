@@ -3,17 +3,18 @@ import { Mesh, MeshBasicMaterial, Scene } from "three";
 import { gameMap } from "../assets/json";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals, Resources } from "../attr";
 import { Fire, Hold, Move } from "../command";
-import { ResourcesOutputType } from "../flows";
+import { JsonResourcesType } from "../flows";
 import { Player, playerEquals } from "../player";
 import { BuildingData, Cities, cubeTileEquals, GameMap, Prop, Tile, WeightedCubeTile } from "../props";
 import { Barracks, Building, BuildingStatus, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
+  Artillery,
   Infantry,
   Personnel,
   Unit,
   UnitStatus
 } from "../props/units";
-import { testButtonLogic, testCreateUnit, testCreateBuilding } from "../test";
+import { Firearm, Gun } from "../researches";
 import {
   InvalidArgumentException,
   parseCoordsToScreenPoint,
@@ -21,7 +22,6 @@ import {
   rangeFrom,
   rangeFromTo,
 } from "./";
-import { instantiateUnit } from "./loadUnitFromGlb";
 
 //TODO may move to util later for this region
 //#region coords-util
@@ -34,12 +34,12 @@ const convertToOffestCoOrds = (cube_coords: number[]): Point => {
   if (cube_coords.length !== 3) {
     throw new InvalidArgumentException('cube_coords', cube_coords);
   }
-  let y: number = cube_coords[2] + (cube_coords[0] - (cube_coords[0] % 2)) / 2;
+  const y: number = cube_coords[2] + (cube_coords[0] - (cube_coords[0] % 2)) / 2;
   return new Point(cube_coords[0], y);
 };
 const getHexDistance = (c1: Point, c2: Point): number => {
-  let cc1: number[] = convertToCudeCoOrds(c1);
-  let cc2: number[] = convertToCudeCoOrds(c2);
+  const cc1: number[] = convertToCudeCoOrds(c1);
+  const cc2: number[] = convertToCudeCoOrds(c2);
   return Math.max(
     Math.abs(cc1[0] - cc2[0]),
     Math.abs(cc1[1] - cc2[1]),
@@ -73,6 +73,9 @@ const getNeighborsAtRange = (gameMap: GameMap, tile: Tile, range: number, exclud
   if (!isInteger(range)) {
     throw new InvalidArgumentException('range', range);
   }
+  if (range <= 0) {
+    return [];
+  }
   const neighbors : Tile[] = [];
   const n_FullXRange: number[] = rangeFromTo(Math.floor(tile.CoOrds.Y - range / 2), Math.floor(tile.CoOrds.Y + range / 2)).filter(y => y >= 0 || y < GameMap.Height);
   const n_LeftMostX: number = tile.CoOrds.X - range < 0 ? 0 : tile.CoOrds.X - range;
@@ -89,7 +92,7 @@ const getNeighborsAtRange = (gameMap: GameMap, tile: Tile, range: number, exclud
     })
   );
 
-  let dummy = (tile.CoOrds.X % 2 && range % 2) || !(tile.CoOrds.X % 2 || range % 2);
+  const dummy = (tile.CoOrds.X % 2 && range % 2) || !(tile.CoOrds.X % 2 || range % 2);
   n_YLowerRange.forEach((y, i) =>
     rangeFromTo(tile.CoOrds.X - (range - 2 * (i + 1) + +dummy), tile.CoOrds.X + range - 2 * (i + 1) + +dummy)
     .filter(x => x >= 0 || x < GameMap.Width)
@@ -98,15 +101,15 @@ const getNeighborsAtRange = (gameMap: GameMap, tile: Tile, range: number, exclud
     )
   );
   n_YUpperRange.forEach((y, i) => {
-    let det = range - 2 * (i + 1) + +(!dummy);
-    let arr: number[] = det < 0
+    const det = range - 2 * (i + 1) + +(!dummy);
+    const arr: number[] = det < 0
     ? [tile.CoOrds.X]
     : rangeFromTo(tile.CoOrds.X - det, tile.CoOrds.X + det);
     arr.filter(x => x >= 0 || x < GameMap.Width).forEach(x =>
     neighbors.push(gameMap.Tiles[x][y])
     );
     });
-  let raw: Tile[] = neighbors.filter(n => n !== undefined);
+  const raw: Tile[] = neighbors.filter(n => n !== undefined);
   return [...new Set(exclude_inaccessible ? raw.filter(t => isAccessible(t)) : raw)];
 };
 const getNeighborsWithCubeCoords = (
@@ -115,7 +118,7 @@ const getNeighborsWithCubeCoords = (
   end: WeightedCubeTile): WeightedCubeTile[] => {
   const neighbors : WeightedCubeTile[] = [];
 
-  let hex_neighbors = getNeighbors(gameMap, convertToOffestCoOrds(cube_tile_so_far.CubeCoords));
+  const hex_neighbors = getNeighbors(gameMap, convertToOffestCoOrds(cube_tile_so_far.CubeCoords));
   hex_neighbors.forEach(h =>
     neighbors.push(
       new WeightedCubeTile(
@@ -141,11 +144,11 @@ const hasConstructibleNegibours = (gameMap: GameMap, coords: Point) => {
 
 //path-finding
 const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
-  let active: WeightedCubeTile[] = [];
-  let visited: WeightedCubeTile[] = [];
-  let path: Tile[] = [];
+  const active: WeightedCubeTile[] = [];
+  const visited: WeightedCubeTile[] = [];
+  const path: Tile[] = [];
 
-  let start = new WeightedCubeTile(
+  const start = new WeightedCubeTile(
     undefined,
     convertToCudeCoOrds(t1.CoOrds),
     applyModAttr(unit.Consumption.Supplies),
@@ -153,7 +156,7 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
     0,
     getHexDistance(t1.CoOrds, t2.CoOrds),
     0);
-  let end = new WeightedCubeTile(
+  const end = new WeightedCubeTile(
     undefined,
     convertToCudeCoOrds(t2.CoOrds),
     applyModAttr(unit.Consumption.Supplies),
@@ -169,7 +172,7 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
       console.log('reached destination');
       // trace back parents to get the path
       while (check.Parent !== undefined) {
-        let t = getTile(gameMap, convertToOffestCoOrds(check.CubeCoords));
+        const t = getTile(gameMap, convertToOffestCoOrds(check.CubeCoords));
         path.push(t);
         check = check.Parent;
       }
@@ -183,7 +186,7 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
         return;
       }
       if (active.some(a => cubeTileEquals(a, n))) { // in the active list
-        let exist = active.find(a => cubeTileEquals(a, n));
+        const exist = active.find(a => cubeTileEquals(a, n));
         if (exist.CostDistance > check.CostDistance) { // check if it is better than current tile (aka. check)
           active.splice(active.indexOf(exist), 1);
           active.push(n);
@@ -241,6 +244,26 @@ const getNumUnits = (gameMap: GameMap, self: Player): number => {
 const hasFriendlyUnit = (gameMap: GameMap, coords: Point, self: Player): boolean => {
   return getUnitAt(gameMap, coords)?.Owner === self;
 };
+const hasHostileUnit = (gameMap: GameMap, coords: Point, self: Player): boolean => {
+  return getUnitAt(gameMap, coords)?.Owner !== self;
+};
+const hasEnoughCartridges = (unit: Unit, firearm: Firearm, suppress = false): boolean => {
+  return geqAttr(unit.Carrying.Cartridges, suppress ? firearm.ConsumptionSuppress.Cartridges : firearm.ConsumptionNormal.Cartridges);
+};
+const hasEnoughShells = (unit: Unit, weapon: Firearm | Gun, suppress = false): boolean => {
+  return geqAttr(
+    unit.Carrying.Shells, 
+    weapon instanceof Firearm 
+      ? (suppress
+          ? (weapon as Firearm).ConsumptionSuppress.Shells
+          : (weapon as Firearm).ConsumptionNormal.Shells)
+      : (weapon as Gun).ShellConsumption
+  );
+}
+// for weapons that consume fuel, so far firearms only
+const hasEnoughFuel = (unit: Unit, firearm: Firearm, suppress = false): boolean => {
+  return geqAttr(unit.Carrying.Fuel, suppress ? firearm.ConsumptionSuppress.Fuel : firearm.ConsumptionNormal.Fuel);
+};
 const getUnitsWithStatus = (gameMap: GameMap, status: UnitStatus): Unit[] => {
   return gameMap.Units.filter(u => u.Status === status);
 };
@@ -292,78 +315,6 @@ const getRequiredSupplies = (path: Tile[], unit: Unit): number => {
   return supplies;
 };
 
-//TODO may move to select Tile instead
-//#region logic for determining commands available
-const canMove = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
-    let unit = getUnitAt(gameMap, tile.CoOrds);
-    return unit.Carrying.Supplies.Value > 0 && hasEmptyNeigbors(gameMap, unit.Coords);    
-  }
-  return false;
-  //TODO add check fuel for vehicles and suppression later
-};
-const canFire = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
-    let unit = getUnitAt(gameMap, tile.CoOrds);
-    return geqAttr(unit.Carrying.Cartridges, unit.Consumption.Cartridges);
-    //TODO add check for shells and suppression later
-  }
-  return false;
-};
-const canCapture = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasUnit(gameMap, tile.CoOrds)) {
-    let unit = getUnitAt(gameMap, tile.CoOrds);
-    if (unit instanceof Personnel) {
-      if (isCity(gameMap, tile.CoOrds)) {
-        let city: Cities = getCityAt(gameMap, tile.CoOrds);
-        if (city.Owner === self) {
-          return city.Morale.Value < 100;
-        } 
-        return true;
-      }
-    }
-  }
-  return false;
-};
-const canBuild = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
-    return hasConstructibleNegibours(gameMap, tile.CoOrds);
-  } else if (isFriendlyCity(gameMap, tile.CoOrds, self)) {
-    // consider city only so far
-    let city = getCityAt(gameMap, tile.CoOrds);
-    let ok = false;
-    getNeighborsAtRange(gameMap, city, applyModAttr(city.ConstructionRange)).forEach(n => {
-      if (n.AllowConstruction && !isOccupied(gameMap, n.CoOrds)) {
-        ok = true;
-        return;
-      }
-    });
-    return ok;
-  }
-  return false;
-};
-const canTrain = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
-    let b: Building = getBuildingAt(gameMap, tile.CoOrds);
-    if (b instanceof UnitBuilding) {
-      let ub: UnitBuilding = b as UnitBuilding;
-      return ub.TrainingQueue.length < applyModAttr(ub.QueueCapacity);
-    } 
-  }
-  return false;
-};
-const canDeploy = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
-    let b: Building = getBuildingAt(gameMap, tile.CoOrds);
-    if (b instanceof UnitBuilding) {
-      let ub: UnitBuilding = b as UnitBuilding;
-      return ub.ReadyToDeploy.length > 0;
-    }
-  }
-  return false;
-};
-//#endregion
-
 const calculateMorale = (gameMap: GameMap) => {
   gameMap.Units.filter(u => u.Carrying.Supplies.Value <= 0).forEach(u => {
     u.Morale.Value -= 10; // -10 for now, can vary with different types of units later
@@ -404,7 +355,7 @@ const updateTrainingTime = (gameMap: GameMap): void => {
 };
 const updateTrainingGroundsQueues = (gameMap: GameMap): void => {
   gameMap.Buildings.filter(b => b instanceof UnitBuilding).forEach(b => {
-    let ub = b as UnitBuilding;
+    const ub = b as UnitBuilding;
     if (ub.TrainingQueue.length === 0) {
       return;
     }
@@ -413,7 +364,7 @@ const updateTrainingGroundsQueues = (gameMap: GameMap): void => {
 };
 const updateUnitPositions = (scene: Scene, gameMap: GameMap) => {
   gameMap.Units.forEach(u => {
-    let pos = parseCoordsToScreenPoint(u.Coords);
+    const pos = parseCoordsToScreenPoint(u.Coords);
     getMesh(scene, u).position.set(pos.x, pos.y, pos.z);
   })
 };
@@ -450,20 +401,20 @@ const updateCities = (scene: Scene, gameMap: GameMap): void => {
   });
 };
 const getWinner = (gameMap: GameMap): Player => {
-  let eliminated: Player[] = [];
+  const eliminated: Player[] = [];
   gameMap.Players.forEach(p => {
     if (getPlayersCities(gameMap, p).length === 0) {
       eliminated.push(p);
     }
   });
   if (eliminated.length !== 0) {
-    let remaining_players = gameMap.Players.filter(p => !eliminated.includes(p));
+    const remaining_players = gameMap.Players.filter(p => !eliminated.includes(p));
     if (remaining_players.length === 1) {
       return remaining_players[0];
     } else if (remaining_players.length === 0) { // all players' cities are destroyed in the same round
-      let numUnits: number[] = [];
+      const numUnits: number[] = [];
       gameMap.Players.forEach(p => numUnits.push(getNumUnits(gameMap, p)));
-      let player_index_with_most_units = numUnits.reduce((iMax, x, i, arr) => x > arr[iMax] ? i : iMax, 0);
+      const player_index_with_most_units = numUnits.reduce((iMax, x, i, arr) => x > arr[iMax] ? i : iMax, 0);
       return gameMap.Players[player_index_with_most_units];
       // TODO can consider more cases but it's already very rare
       // to have same num units && all players' cities are destroyed in the same round
@@ -477,7 +428,7 @@ const clearCommands = (gameMap: GameMap) => {
   gameMap.Commands = [];
 };
 
-const executePhases = (scene: Scene, data: ResourcesOutputType) => {
+const executePhases = (scene: Scene, data: JsonResourcesType) => {
   data.gameMap.Commands.filter(h => h instanceof Hold).forEach(h => h.Execute());
   executeFirePhase(data.gameMap);
   executeMovePhase(data.gameMap);
@@ -500,7 +451,7 @@ const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
   updateCities(scene, gameMap);
   clearCommands(gameMap);
   removeDestroyed(scene, gameMap);
-  let p = getWinner(gameMap);
+  const p = getWinner(gameMap);
   if (p !== undefined) {
     alert(`${p.Name} won!!`);
     // TODO return to main menu
@@ -539,15 +490,13 @@ export {
   isCity,
   isFriendlyCity,
   hasFriendlyUnit,
+  hasHostileUnit,
+  hasEnoughCartridges,
+  hasEnoughShells,
+  hasEnoughFuel,
   hasFriendlyBuilding,
   getRequiredSupplies,
   removeDestroyed,
-  canMove,
-  canFire,
-  canCapture,
-  canBuild,
-  canTrain,
-  canDeploy,
   calculateMorale,
   flee,
   getMesh,

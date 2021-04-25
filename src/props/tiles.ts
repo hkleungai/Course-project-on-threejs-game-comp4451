@@ -62,6 +62,7 @@ class Tile extends Prop {
     this.Height = tile.Height;
   }
 }
+
 class Cities extends Tile {
   public Owner : Player;
   public Population : number;
@@ -89,8 +90,9 @@ class WeightedCubeTile {
   public DistanceToGoal: number; // remaining distance to goal
   public DistanceSoFar: number; // distance travelled so far
   public Parent: WeightedCubeTile;
-  // an overestimate of total cost
-  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 5 }
+  // a "just-right" estimate of total cost
+  // IMPORTANT: sometimes wrong path is returned using underestimate, yet to find out why
+  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 2 }
 
   constructor(parent: WeightedCubeTile, cube: number[], base: number, mod: number, cost: number, d_goal: number, d_sofar: number) {
     this.Parent = parent;

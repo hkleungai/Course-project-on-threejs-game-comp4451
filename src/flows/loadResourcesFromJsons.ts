@@ -6,7 +6,7 @@ import {
   UnitData
 } from '../props';
 
-interface ResourcesOutputType {
+interface JsonResourcesType {
   gameMap: GameMap,
   tileData: TileData,
   buildingData: BuildingData,
@@ -49,15 +49,12 @@ const loadUnitDataFromJson = (): UnitData => {
 
 const loadResourcesFromJsons = ({
   shouldLoad = true
-}: { shouldLoad?: boolean } = {}): ResourcesOutputType => {
-  const res: ResourcesOutputType = {
+}: { shouldLoad?: boolean } = {}): JsonResourcesType => ({
     gameMap: loadGameMapFromJson({ shouldLoad }),
     tileData: loadTileDataFromJson(),
     buildingData: loadBuildingDataFromJson(),
     customData: loadCustomizableDataFromJson(),
     unitData: loadUnitDataFromJson()
-  };
-  return res;
-};
+  });
 
-export { ResourcesOutputType, loadResourcesFromJsons };
+export { JsonResourcesType, loadResourcesFromJsons };

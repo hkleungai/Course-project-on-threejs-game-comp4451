@@ -13,27 +13,30 @@ import { highlightTile } from './';
 import {
   parseMeshnameToCoords,
   getTile,
-  getNeighborsAtRange,
   getMesh,
   getUnitAt,
-  canMove,
   getNeighbors,
-  isOccupied,
-  canCapture,
   getBuildingAt,
-  canDeploy,
-  canTrain,
-  Direction
+  Direction,
+  makeActionButtonAvailable
 } from '../utils';
 import { GameMap } from '../props';
 import { Point } from '../attr';
-import { meshes } from '../resources';
-import { UnitBuilding } from '../props/buildings';
+import {
+  canMove,
+  canFire,
+  canSabotage,
+  canCapture,
+  canTrain,
+  canDeploy,
+  canBuild,
+  canFortify,
+  canDemolish
+} from '../command';
 
 let highlight: Points<BufferGeometry, PointsMaterial>;
 let currentTile: Object3D;
 let currentCoOrds: Point = new Point(17, 7);
-//const raycaster = new Raycaster();
 
 interface SelectTileInputType {
   camera: Camera;
@@ -48,7 +51,7 @@ const selectTile = ({
   direction,
   scene,
 }: SelectTileInputType): void => {
-  let t = getNeighbors(gameMap, currentCoOrds, false, false)[direction];
+  const t = getNeighbors(gameMap, currentCoOrds, false, false)[direction];
   if (t === undefined) {
     return;
   }
@@ -60,12 +63,6 @@ const selectTile = ({
   if (currentTile?.name) {
     const coords = new Point(...parseMeshnameToCoords(currentTile.name));
     const tileObject = getTile(gameMap, coords);
-    /*
-    getNeighborsAtRange(gameMap, tileObject, 1).forEach(t => {
-      const tile = getMesh(scene, t);
-      tile.material[2] = meshes.blank;
-    });
-    */
   }
 
   // Do something on current tile
@@ -92,41 +89,23 @@ const selectTile = ({
       }
     }
   ));
-  let p = gameMap.Players[0]; // use human player first so far, change later
-  let u = getUnitAt(gameMap, coords);
-  if (u !== undefined) {
-    document.querySelector('.unavailable-action.hold').classList.remove('unavailable-action');
-    if (canMove(gameMap, tileObject, p)) {
-      document.querySelector('.unavailable-action.move').classList.remove('unavailable-action');
-    }
-    if (canCapture(gameMap, tileObject, p)) {
-      document.querySelector('.unavailable-action.capture').classList.remove('unavailable-action');
-    }
+  const player = gameMap.Players[0]; // use human player first so far, change later
+  const unit = getUnitAt(gameMap, coords);
+  if (unit !== undefined) {
+    makeActionButtonAvailable('hold');
+    canMove(gameMap, tileObject, player) && makeActionButtonAvailable('move');
+    canCapture(gameMap, tileObject, player) && makeActionButtonAvailable('capture');
   }
 
-  let b = getBuildingAt(gameMap, coords);
-  console.log(b);
-  if (b !== undefined) {
-    document.querySelector('.unavailable-action.fortify').classList.remove('unavailable-action');
-    document.querySelector('.unavailable-action.demolish').classList.remove('unavailable-action');
-    console.log(b instanceof UnitBuilding);
-    if (canTrain(gameMap, tileObject, p)) {
-      document.querySelector('.unavailable-action.train-manufacture').classList.remove('unavailable-action');
-      if (canDeploy(gameMap, tileObject, p)) {
-        document.querySelector('.unavailable-action.deploy').classList.remove('unavailable-action');
-      }
+  const building = getBuildingAt(gameMap, coords);
+  if (building !== undefined) {
+    makeActionButtonAvailable('fortify');
+    makeActionButtonAvailable('demolish');
+    if (canTrain(gameMap, tileObject, player)) {
+      makeActionButtonAvailable('train');
+      canDeploy(gameMap, tileObject, player) && makeActionButtonAvailable('deploy');
     }
   }
-  /*
-  getNeighborsAtRange(gameMap, tileObject, 1).forEach(t => {
-    const tile = getMesh(scene, t);
-    tile.material[2] = meshes.available;
-  });
-  */
-  // TODO: Determine if we have units on top of the currently selected one.
-  // Now suppose none present.
-  // eslint-disable-next-line no-constant-condition
-
 
   if (true) {
     const availableavailableActionDivs = document.querySelectorAll("[class*=available-action]");

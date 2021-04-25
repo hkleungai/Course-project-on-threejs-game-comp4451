@@ -22,7 +22,7 @@ const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
           child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
         });
 
-        let name = `${unit.Name}_${PlayerColor[unit.Owner.Color].toLowerCase()}`;
+        const name = `${unit.Name}_${PlayerColor[unit.Owner.Color].toLowerCase()}`;
         const map: Texture = textureEntries[name];
         child.material = [
           new MeshBasicMaterial({ map, transparent: true }),

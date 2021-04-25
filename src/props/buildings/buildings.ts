@@ -25,6 +25,7 @@ abstract class Building extends Prop {
   public Owner : Player;
   public CoOrds : Point;
   public Level : number;
+  public MaxLevel : number;
   public Cost : Cost;
   public Durability : Attribute;
   public Scouting : Scouting;
@@ -38,6 +39,7 @@ abstract class Building extends Prop {
     this.Owner = building.Owner;
     this.CoOrds = building.CoOrds;
     this.Level = building.Level;
+    this.MaxLevel = building.MaxLevel;
     this.Cost = building.Cost;
     this.Durability = building.Durability;
     this.Scouting = building.Scouting;

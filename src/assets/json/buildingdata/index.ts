@@ -1,15 +1,15 @@
-import UnitBuildingData from "./UnitBuildingData.json";
-import ResourcesBuildingsData from "./ResourcesBuildingsData.json";
-import InfrastructuresData from "./InfrastructuresData.json";
-import TransmissionBuildingsData from "./TransmissionBuildingsData.json";
-import DefensiveBuildingsData from "./DefensiveBuildingsData.json";
+import { UnitBuildingData } from "./unit";
+import { ResourcesBuildingData } from "./resources";
+import { InfrastructuresData } from "./infrastructures";
+import { TransmissionBuildingData } from "./transmission";
+import { DefensiveBuildingData } from "./defensive";
 
 const buildingDataJson = {
   UnitBuildingData,
-  ResourcesBuildingsData,
+  ResourcesBuildingData,
   InfrastructuresData,
-  TransmissionBuildingsData,
-  DefensiveBuildingsData,
+  TransmissionBuildingData,
+  DefensiveBuildingData,
 };
 
 export { buildingDataJson };

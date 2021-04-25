@@ -15,7 +15,7 @@ import {
   loadTilesFromGlb,
   loadResourcesFromJsons,
   touchTile,
-  ResourcesOutputType
+  JsonResourcesType
 } from './flows';
 import {
   GameMap,
@@ -36,7 +36,7 @@ camera.position.set(20, 30, 10);
 camera.lookAt(20, 30, 0);
 camera.matrixAutoUpdate = true;
 
-const data: ResourcesOutputType = loadResourcesFromJsons();
+const data = loadResourcesFromJsons();
 loadTilesFromGlb({ scene, gameMap: data.gameMap });
 
 const moveMouse = new Vector3(Infinity, Infinity, 0);
@@ -65,7 +65,7 @@ const gameStart = () => {
       camera,
       renderer,
       scene,
-      data
+      jsonResources: data
     });
     updateResources(data.gameMap.Players[0].Resources);
     render();

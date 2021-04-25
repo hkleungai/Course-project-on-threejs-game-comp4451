@@ -200,7 +200,7 @@ const divideAttr = (a1: Attribute, a2: Attribute): number => {
 
 // note: undefined = throw if mods are diff; flase = keep a2 mod instead
 const plusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  let val: number = plusAttr(a1, a2);
+  const val: number = plusAttr(a1, a2);
   if (!modEquals(a1.Mod, a2.Mod)) {
     if (keep_a1_mod === undefined) {
       throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
@@ -211,7 +211,7 @@ const plusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = und
 }
 
 const minusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  let val: number = minusAttr(a1, a2);
+  const val: number = minusAttr(a1, a2);
   if (!modEquals(a1.Mod, a2.Mod)) {
     if (keep_a1_mod === undefined) {
       throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
@@ -222,7 +222,7 @@ const minusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = un
 }
 
 const timesEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  let val: number = timesAttr(a1, a2);
+  const val: number = timesAttr(a1, a2);
   if (!modEquals(a1.Mod, a2.Mod)) {
     if (keep_a1_mod === undefined) {
       throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
@@ -233,7 +233,7 @@ const timesEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = un
 }
 
 const divideEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  let val: number = divideAttr(a1, a2);
+  const val: number = divideAttr(a1, a2);
   if (!modEquals(a1.Mod, a2.Mod)) {
     if (keep_a1_mod === undefined) {
       throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);

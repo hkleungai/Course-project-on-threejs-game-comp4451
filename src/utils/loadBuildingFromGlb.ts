@@ -22,7 +22,7 @@ const instantiateBuilding = (mainScene: Scene, coords: Point, building: Building
           child.geometry.addGroup(0, child.geometry.index.count, materialIndex);
         });
 
-        let name = `${building.Name}_${PlayerColor[building.Owner.Color].toLowerCase()}`;
+        const name = `${building.Name}_${PlayerColor[building.Owner.Color].toLowerCase()}`;
         const map: Texture = textureEntries[name];
         child.material = [
           new MeshBasicMaterial({ map, transparent: true }),
@@ -35,7 +35,7 @@ const instantiateBuilding = (mainScene: Scene, coords: Point, building: Building
         mainScene.add(child);
       }
     });
-  }, undefined, () => { console.log('error') });
+  }, undefined, () => console.error);
   building.MeshName = meshname;
 }
 
