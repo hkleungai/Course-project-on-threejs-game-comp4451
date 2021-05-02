@@ -15,14 +15,8 @@ import {
   loadTilesFromGlb,
   loadResourcesFromJsons,
   touchTile,
-  JsonResourcesType
 } from './flows';
-import {
-  GameMap,
-} from './props';
-import { instantiateBuilding, instantiateUnit, updateResources } from './utils';
-import { Point } from './attr';
-import { Barracks } from './props/buildings';
+import { updateResources } from './utils';
 
 const scene = new Scene();
 scene.background = new Color(0x000000);
@@ -36,8 +30,8 @@ camera.position.set(20, 30, 10);
 camera.lookAt(20, 30, 0);
 camera.matrixAutoUpdate = true;
 
-const data = loadResourcesFromJsons();
-loadTilesFromGlb({ scene, gameMap: data.gameMap });
+const jsonResources = loadResourcesFromJsons();
+loadTilesFromGlb({ scene, gameMap: jsonResources.gameMap });
 
 const moveMouse = new Vector3(Infinity, Infinity, 0);
 const leftClickMouse = new Vector3(Infinity, Infinity, 0);
@@ -65,9 +59,9 @@ const gameStart = () => {
       camera,
       renderer,
       scene,
-      jsonResources: data
+      jsonResources
     });
-    updateResources(data.gameMap.Players[0].Resources);
+    updateResources(jsonResources.gameMap.Players[0].Resources);
     render();
   };
   setTimeout(renderWithCssChanges, 1500);

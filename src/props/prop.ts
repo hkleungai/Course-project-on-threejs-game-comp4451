@@ -1,6 +1,5 @@
 import {
   Audio,
-  Mesh
 } from "three";
 
 abstract class Prop {

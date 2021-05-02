@@ -50,11 +50,11 @@ const loadUnitDataFromJson = (): UnitData => {
 const loadResourcesFromJsons = ({
   shouldLoad = true
 }: { shouldLoad?: boolean } = {}): JsonResourcesType => ({
-    gameMap: loadGameMapFromJson({ shouldLoad }),
-    tileData: loadTileDataFromJson(),
-    buildingData: loadBuildingDataFromJson(),
-    customData: loadCustomizableDataFromJson(),
-    unitData: loadUnitDataFromJson()
-  });
+  gameMap: loadGameMapFromJson({ shouldLoad }),
+  tileData: loadTileDataFromJson(),
+  buildingData: loadBuildingDataFromJson(),
+  customData: loadCustomizableDataFromJson(),
+  unitData: loadUnitDataFromJson()
+});
 
 export { JsonResourcesType, loadResourcesFromJsons };

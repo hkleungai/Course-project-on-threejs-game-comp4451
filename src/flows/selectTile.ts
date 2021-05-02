@@ -2,12 +2,9 @@ import {
   BufferGeometry,
   Camera,
   Object3D,
-  Mesh,
   Points,
   PointsMaterial,
-  Raycaster,
   Scene,
-  Vector3,
 } from 'three';
 import { highlightTile } from './';
 import {
@@ -24,14 +21,9 @@ import { GameMap } from '../props';
 import { Point } from '../attr';
 import {
   canMove,
-  canFire,
-  canSabotage,
   canCapture,
   canTrain,
   canDeploy,
-  canBuild,
-  canFortify,
-  canDemolish
 } from '../command';
 
 let highlight: Points<BufferGeometry, PointsMaterial>;
@@ -60,21 +52,17 @@ const selectTile = ({
 
   // Clean up old tile (if any)
   highlight && scene.remove(highlight);
-  if (currentTile?.name) {
-    const coords = new Point(...parseMeshnameToCoords(currentTile.name));
-    const tileObject = getTile(gameMap, coords);
-  }
+  // if (currentTile?.name) {
+  //   const coords = new Point(...parseMeshnameToCoords(currentTile.name));
+  //   const tileObject = getTile(gameMap, coords);
+  // }
 
   // Do something on current tile
   currentTile = newTile;
 
   const center = currentTile.position.toArray();
-  highlight = highlightTile({
-    center,
-    diameterX: GameMap.HexScreenSize.x,
-    diameterY: GameMap.HexScreenSize.y,
-    scene
-  });
+  const { x: diameterX, y: diameterY } = GameMap.HexScreenSize;
+  highlight = highlightTile({ center, diameterX, diameterY, scene});
   // focus camera on selected tile
   camera.position.set(center[0], center[1], camera.position.z);
   camera.lookAt(center[0], center[1], 0);
@@ -82,13 +70,13 @@ const selectTile = ({
   const coords = new Point(...parseMeshnameToCoords(currentTile.name));
   const tileObject = getTile(gameMap, coords);
   // reset all to unavailable
-  document.querySelectorAll('.action-sublist').forEach(n => 
+  document.querySelectorAll('.action-sublist').forEach(n =>
     Array.from(n.children).forEach(e => {
       if (!e.classList.contains('unavailable-action')) {
         e.classList.toggle('unavailable-action');
       }
     }
-  ));
+    ));
   const player = gameMap.Players[0]; // use human player first so far, change later
   const unit = getUnitAt(gameMap, coords);
   if (unit !== undefined) {
@@ -107,7 +95,7 @@ const selectTile = ({
     }
   }
 
-  if (true) {
+  if (true) { // eslint-disable-line no-constant-condition
     const availableavailableActionDivs = document.querySelectorAll("[class*=available-action]");
     availableavailableActionDivs.forEach((availableActionDiv: HTMLElement) => {
       // eslint-disable-next-line no-alert

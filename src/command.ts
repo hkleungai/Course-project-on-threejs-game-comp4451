@@ -4,10 +4,7 @@ import {
   plusEqualsAttr,
   minusEqualsAttr,
   Point,
-  pointEquals,
-  timesAttr,
   applyMod,
-  geqAttr
 } from './attr';
 import { Building, BuildingStatus, UnitBuilding } from './props/buildings';
 import { Artillery, Personnel, Unit, UnitStatus } from './props/units';
@@ -31,7 +28,7 @@ import {
   isCity,
   isFriendlyCity,
   isOccupied,
-  tileExistsInArray
+  isTileInList
 } from './utils';
 import { Cities, CustomizableData, GameMap, Tile } from './props';
 import { Player } from './player';
@@ -55,11 +52,11 @@ abstract class Command {
 }
 
 class Hold extends Command {
-  public Execute() {
+  public Execute(): void {
     const unit = getUnitAt(this.GameMap, this.Destination);
     unit.Status = UnitStatus.Active;
     unit.Carrying.Supplies.Value -=  applyMod(
-      getTile(this.GameMap, this.Destination).TerrainMod.Supplies, 
+      getTile(this.GameMap, this.Destination).TerrainMod.Supplies,
       applyModAttr(unit.Consumption.Supplies)
     );
     if (unit.Carrying.Supplies.Value < 0) {
@@ -77,7 +74,7 @@ class Move extends Command {
     super(gameMap, player, src, destination);
     this.Path = path;
   }
-  public Execute() {
+  public Execute(): void {
     const unit: Unit = getUnitAt(this.GameMap, this.Source);
     unit.Carrying.Supplies.Value -= getRequiredSupplies(this.Path, unit);
     unit.Coords = this.Destination;
@@ -88,21 +85,21 @@ class Move extends Command {
 class Fire extends Command {
   // very crude implementation
   // TODO refine it later
-  public Execute() {
+  public Execute(): void {
     const friendly = getUnitAt(this.GameMap, this.Source);
-    let hostile: Unit | Building | Cities = getUnitAt(this.GameMap, this.Destination)
-                  ?? getBuildingAt(this.GameMap, this.Destination);
-    if (hostile === undefined) {
-      const c = getCityAt(this.GameMap, this.Destination);
-      if (c !== undefined) {
-        hostile = c;
-      }
-    }
+    const hostile: Unit | Building | Cities = (
+      getUnitAt(this.GameMap, this.Destination)
+      || getBuildingAt(this.GameMap, this.Destination)
+      || getCityAt(this.GameMap, this.Destination)
+    );
     if (friendly instanceof Personnel && hostile !== undefined) {
       const p = friendly as Personnel;
       const d = p.PrimaryFirearm.Offense.Damage;
-      const damage = (hostile instanceof Unit ? d.Soft.Value : d.Destruction.Value)
-                    * random(1 - d.Deviation.Value, 1 + d.Deviation.Value);
+      const damage = (
+        hostile instanceof Unit ? d.Soft.Value : d.Destruction.Value
+      ) * (
+        random(1 - d.Deviation.Value, 1 + d.Deviation.Value)
+      );
       if (hostile instanceof Unit) {
         hostile.Defense.Strength.Value -= damage;
       } else {
@@ -114,16 +111,18 @@ class Fire extends Command {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class Sabotage extends Command {
 
 }
 
 // this class included re-capture as well
 class Capture extends Command {
-  public Execute() {
+  public Execute(): void {
     const city: Cities = getCityAt(this.GameMap, this.Source); // on top of city
     const unit: Unit = getUnitAt(this.GameMap, this.Source); // self unit
     if (city === undefined || !(unit instanceof Personnel)) {
+    // eslint-disable-next-line no-alert
       alert('target is not a city or unit is not personnel');
       return;
     }
@@ -148,12 +147,13 @@ class Capture extends Command {
 class Train extends Command {
   public TrainingGround: UnitBuilding;
   public Unit: Unit;
-  public Execute() {
+  public Execute(): void {
     if (this.TrainingGround.TrainingQueue.length >=
       applyModAttr(this.TrainingGround.QueueCapacity)) {
-        alert('training queue is full');
-        return;
-      }
+      // eslint-disable-next-line no-alert
+      alert('training queue is full');
+      return;
+    }
     const nei: string = consumeResources(this.Player.Resources, this.Unit.Cost.Base);
     if (nei === '') {
       this.Unit.Owner = this.Player;
@@ -165,6 +165,7 @@ class Train extends Command {
       this.Unit.TrainingGround = this.TrainingGround;
       this.GameMap.Units.push(this.Unit); // add to game map
     } else {
+      // eslint-disable-next-line no-alert
       alert(`not enough ${nei}`);
     }
   }
@@ -174,8 +175,9 @@ class Deploy extends Command {
   public Custom: CustomizableData;
   public TrainingGround: UnitBuilding;
   public Unit: Unit;
-  public Execute() {
+  public Execute(): void {
     if (this.Unit.Status !== UnitStatus.CanBeDeployed) {
+      // eslint-disable-next-line no-alert
       alert('not a deployable unit');
       return;
     }
@@ -183,8 +185,11 @@ class Deploy extends Command {
       getTile(this.GameMap, this.TrainingGround.CoOrds),
       Math.floor(applyModAttr(this.TrainingGround.DeployRange))
     ).filter(t => !isOccupied(this.GameMap, t.CoOrds));
-    if (deployable.length == 0 ||
-      !tileExistsInArray(deployable, getTile(this.GameMap, this.Destination))) {
+    if (
+      deployable.length == 0 ||
+      !isTileInList(deployable, getTile(this.GameMap, this.Destination))
+    ) {
+      // eslint-disable-next-line no-alert
       alert('either no available space for deploy or target is occupied.');
       return;
     }
@@ -197,7 +202,7 @@ class Deploy extends Command {
 
 class Build extends Command {
   public Building: Building;
-  public Execute() {
+  public Execute(): void {
     this.Building.Owner = this.Player;
     const nei = consumeResources(this.Player.Resources, this.Building.Cost.Base);
     if (nei === '') {
@@ -205,123 +210,133 @@ class Build extends Command {
       this.Building.Status = BuildingStatus.UnderConstruction;
       this.GameMap.Buildings.push(this.Building);
     } else {
+      // eslint-disable-next-line no-alert
       alert(`not enough ${nei}`);
     }
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class Fortify extends Command {
 
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class Demolish extends Command {
 
 }
 
 //#region logic for determining commands available
+// TODO: Move these to utils
 const canMove = (gameMap: GameMap, tile: Tile, self: Player): Tile[] => {
-  if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
-    const unit = getUnitAt(gameMap, tile.CoOrds);
-    if (unit.Carrying.Supplies.Value > 0 && hasEmptyNeigbors(gameMap, unit.Coords)) {
-      return getNeighborsAtRange(gameMap, tile, applyModAttr(unit.Maneuverability.Speed))
-        .filter(t => !isOccupied(gameMap, t.CoOrds));
-    }    
+  if (!hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
+    return [];
   }
-  return [];
+  const unit = getUnitAt(gameMap, tile.CoOrds);
+  if (unit.Carrying.Supplies.Value <= 0 || !hasEmptyNeigbors(gameMap, unit.Coords)) {
+    return [];
+  }
+  const neighbors = getNeighborsAtRange(gameMap, tile, applyModAttr(unit.Maneuverability.Speed));
+  return neighbors.filter(t => !isOccupied(gameMap, t.CoOrds));
   //TODO add check fuel for vehicles and suppression later
 };
+
 const canFire = (gameMap: GameMap, tile: Tile, self: Player, weapon: Firearm | Gun): Unit[] => {
-  let targets: Unit[] = [];
-  if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
-    const unit = getUnitAt(gameMap, tile.CoOrds);
-    if (unit instanceof Personnel) {
-      if (hasEnoughCartridges(unit, weapon as Firearm)
-        && hasEnoughShells(unit, weapon as Firearm)
-        && hasEnoughFuel(unit, weapon as Firearm)) {
-        getNeighborsAtRange(gameMap, tile, applyModAttr(weapon.Offense.MaxRange))
-          .filter(t => hasHostileUnit(gameMap, t.CoOrds, self))
-          .forEach(t => targets.push(getUnitAt(gameMap, t.CoOrds)));
-        return targets;
-      }
-    } else if (unit instanceof Artillery) {
-      
-    }
+  if (!hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
+    return [];
   }
-  return targets;
+  const unit = getUnitAt(gameMap, tile.CoOrds);
+  if (unit instanceof Personnel) {
+    if (
+      !hasEnoughCartridges(unit, weapon as Firearm)
+      || !hasEnoughShells(unit, weapon as Firearm)
+      || !hasEnoughFuel(unit, weapon as Firearm)
+    ) {
+      return [];
+    }
+    const neighbors = getNeighborsAtRange(gameMap, tile, applyModAttr(weapon.Offense.MaxRange));
+    return neighbors.filter(t => hasHostileUnit(gameMap, t.CoOrds, self)).map(t => getUnitAt(gameMap, t.CoOrds));
+  }
+  // eslint-disable-next-line no-empty
+  if (unit instanceof Artillery) {
+
+  }
+  return [];
 };
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const canSabotage = (gameMap: GameMap, tile: Tile, self: Player, weapon: Firearm | Gun): (Building | Cities)[] => {
-  let targets: (Building | Cities)[] = [];
-  if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
-    const unit = getUnitAt(gameMap, tile.CoOrds);
-    if (unit instanceof Personnel) {
-      
-    }
+  if (!hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
+    return [];
   }
-  return targets;
+  const unit = getUnitAt(gameMap, tile.CoOrds);
+  // eslint-disable-next-line no-empty
+  if (unit instanceof Personnel) {
+
+  }
+  return [];
 };
+
 const canCapture = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasUnit(gameMap, tile.CoOrds)) {
-    const unit = getUnitAt(gameMap, tile.CoOrds);
-    if (unit instanceof Personnel) {
-      if (isCity(gameMap, tile.CoOrds)) {
-        const city: Cities = getCityAt(gameMap, tile.CoOrds);
-        if (city.Owner === self) {
-          return city.Morale.Value < 100;
-        } 
-        return true;
-      }
-    }
+  if (!hasUnit(gameMap, tile.CoOrds)) {
+    return false;
   }
-  return false;
+  const unit = getUnitAt(gameMap, tile.CoOrds);
+  if (!(unit instanceof Personnel) || !isCity(gameMap, tile.CoOrds)) {
+    return false;
+  }
+  const city: Cities = getCityAt(gameMap, tile.CoOrds);
+  return city.Owner !== self || city.Morale.Value < 100;
 };
+
 const canBuild = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
   if (hasFriendlyUnit(gameMap, tile.CoOrds, self)) {
     return hasConstructibleNegibours(gameMap, tile.CoOrds);
-  } else if (isFriendlyCity(gameMap, tile.CoOrds, self)) {
-    // consider city only so far
-    const city = getCityAt(gameMap, tile.CoOrds);
-    let ok = false;
-    getNeighborsAtRange(gameMap, city, applyModAttr(city.ConstructionRange)).forEach(n => {
-      if (n.AllowConstruction && !isOccupied(gameMap, n.CoOrds)) {
-        ok = true;
-        return;
-      }
-    });
-    return ok;
   }
-  return false;
+  if (!isFriendlyCity(gameMap, tile.CoOrds, self)) {
+    return false;
+  }
+  // consider city only so far
+  const city = getCityAt(gameMap, tile.CoOrds);
+  const neighbors = getNeighborsAtRange(gameMap, city, applyModAttr(city.ConstructionRange));
+  return neighbors.some(n => n.AllowConstruction && !isOccupied(gameMap, n.CoOrds));
 };
+
 const canTrain = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
-    const b: Building = getBuildingAt(gameMap, tile.CoOrds);
-    if (b instanceof UnitBuilding) {
-      const ub: UnitBuilding = b as UnitBuilding;
-      return ub.TrainingQueue.length < applyModAttr(ub.QueueCapacity);
-    } 
+  if (!hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
+    return false;
   }
-  return false;
+  const b = getBuildingAt(gameMap, tile.CoOrds);
+  if (!(b instanceof UnitBuilding)) {
+    return false;
+  }
+  return b.TrainingQueue.length < applyModAttr(b.QueueCapacity);
 };
+
 const canDeploy = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
-    const b: Building = getBuildingAt(gameMap, tile.CoOrds);
-    if (b instanceof UnitBuilding) {
-      const ub: UnitBuilding = b as UnitBuilding;
-      return ub.ReadyToDeploy.length > 0;
-    }
+  if (!hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
+    return false;
   }
-  return false;
+  const b = getBuildingAt(gameMap, tile.CoOrds);
+  if (!(b instanceof UnitBuilding)) {
+    return false;
+  }
+  return b.ReadyToDeploy.length > 0;
 };
+
 const canFortify = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
-    const building = getBuildingAt(gameMap, tile.CoOrds);
-    return building.Level < building.MaxLevel && building.Status === BuildingStatus.Active;
+  if (!hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
+    return false;
   }
+  const building = getBuildingAt(gameMap, tile.CoOrds);
+  return building.Level < building.MaxLevel && building.Status === BuildingStatus.Active;
 };
 const canDemolish = (gameMap: GameMap, tile: Tile, self: Player): boolean => {
-  if (hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
-    const building = getBuildingAt(gameMap, tile.CoOrds);
-    return building.Status === BuildingStatus.Active;
+  if (!hasFriendlyBuilding(gameMap, tile.CoOrds, self)) {
+    return false;
   }
+  const building = getBuildingAt(gameMap, tile.CoOrds);
+  return building.Status === BuildingStatus.Active;
 };
 //#endregion
 
@@ -344,4 +359,4 @@ export {
   canDeploy,
   canFortify,
   canDemolish
-}
+};

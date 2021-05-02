@@ -1,4 +1,3 @@
-//eslint-disable no-console
 import { Scene } from 'three';
 import {
   getNeighbors,
@@ -15,13 +14,11 @@ import {
 import { GameMap, Tile } from './props/tiles';
 import { meshes } from './resources';
 import { Barracks, Building } from './props/buildings';
-import { BuildingData, UnitData } from './props';
 import { Point } from './attr';
 import { Infantry, Personnel, Unit } from './props/units';
 import { Player } from './player';
 import { JsonResourcesType } from './flows';
 import { canBuild, canCapture, canDeploy, canFire, canMove, canTrain, Hold } from './command';
-import { gameMap } from './assets/json';
 
 const testGetNeiboursAtRange = (scene: Scene, map: GameMap, tile: Tile, range: number): void => {
   getNeighborsAtRange(map, tile, range).forEach(t => {
@@ -30,7 +27,7 @@ const testGetNeiboursAtRange = (scene: Scene, map: GameMap, tile: Tile, range: n
   });
 };
 
-const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Unit, owner: Player) => {
+const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Unit, owner: Player): void => {
   unit.Owner = owner;
   unit.Carrying.Supplies.Value = unit.Cost.Base.Supplies.Value;
   unit.Carrying.Cartridges.Value = unit.Cost.Base.Cartridges.Value;
@@ -41,21 +38,22 @@ const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Uni
   gameMap.Units.push(unit);
 };
 
-const testCreateBuilding = (scene: Scene, gameMap: GameMap, coords: Point, building: Building, owner: Player) => {
+const testCreateBuilding = (scene: Scene, gameMap: GameMap, coords: Point, building: Building, owner: Player): void => {
   building.Owner = owner;
   instantiateBuilding(scene, coords, building);
   building.CoOrds = coords;
   gameMap.Buildings.push(building);
 };
 
-const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player) => {
+/* eslint-disable no-console */
+const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player): void => {
   const t = getTile(gameMap, coords);
   if (canBuild(gameMap, t, player)) {
     console.log(`can construct buildings by selecting tile at (${coords.X}, ${coords.Y})`);
   }
   const o = isOccupied(gameMap, coords);
   console.log(`(${coords.X}, ${coords.Y}) is ${o ? '' : 'not '}occupied`);
-  if (o) {   
+  if (o) {
     const u = hasUnit(gameMap, coords);
     console.log(`(${coords.X}, ${coords.Y}) ${u ? 'has' : 'does not have'} unit`);
     const b = hasBuilding(gameMap, coords);
@@ -81,13 +79,14 @@ const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player) => {
     console.log(`(${coords.X}, ${coords.Y}) has no units or buildings`);
   }
 };
+/* eslint-enable no-console */
 
-const testCommands = (scene: Scene, data: JsonResourcesType) => {
-  const p = data.gameMap.Players[0];
-  data.gameMap.Commands.push(new Hold(data.gameMap, p, new Point(17, 8), new Point(17, 8)))
+const testCommands = (scene: Scene, { gameMap }: JsonResourcesType): void => {
+  const p = gameMap.Players[0];
+  gameMap.Commands.push(new Hold(gameMap, p, new Point(17, 8), new Point(17, 8)));
 };
 
-const executeTests = (scene: Scene, data: JsonResourcesType) => {
+const executeTests = (scene: Scene, data: JsonResourcesType): void => {
   const p = data.gameMap.Players[0];
   testCreateUnit(scene, data.gameMap, new Point(17, 8), new Infantry(data.unitData.PersonnelData['infantry']), p);
   testCreateBuilding(scene, data.gameMap, new Point(18, 7), new Barracks(data.buildingData.UnitBuildingData[0]), p);

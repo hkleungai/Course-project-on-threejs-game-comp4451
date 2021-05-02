@@ -4,7 +4,6 @@ import {
   Vector3,
   Scene,
 } from 'three';
-import { GameMap } from '../props';
 import { executeTests } from '../test';
 import { Direction, executePhases } from '../utils';
 import { JsonResourcesType } from './loadResourcesFromJsons';
@@ -110,7 +109,7 @@ const listenOnKeyboardEvent = ({
         scene !== undefined && jsonResources.gameMap !== undefined && executePhases(scene, jsonResources);
         break;
       default:
-        console.log(event.key); //eslint-disable-line no-console
+        console.log(event.key); // eslint-disable-line no-console
         break;
     }
   };

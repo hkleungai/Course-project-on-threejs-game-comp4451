@@ -1,5 +1,3 @@
-import { InvalidArgumentException } from "./exception";
-
 const randint = (upperBound: number): number => Math.floor(Math.random() * upperBound);
 const range = (upperBound: number): number[] => [...Array(upperBound).keys()];
 const rangeFrom = (lowerBound: number, length: number): number[] => Array.from({length: length}, (_, i) => i + lowerBound);
@@ -8,19 +6,16 @@ const getLength = (bounds: [number, number]): number => bounds[1] - bounds[0] + 
 
 const sinDeg = (deg: number): number => Math.sin(deg / 180 * Math.PI);
 const cosDeg = (deg: number): number => Math.cos(deg / 180 * Math.PI);
-const XOR = (a: Array<any>, b: Array<any>): Array<any> => {
-  if (typeof a !== typeof b) {
-    throw new InvalidArgumentException('xor_array_type', a, b);
-  }
+const XOR = <T, >(a: T[], b: T[]): T[] => {
   return a.filter(n => !b.includes(n)).concat(b.filter(n => !a.includes(n)));
 };
 
-const makeActionButtonAvailable = (classname: string) => {
+const makeActionButtonAvailable = (classname: string): void => {
   document
     .querySelector(`ul.action-sublist.${classname}`)
     .classList
     .remove('unavailable-action');
-}
+};
 
 class KeyValuePair<T, U> {
   private _key : T;

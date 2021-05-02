@@ -7,7 +7,7 @@ import { meshes } from "../resources";
 import { parseCoordsToScreenPoint, InvalidArgumentException, range } from "./";
 import { getBuildingEntries } from "./textures";
 
-const instantiateBuilding = (mainScene: Scene, coords: Point, building: Building) => {
+const instantiateBuilding = (mainScene: Scene, coords: Point, building: Building): void => {
   if (building.Owner === undefined) {
     throw new InvalidArgumentException('building.Owner', building);
   }
@@ -35,9 +35,9 @@ const instantiateBuilding = (mainScene: Scene, coords: Point, building: Building
         mainScene.add(child);
       }
     });
-  }, undefined, () => console.error);
+  }, undefined, console.error); // eslint-disable-line no-console
   building.MeshName = meshname;
-}
+};
 
 export {
   instantiateBuilding

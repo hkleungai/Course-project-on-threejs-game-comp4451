@@ -5,13 +5,11 @@ import {
   Cost,
   Maneuverability,
   Defense,
-  // Offense,
   Resources,
   Scouting,
 } from '../../attr';
 import {
   Firearm,
-  // Module,
   Gun,
   MachineGun,
   Engine,
@@ -29,7 +27,6 @@ import {
 } from '../../researches';
 import { Player } from '../../player';
 import { UnitBuilding } from '../buildings';
-// import { personnelDataJson } from '../../assets/json';
 
 enum UnitStatus {
   None,
