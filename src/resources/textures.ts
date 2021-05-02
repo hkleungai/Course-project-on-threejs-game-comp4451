@@ -150,6 +150,18 @@ const militiaEntries: [string, Texture][] = [
 militiaEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
 const militias = Object.fromEntries(militiaEntries);
 
+const barracksEntries: [string, Texture][] = [
+  'barracks_red',
+  'barracks_blue',
+  'barracks_yellow',
+  'barracks_green',
+].map(buildingKey => ([
+  buildingKey,
+  textureLoader.load(`../assets/buildings/${buildingKey}.png`),
+]));
+barracksEntries.forEach(([, textureMap]) => { textureMap.flipY = false; });
+const barracks = Object.fromEntries(barracksEntries);
+
 export {
   meshes,
   textures,
@@ -162,4 +174,5 @@ export {
   assaults,
   infantries,
   militias,
+  barracks
 };

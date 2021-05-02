@@ -1,7 +1,5 @@
 import { Resources } from './attr';
-// import { Cities } from './props';
 import { Building } from './props/buildings';
-import { Unit } from './props/units';
 import { Technology, Customizable } from './researches';
 
 enum PlayerColor {
@@ -33,7 +31,7 @@ class Player {
 
 const playerEquals = (p1: Player, p2: Player): boolean => {
   return p1.Name === p2.Name && p1.Color === p2.Color;
-}
+};
 
 export {
   PlayerColor,

@@ -43,18 +43,18 @@ class TileData {
 }
 
 class BuildingData {
-  public UnitBuildingData : UnitBuilding[] = [];
-  public ResourcesBuildingsData : ResourcesBuilding[] = [];
-  public InfrastructuresData : Infrastructure[] = [];
-  public TransmissionBuildingsData : TransmissionBuilding[] = [];
-  public DefensiveBuildingsData : DefensiveBuilding[] = [];
+  public UnitBuildingData : { [name: string]: UnitBuilding } = {};
+  public ResourcesBuildingData : { [name: string]: ResourcesBuilding } = {};
+  public InfrastructureData : { [name: string]: Infrastructure } = {};
+  public TransmissionBuildingData : { [name: string]: TransmissionBuilding } = {};
+  public DefensiveBuildingData : { [name: string]: DefensiveBuilding } = {};
 
   Load(): void {
     this.UnitBuildingData = buildingDataJson.UnitBuildingData;
-    this.ResourcesBuildingsData = buildingDataJson.ResourcesBuildingsData;
-    this.InfrastructuresData = buildingDataJson.InfrastructuresData;
-    this.TransmissionBuildingsData = buildingDataJson.TransmissionBuildingsData;
-    this.DefensiveBuildingsData = buildingDataJson.DefensiveBuildingsData;
+    this.ResourcesBuildingData = buildingDataJson.ResourcesBuildingData;
+    this.InfrastructureData = buildingDataJson.InfrastructuresData;
+    this.TransmissionBuildingData = buildingDataJson.TransmissionBuildingData;
+    this.DefensiveBuildingData = buildingDataJson.DefensiveBuildingData;
   }
 }
 

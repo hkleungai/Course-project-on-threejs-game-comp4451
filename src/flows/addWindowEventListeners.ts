@@ -4,8 +4,10 @@ import {
   Vector3,
   Scene,
 } from 'three';
-import { GameMap } from '../props';
-import { executePhases } from '../utils';
+import { executeTests } from '../test';
+import { Direction, executePhases } from '../utils';
+import { JsonResourcesType } from './loadResourcesFromJsons';
+import { selectTile } from './selectTile';
 
 interface OnWindowResizeInputType {
   camera: PerspectiveCamera;
@@ -50,12 +52,12 @@ const listenOnMouseEvent = ({
 interface OnKeyboardEventInputType {
   camera: PerspectiveCamera;
   delta?: number;
-  gameMap?: GameMap;
   scene?: Scene;
+  jsonResources?: JsonResourcesType;
 }
 
 const listenOnKeyboardEvent = ({
-  camera, delta, gameMap, scene
+  camera, delta, scene, jsonResources
 }: OnKeyboardEventInputType): void => {
   if (delta === undefined) {
     delta = 0.5;
@@ -64,34 +66,50 @@ const listenOnKeyboardEvent = ({
     event.preventDefault();
     switch (event.key) {
       case 'ArrowUp':
-      case 'W':
+      case '8':
         camera.translateY(delta);
         break;
       case 'ArrowDown':
-      case 'S':
+      case '5':
         camera.translateY(-delta);
         break;
       case 'ArrowLeft':
-      case 'A':
+      case '4':
         camera.translateX(-delta);
         break;
       case 'ArrowRight':
-      case 'D':
+      case '6':
         camera.translateX(delta);
         break;
       case '+':
-      case 'E':
+      case '9':
         camera.translateZ(-delta);
         break;
       case '-':
-      case 'Q':
+      case '7':
         camera.translateZ(delta);
         break;
+      case 'w':
+      case 'e':
+      case 'd':
+      case 's':
+      case 'a':
+      case 'q':
+        selectTile({
+          camera,
+          gameMap: jsonResources.gameMap,
+          direction: Direction[event.key],
+          scene
+        });
+        break;
+      case 't': //test
+        scene !== undefined && jsonResources.gameMap !== undefined && executeTests(scene, jsonResources);
+        break;
       case 'Enter':
-        scene !== undefined && gameMap !== undefined && executePhases(scene, gameMap);
+        scene !== undefined && jsonResources.gameMap !== undefined && executePhases(scene, jsonResources);
         break;
       default:
-        // console.log(event.key);
+        console.log(event.key); // eslint-disable-line no-console
         break;
     }
   };
@@ -104,8 +122,8 @@ interface AddWindowEventListenersInputType {
   rightClickMouse: Vector3;
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
-  gameMap?: GameMap;
   scene?: Scene;
+  jsonResources?: JsonResourcesType;
 }
 
 const addWindowEventListeners = ({
@@ -114,8 +132,8 @@ const addWindowEventListeners = ({
   rightClickMouse,
   camera,
   renderer,
-  gameMap,
   scene,
+  jsonResources
 }: AddWindowEventListenersInputType): void => {
   listenOnMouseEvent({
     mouse: moveMouse,
@@ -133,9 +151,9 @@ const addWindowEventListeners = ({
     shouldPreventDefault: true
   });
   listenOnWindowResize({ camera, renderer });
-  listenOnKeyboardEvent({ camera, gameMap, scene });
+  listenOnKeyboardEvent({ camera, scene, jsonResources });
 };
 
 export {
-  addWindowEventListeners,
+  addWindowEventListeners
 };

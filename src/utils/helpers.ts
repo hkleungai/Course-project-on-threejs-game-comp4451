@@ -6,6 +6,16 @@ const getLength = (bounds: [number, number]): number => bounds[1] - bounds[0] + 
 
 const sinDeg = (deg: number): number => Math.sin(deg / 180 * Math.PI);
 const cosDeg = (deg: number): number => Math.cos(deg / 180 * Math.PI);
+const XOR = <T, >(a: T[], b: T[]): T[] => {
+  return a.filter(n => !b.includes(n)).concat(b.filter(n => !a.includes(n)));
+};
+
+const makeActionButtonAvailable = (classname: string): void => {
+  document
+    .querySelector(`ul.action-sublist.${classname}`)
+    .classList
+    .remove('unavailable-action');
+};
 
 class KeyValuePair<T, U> {
   private _key : T;
@@ -65,6 +75,8 @@ export {
   getLength,
   sinDeg,
   cosDeg,
+  XOR,
+  makeActionButtonAvailable,
   KeyValuePair,
   Dictionary
 };

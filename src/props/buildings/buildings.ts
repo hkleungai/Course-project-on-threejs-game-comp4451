@@ -25,11 +25,27 @@ abstract class Building extends Prop {
   public Owner : Player;
   public CoOrds : Point;
   public Level : number;
+  public MaxLevel : number;
   public Cost : Cost;
   public Durability : Attribute;
   public Scouting : Scouting;
   public DestroyTerrainOnBuilt : boolean;
   public ConstructionTimeRemaining : number;
+
+  public constructor(building?: Partial<Building>) {
+    super();
+    this.Name = building.Name;
+    this.Status = building.Status;
+    this.Owner = building.Owner;
+    this.CoOrds = building.CoOrds;
+    this.Level = building.Level;
+    this.MaxLevel = building.MaxLevel;
+    this.Cost = building.Cost;
+    this.Durability = building.Durability;
+    this.Scouting = building.Scouting;
+    this.DestroyTerrainOnBuilt = building.DestroyTerrainOnBuilt;
+    this.ConstructionTimeRemaining = building.ConstructionTimeRemaining;
+  }
 }
 
 abstract class UnitBuilding extends Building {
@@ -38,6 +54,15 @@ abstract class UnitBuilding extends Building {
   public CurrentQueueTime : number;
   public ReadyToDeploy : Unit[];
   public DeployRange : Attribute;
+
+  public constructor(unitBuilding?: Partial<UnitBuilding>) {
+    super(unitBuilding);
+    this.QueueCapacity = unitBuilding.QueueCapacity;
+    this.TrainingQueue = unitBuilding.TrainingQueue;
+    this.CurrentQueueTime = unitBuilding.CurrentQueueTime;
+    this.ReadyToDeploy = unitBuilding.ReadyToDeploy;
+    this.DeployRange = unitBuilding.DeployRange;
+  }
 }
 
 abstract class ResourcesBuilding extends Building {

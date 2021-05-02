@@ -1,8 +1,6 @@
 import { Vector3 } from 'three';
 import {
   Attribute,
-  Modifier, // eslint-disable-line @typescript-eslint/no-unused-vars
-  ModifierType, // eslint-disable-line @typescript-eslint/no-unused-vars
   Point,
   Resources,
   TerrainModifiers
@@ -16,10 +14,9 @@ import {
   mapDataJson,
   playerDataJson
 } from '../assets/json';
-// import { isInteger } from 'mathjs';
-// import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
 import { Building } from './buildings';
 import { Command } from '../command';
+import { range } from '../utils';
 
 enum TileType {
   BOUNDARY = 0,
@@ -62,6 +59,7 @@ class Tile extends Prop {
     this.Height = tile.Height;
   }
 }
+
 class Cities extends Tile {
   public Owner : Player;
   public Population : number;
@@ -81,6 +79,7 @@ class Cities extends Tile {
   }
 }
 
+/* eslint-disable camelcase */
 class WeightedCubeTile {
   public CubeCoords: number[];
   public BaseCost: number; // base cost for this tile: unit supplies/fule consumption
@@ -89,8 +88,9 @@ class WeightedCubeTile {
   public DistanceToGoal: number; // remaining distance to goal
   public DistanceSoFar: number; // distance travelled so far
   public Parent: WeightedCubeTile;
-  // an overestimate of total cost
-  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 5 }
+  // a "just-right" estimate of total cost
+  // IMPORTANT: sometimes wrong path is returned using underestimate, yet to find out why
+  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 2; }
 
   constructor(parent: WeightedCubeTile, cube: number[], base: number, mod: number, cost: number, d_goal: number, d_sofar: number) {
     this.Parent = parent;
@@ -102,14 +102,10 @@ class WeightedCubeTile {
     this.DistanceSoFar = d_sofar;
   }
 }
+/* eslint-enable camelcase */
 
 const cubeTileEquals = (t1: WeightedCubeTile, t2: WeightedCubeTile): boolean => {
-  for (let i = 0; i < 3; i++) {
-    if (t1.CubeCoords[i] !== t2.CubeCoords[i]) {
-      return false;
-    }
-  }
-  return true;
+  return range(3).every(i => t1.CubeCoords[i] === t2.CubeCoords[i]);
 };
 
 class GameMap {
@@ -121,6 +117,7 @@ class GameMap {
   private _units : Unit[] = [];
   private _buildings : Building[] = [];
   private _commands : Command[] = [];
+  private _roundnum = 1;
   private static _hexScreenSize: Vector3;
 
   static get Height() : number { return GameMap._height; }
@@ -136,6 +133,8 @@ class GameMap {
   set Buildings(buildings: Building[]) { this._buildings = buildings; }
   get Commands() : Command[] { return this._commands; }
   set Commands(commands: Command[]) { this._commands = commands; }
+  get RoundNum() : number { return this._roundnum; }
+  set RoundNum(round: number) { this._roundnum = round; }
   static get HexScreenSize() : Vector3 { return GameMap._hexScreenSize; }
   static set HexScreenSize(hexScreenSize: Vector3) { GameMap._hexScreenSize = hexScreenSize; }
 

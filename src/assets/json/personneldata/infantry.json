@@ -27,28 +27,28 @@
   "Cost": {
     "Base": {
       "Money": {
-        "Value": 0,
+        "Value": 300,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 5,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Supplies": {
-        "Value": 0,
+        "Value": 250,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Cartridges": {
-        "Value": 0,
+        "Value": 15,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -76,7 +76,7 @@
         }
       },
       "Manpower": {
-        "Value": 0,
+        "Value": 150,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -90,7 +90,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 0.5,
         "Mod": {
           "Type": 0,
           "Value": 0

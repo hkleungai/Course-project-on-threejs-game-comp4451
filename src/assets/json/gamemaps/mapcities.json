@@ -1,15 +1,89 @@
 [
   {
     "Owner": null,
-    "Population": 0,
-    "ConstructionRange": null,
-    "Production": null,
+    "Population": 5000,
+    "ConstructionRange": {
+      "Value": 2,
+      "Mod": null
+    },
+    "Production": {
+      "Money": {
+        "Value": 2000,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 400,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 200,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 100,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 40,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 20,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 400,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 40,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
     "Durability": {
-      "Value": 3000,
+      "Value": 40000,
       "Mod": null
     },
     "Morale": {
-      "Value": 100,
+      "Value": 250,
       "Mod": null
     },
     "Name": "metropolis",
@@ -46,15 +120,89 @@
   },
   {
     "Owner": null,
-    "Population": 0,
-    "ConstructionRange": null,
-    "Production": null,
+    "Population": 5000,
+    "ConstructionRange": {
+      "Value": 2,
+      "Mod": null
+    },
+    "Production": {
+      "Money": {
+        "Value": 2000,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 400,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 200,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 100,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 40,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 20,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 400,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 40,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
     "Durability": {
-      "Value": 3000,
+      "Value": 40000,
       "Mod": null
     },
     "Morale": {
-      "Value": 100,
+      "Value": 250,
       "Mod": null
     },
     "Name": "metropolis",

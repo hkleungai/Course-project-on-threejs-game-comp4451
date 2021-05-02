@@ -1,8 +1,12 @@
 import { Module } from './research';
 import { Shell } from './shells';
-import { Attribute } from '../attr';
+import { Attribute, Offense } from '../attr';
 
 class Gun extends Module {
+  public Offense : Offense;
+  public Noise : Attribute;
+  public CamoPenaltyFire : Attribute;
+  public ShellConsumption : Attribute;
   public CompatibleShells : string[];
   public CurrentShell : Shell;
 }

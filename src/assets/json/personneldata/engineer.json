@@ -1,8 +1,14 @@
 {
   "PrimaryFirearm": null,
   "SecondaryFirearm": null,
-  "DefaultPrimary": null,
-  "AvailableFirearms": [],
+  "DefaultPrimary": "Submachinegun",
+  "AvailableFirearms": [
+    "Submachinegun",
+    "Flamethrower",
+    "Carbine",
+    "Shotgun",
+    "Molotov"
+  ],
   "CaptureEfficiency": {
     "Value": 20,
     "Mod": null
@@ -17,28 +23,28 @@
   "Cost": {
     "Base": {
       "Money": {
-        "Value": 0,
+        "Value": 250,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 6,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Supplies": {
-        "Value": 0,
+        "Value": 280,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Cartridges": {
-        "Value": 0,
+        "Value": 12.5,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -66,7 +72,7 @@
         }
       },
       "Manpower": {
-        "Value": 0,
+        "Value": 150,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -80,7 +86,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 0.5,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -89,14 +95,14 @@
     },
     "Research": {
       "Money": {
-        "Value": 0,
+        "Value": 100,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 25,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -152,7 +158,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 3.5,
         "Mod": {
           "Type": 0,
           "Value": 0
