@@ -1,3 +1,4 @@
+import { addCommand } from "../command";
 import { InvalidArgumentException } from "./exception";
 
 const randint = (upperBound: number): number => Math.floor(Math.random() * upperBound);
@@ -17,7 +18,14 @@ const XOR = (a: Array<any>, b: Array<any>): Array<any> => {
 
 const makeActionButtonAvailable = (classname: string) => {
   document
-    .querySelector(`ul.action-sublist.${classname}`)
+    .querySelector(`ul.action-sublist>li.${classname}`)
+    .classList
+    .remove('unavailable-action');
+};
+
+const makeTrainButtonAvailable = (classname: string) => {
+  document
+    .querySelector(`ul.train-list>li.${classname}`)
     .classList
     .remove('unavailable-action');
 }
@@ -82,6 +90,7 @@ export {
   cosDeg,
   XOR,
   makeActionButtonAvailable,
+  makeTrainButtonAvailable,
   KeyValuePair,
   Dictionary
 };

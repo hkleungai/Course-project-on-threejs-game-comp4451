@@ -9,7 +9,7 @@ import {
   Scene,
   Vector3,
 } from 'three';
-import { highlightTile } from './';
+import { highlightTile, highlightTargets } from './';
 import {
   parseMeshnameToCoords,
   getTile,
@@ -18,43 +18,107 @@ import {
   getNeighbors,
   getBuildingAt,
   Direction,
-  makeActionButtonAvailable
+  makeActionButtonAvailable,
+  getCityAt,
+  makeTrainButtonAvailable
 } from '../utils';
-import { GameMap } from '../props';
+import { GameMap, Tile } from '../props';
 import { Point } from '../attr';
 import {
-  canMove,
-  canFire,
-  canSabotage,
   canCapture,
   canTrain,
-  canDeploy,
-  canBuild,
-  canFortify,
-  canDemolish
+  getDeployTargets,
+  getDeployUnits,
+  getMoveTargets,
+  getFortifyTargets,
+  getDemolishTargets,
+  getBuildTargets,
+  addCommand,
+  Command,
+  Hold,
+  Move,
+  getFireTargets,
+  getTrainUnits,
+  Fire,
+  Deploy,
+  Build,
+  Train,
+  addRepeatableCommand,
+  Capture,
+  Fortify,
+  Demolish,
 } from '../command';
+import { unhighlightTargets } from './highlightTile';
+import { meshes } from '../resources';
+import { Personnel, Unit } from '../props/units';
+import { JsonResourcesType } from './loadResourcesFromJsons';
+
+type TargetType = 'none' | 'move' | 'fire' | 'build' | 'fortify' | 'demolish' | 'deploy';
 
 let highlight: Points<BufferGeometry, PointsMaterial>;
 let currentTile: Object3D;
 let currentCoOrds: Point = new Point(17, 7);
+let source: Tile;
+let targetType: TargetType = 'none';
+let targetName: string;
 
 interface SelectTileInputType {
   camera: Camera;
-  gameMap: GameMap;
-  direction: Direction,
+  direction?: Direction,
   scene: Scene;
+  confirmSelection?: boolean;
+  data: JsonResourcesType
 }
 
 const selectTile = ({
   camera,
-  gameMap,
   direction,
   scene,
+  data = undefined,
+  confirmSelection = false
 }: SelectTileInputType): void => {
-  const t = getNeighbors(gameMap, currentCoOrds, false, false)[direction];
-  if (t === undefined) {
-    return;
-  }
+  //#region helper functions
+  const selectTarget = (type: TargetType, unit?: Unit) => {
+    let targets: Tile[] = [];
+    targetType = type;
+    switch (type) {
+      case 'move':
+        targets = getMoveTargets(data.gameMap, tileObject, player);
+        break;
+      case 'fire':
+        targets = getFireTargets(data.gameMap, tileObject, player, (unit as Personnel).PrimaryFirearm)
+        .map(t => getTile(data.gameMap, t.Coords));
+        break;
+      case 'build':
+        targets = getBuildTargets(data.gameMap, tileObject, player);
+        break;
+      case 'deploy':
+        targets = getDeployTargets(data.gameMap, tileObject, player);
+    }
+    if (source === undefined) {
+      highlightTargets(scene, targets);
+      source = tileObject;
+      alert('Please select a target');
+    }
+  };
+  const getCommand = (type: TargetType, target_name?: string): Command => {
+    switch (type) {
+      case 'move':
+        return new Move(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
+      case 'fire':
+        return new Fire(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
+      case 'deploy':
+        return new Deploy(data.gameMap, player, source.CoOrds, tileObject.CoOrds, data.customData);
+      case 'build':
+        return new Build(data.gameMap, player, source.CoOrds, tileObject.CoOrds, data.buildingData[target_name]);
+      case 'fortify':
+        return new Fortify(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
+      case 'demolish':
+        return new Demolish(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
+    }
+  };
+  //#endregion
+  const t = getNeighbors(data.gameMap, currentCoOrds, false, false)[direction] ?? getTile(data.gameMap, currentCoOrds);
   const newTile = getMesh(scene, t);
   currentCoOrds = t.CoOrds;
 
@@ -62,7 +126,7 @@ const selectTile = ({
   highlight && scene.remove(highlight);
   if (currentTile?.name) {
     const coords = new Point(...parseMeshnameToCoords(currentTile.name));
-    const tileObject = getTile(gameMap, coords);
+    const tileObject = getTile(data.gameMap, coords);
   }
 
   // Do something on current tile
@@ -80,8 +144,9 @@ const selectTile = ({
   camera.lookAt(center[0], center[1], 0);
 
   const coords = new Point(...parseMeshnameToCoords(currentTile.name));
-  const tileObject = getTile(gameMap, coords);
-  // reset all to unavailable
+  const tileObject = getTile(data.gameMap, coords);
+
+  //#region reset all to unavailable
   document.querySelectorAll('.action-sublist').forEach(n => 
     Array.from(n.children).forEach(e => {
       if (!e.classList.contains('unavailable-action')) {
@@ -89,35 +154,109 @@ const selectTile = ({
       }
     }
   ));
-  const player = gameMap.Players[0]; // use human player first so far, change later
-  const unit = getUnitAt(gameMap, coords);
-  if (unit !== undefined) {
+  document.querySelectorAll('.train-list').forEach(n => 
+    Array.from(n.children).forEach(e => {
+      if (!e.classList.contains('unavailable-action')) {
+        e.classList.toggle('unavailable-action');
+      }
+    }
+  ));
+  //#endregion
+  
+  const player = data.gameMap.Players[0]; // for AI player just get all available commands to choose from, for each unit
+  if (confirmSelection && source !== undefined) {
+    if ((currentTile as Mesh).material[2] === meshes.available) {
+      console.log(source.CoOrds);
+      console.log(getUnitAt(data.gameMap, source.CoOrds));
+      addCommand(data.gameMap, getUnitAt(data.gameMap, source.CoOrds), getCommand(targetType, targetName));
+      unhighlightTargets(scene, getMoveTargets(data.gameMap, source, player));
+      source = undefined;
+      confirmSelection = false;
+      targetType = 'none';
+    } else {
+      alert('Not a valid target');
+      return;
+    }
+  }
+  
+  const unit = getUnitAt(data.gameMap, coords);
+  if (unit !== undefined && unit.Owner === player) {
     makeActionButtonAvailable('hold');
-    canMove(gameMap, tileObject, player) && makeActionButtonAvailable('move');
-    canCapture(gameMap, tileObject, player) && makeActionButtonAvailable('capture');
+    getMoveTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('move');
+    getBuildTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('construct');
+    canCapture(data.gameMap, tileObject, player) && makeActionButtonAvailable('capture');
   }
 
-  const building = getBuildingAt(gameMap, coords);
+  const building = getBuildingAt(data.gameMap, coords);
   if (building !== undefined) {
-    makeActionButtonAvailable('fortify');
-    makeActionButtonAvailable('demolish');
-    if (canTrain(gameMap, tileObject, player)) {
+    getFortifyTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('fortify');
+    getDemolishTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('demolish');
+    if (canTrain(data.gameMap, tileObject, player)) {
       makeActionButtonAvailable('train');
-      canDeploy(gameMap, tileObject, player) && makeActionButtonAvailable('deploy');
+      getTrainUnits(player, data.unitData).forEach(u => 
+        makeTrainButtonAvailable(u.Name.toLowerCase())
+      );
     }
+    getDeployUnits(data.gameMap, tileObject, player) && getDeployTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('deploy');
+  }
+
+  const cities = getCityAt(data.gameMap, coords);
+  if (cities !== undefined && cities.Owner === player) {
+    getBuildTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('construct');
   }
 
   if (true) {
-    const availableavailableActionDivs = document.querySelectorAll("[class*=available-action]");
-    availableavailableActionDivs.forEach((availableActionDiv: HTMLElement) => {
-      // eslint-disable-next-line no-alert
-      availableActionDiv.onclick = () => alert('This tile does not contain a valid unit. Try another one!');
+    Array.from(document.querySelectorAll(`ul.action-sublist`)[0].children).forEach((e: HTMLElement) => {
+      switch (e.className) {
+        case 'hold':
+          e.onclick = () => addCommand(data.gameMap, unit, new Hold(data.gameMap, player, tileObject.CoOrds, tileObject.CoOrds));
+          break;
+        case 'move':
+          e.onclick = () => selectTarget('move');
+          break;
+        case 'fire':
+          e.onclick = () => selectTarget('fire');
+          break;
+        case 'capture':
+          e.onclick = () => addCommand(data.gameMap, unit, new Capture(data.gameMap, player, tileObject.CoOrds, tileObject.CoOrds));
+      }
     });
-    // Maybe toggle some actions and change the actions' availability
-    const unavailableavailableActionDivs = document.querySelectorAll("[class*=unavailable-action]");
-    unavailableavailableActionDivs.forEach((unavailableActionDiv: HTMLElement) => {
-      // eslint-disable-next-line no-alert
-      unavailableActionDiv.onclick = () => alert('This action is not available');
+    Array.from(document.querySelectorAll(`ul.action-sublist`)[1].children).forEach((e: HTMLElement) => {
+      switch (e.className) {
+        case 'train':
+          Array.from(e.children).forEach((ee: HTMLElement) => {
+            ee.onclick = () => 
+              addRepeatableCommand(data.gameMap, 
+                         new Train(data.gameMap, 
+                                   player,
+                                   tileObject.CoOrds,
+                                   tileObject.CoOrds,
+                                   Object.assign(
+                                     {},
+                                     data.unitData.PersonnelData[ee.className]
+                                    )
+                                  )
+                                  );
+          });
+          break;
+        case 'build':
+          Array.from(e.children).forEach((ee: HTMLElement) => {
+            ee.onclick = () => { 
+              targetName = ee.className;
+              selectTarget('build');
+            };
+          });
+          break;
+        case 'fortify':
+          e.onclick = () => selectTarget('fortify');
+          break;
+        case 'demolish':
+          e.onclick = () => selectTarget('demolish');
+          break;
+        case 'deploy':
+          // TODO
+          break;
+      }
     });
   }
 };

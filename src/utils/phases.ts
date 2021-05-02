@@ -1,7 +1,7 @@
 import { isInteger, random } from "mathjs";
 import { Mesh, MeshBasicMaterial, Scene } from "three";
 import { gameMap } from "../assets/json";
-import { applyMod, applyModAttr, geqAttr, Point, pointEquals, Resources } from "../attr";
+import { applyMod, applyModAttr, geqAttr, Point, pointEquals, produceResources, Resources } from "../attr";
 import { Fire, Hold, Move } from "../command";
 import { JsonResourcesType } from "../flows";
 import { Player, playerEquals } from "../player";
@@ -137,8 +137,33 @@ const getNeighborsWithCubeCoords = (
 const hasEmptyNeigbors = (gameMap: GameMap, coords: Point): boolean => {
   return getNeighbors(gameMap, coords).some(n => !isOccupied(gameMap, n.CoOrds));
 };
-const hasConstructibleNegibours = (gameMap: GameMap, coords: Point) => {
+const hasConstructibleNeighbours = (gameMap: GameMap, coords: Point): boolean => {
   return getNeighbors(gameMap, coords).some(n => !isOccupied(gameMap, n.CoOrds) && n.AllowConstruction);
+}
+const getConstructibleNeighbours = (gameMap: GameMap, coords: Point, range = 1): Tile[] => {
+  return (range === 1 ? 
+    getNeighbors(gameMap, coords) : 
+    getNeighborsAtRange(gameMap, getTile(gameMap, coords), range))
+    .filter(n => !isOccupied(gameMap, n.CoOrds) && n.AllowConstruction);
+}
+const getFortifyableNeighbours = (gameMap: GameMap, coords: Point, range = 1): Building[] => {
+  return (range === 1 ?
+    getNeighbors(gameMap, coords) :
+    getNeighborsAtRange(gameMap, getTile(gameMap, coords), range))
+    .map(n => getBuildingAt(gameMap, n.CoOrds))
+    .filter(b => b !== undefined 
+      && b.Status === BuildingStatus.Active
+      && b.Level >= 1 
+      && b.Level < b.MaxLevel);
+}
+const getDemolishableNeighbours = (gameMap: GameMap, coords: Point, range = 1): Building[] => {
+  return (range === 1 ?
+    getNeighbors(gameMap, coords) :
+    getNeighborsAtRange(gameMap, getTile(gameMap, coords), range))
+    .map(n => getBuildingAt(gameMap, n.CoOrds))
+    .filter(b => b !== undefined
+      && b.Status === BuildingStatus.Active
+      && b.Level >= 1);
 }
 //#endregion
 
@@ -209,6 +234,9 @@ const getPlayersCities = (gameMap: GameMap, self: Player): Cities[] => {
 };
 const getCityAt = (gameMap: GameMap, coords: Point): Cities => {
   return gameMap.Cities.find(c => pointEquals(c.CoOrds, coords));
+};
+const getCityByPlayer = (gameMap: GameMap, player: Player): Cities => {
+  return gameMap.Cities.find(c => playerEquals(c.Owner, player));
 };
 const isAccessible = (tile: Tile): boolean => {
   return tile.Height < 4 && tile.Height >= 0 && isWithinBoundary(tile.CoOrds);
@@ -385,12 +413,13 @@ const updateResources = (r: Resources) => {
 };
 const updateDestroyed = (gameMap: GameMap): void => {
   gameMap.Units.filter(u => u.Defense.Strength.Value <= 0).forEach(u => {
+    gameMap.RoundLog.push(`${u.Name} at (${u.Coords.X}, ${u.Coords.Y}) was destroyed!`);
     u.Status = UnitStatus.Destroyed;
   });
   gameMap.Buildings.filter(b => b.Durability.Value <= 0).forEach(b => {
+    gameMap.RoundLog.push(`${b.Name} at (${b.CoOrds.X}, ${b.CoOrds.Y}) was destroyed!`);
     b.Status = BuildingStatus.Destroyed;
   });
-  // TODO add logic for city destroyed
 };
 const updateCities = (scene: Scene, gameMap: GameMap): void => {
   gameMap.Cities.forEach(c => {
@@ -426,6 +455,7 @@ const getWinner = (gameMap: GameMap): Player => {
 };
 const clearCommands = (gameMap: GameMap) => {
   gameMap.Commands = [];
+  gameMap.Units.forEach(u => u.IsCommandSet = false);
 };
 
 const executePhases = (scene: Scene, data: JsonResourcesType) => {
@@ -457,6 +487,8 @@ const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
     // TODO return to main menu
   }
   updateUnitPositions(scene, gameMap);
+  gameMap.Players.forEach(p => produceResources(p.Resources, getCityByPlayer(gameMap, p).Production));
+  updateResources(gameMap.Players[0].Resources);
   alert(`Round ${gameMap.RoundNum} ended. Now is round ${gameMap.RoundNum + 1}`);
   gameMap.RoundNum += 1;
 };
@@ -469,7 +501,10 @@ export {
   getNeighbors,
   getNeighborsAtRange,
   hasEmptyNeigbors,
-  hasConstructibleNegibours,
+  hasConstructibleNeighbours,
+  getConstructibleNeighbours,
+  getFortifyableNeighbours,
+  getDemolishableNeighbours,
   getPath,
   getTile,
   getPlayersCities,
@@ -477,6 +512,7 @@ export {
   getUnitAt,
   getUnitsWithStatus,
   getCityAt,
+  getCityByPlayer,
   getNumUnits,
   getUnitsWithStatusInUnitBuilding,
   hasBuilding,

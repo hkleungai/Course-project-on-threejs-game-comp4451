@@ -529,6 +529,10 @@
           "Value": 0
         }
       }
+    },
+    "CostModifier": {
+      "Type": 0,
+      "Value": 0
     }
   },
   "Maneuverability": {
@@ -869,5 +873,6 @@
   "IsSuppressed": false,
   "IsDisconnected": false,
   "TrainingTimeRemaining": 0,
-  "TrainingGround": null
+  "TrainingGround": null,
+  "IsCommandSet": false
 }

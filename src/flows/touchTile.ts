@@ -37,9 +37,13 @@ const touchTile = ({
     return;
   }
   if (currentTile) {
-    currentTile.material[2] = meshes.blank;
+    if (currentTile.material[2] !== meshes.available) {
+      currentTile.material[2] = meshes.blank;
+    }
   }
-  newTile.material[2] = meshes.select;
+  if (newTile.material[2] !== meshes.available) {
+    newTile.material[2] = meshes.select;
+  }
   currentTile = newTile;
 };
 

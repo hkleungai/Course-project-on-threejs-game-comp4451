@@ -17,17 +17,6 @@ const applyCssChangesOnGameStart = (): void => {
       navigation.style.display = 'block';
     }
   };
-
-  const availableavailableActionDivs = document.querySelectorAll("[class*=available-action]");
-  availableavailableActionDivs.forEach((availableActionDiv: HTMLElement) => {
-    // eslint-disable-next-line no-alert
-    availableActionDiv.onclick = () => alert('Please select an unit first.');
-  });
-  const unavailableavailableActionDivs = document.querySelectorAll("[class*=unavailable-action]");
-  unavailableavailableActionDivs.forEach((unavailableActionDiv: HTMLElement) => {
-    // eslint-disable-next-line no-alert
-    unavailableActionDiv.onclick = () => alert('This action is not available');
-  });
 };
 
 export { applyCssChangesOnGameStart };

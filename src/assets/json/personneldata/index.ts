@@ -1,4 +1,4 @@
-import assualt from './assualt.json';
+import assualt from './assault.json';
 import engineer from './engineer.json';
 import infantry from './infantry.json';
 import militia from './militia.json';

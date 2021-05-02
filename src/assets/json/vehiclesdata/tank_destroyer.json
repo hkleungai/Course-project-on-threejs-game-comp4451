@@ -684,6 +684,10 @@
               "Value": 0
             }
           }
+        },
+        "CostModifier": {
+          "Type": 0,
+          "Value": 0
         }
       }
     }
@@ -706,42 +710,42 @@
   "Cost": {
     "Base": {
       "Money": {
-        "Value": 0,
+        "Value": 1750,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 160,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Supplies": {
-        "Value": 0,
+        "Value": 40,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Cartridges": {
-        "Value": 0,
+        "Value": 60,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Shells": {
-        "Value": 0,
+        "Value": 20,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Fuel": {
-        "Value": 0,
+        "Value": 30,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -755,7 +759,7 @@
         }
       },
       "Manpower": {
-        "Value": 0,
+        "Value": 32,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -769,7 +773,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 4,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -778,14 +782,14 @@
     },
     "Research": {
       "Money": {
-        "Value": 0,
+        "Value": 1300,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 270,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -820,7 +824,7 @@
         }
       },
       "RareMetal": {
-        "Value": 0,
+        "Value": 1,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -841,7 +845,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 5.5,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -1050,7 +1054,7 @@
         }
       },
       "Power": {
-        "Value": 0,
+        "Value": 3.3300000000000001,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -1207,6 +1211,10 @@
           "Value": 0
         }
       }
+    },
+    "CostModifier": {
+      "Type": 0,
+      "Value": 0
     }
   },
   "Maneuverability": {
@@ -1544,5 +1552,6 @@
   "IsSuppressed": false,
   "IsDisconnected": false,
   "TrainingTimeRemaining": 0,
-  "TrainingGround": null
+  "TrainingGround": null,
+  "IsCommandSet": false
 }
