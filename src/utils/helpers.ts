@@ -30,6 +30,20 @@ const makeTrainButtonAvailable = (classname: string) => {
     .remove('unavailable-action');
 }
 
+const makeConstructButtonAvailable = (classname: string) => {
+  document
+    .querySelector(`ul.building-list>li.${classname}`)
+    ?.classList
+    ?.remove('unavailable-action');
+}
+
+const makeDeployButtonAvailable = (classname: string) => {
+  document
+  .querySelector(`ul.deploy-list>li.${classname}`)
+  .classList
+  .remove('unavailable-action');
+}
+
 class KeyValuePair<T, U> {
   private _key : T;
   private _value : U;
@@ -91,6 +105,8 @@ export {
   XOR,
   makeActionButtonAvailable,
   makeTrainButtonAvailable,
+  makeConstructButtonAvailable,
+  makeDeployButtonAvailable,
   KeyValuePair,
   Dictionary
 };

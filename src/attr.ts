@@ -137,7 +137,7 @@ const applyMod = (m: Modifier, n: number): number => {
 }
 
 const modEquals = (m1: Modifier, m2: Modifier): boolean => {
-  return m1.Type === m2.Type && m1.Value === m2.Value;
+  return m1?.Type === m2?.Type && m1?.Value === m2?.Value;
 }
 
 class TerrainModifiers {

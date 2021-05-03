@@ -302,11 +302,6 @@ const parseMeshnameToCoords = (meshname: string): [number, number] => (
     .map(Number)
 ) as [number, number];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const highlightPath = (path: Tile[]) => {
-  // TODO
-};
-
 export {
   Direction,
   Hexagon,

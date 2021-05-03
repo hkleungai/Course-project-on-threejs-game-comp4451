@@ -1,16 +1,21 @@
-import { isInteger, random } from "mathjs";
+import { isInteger, random, randomInt } from "mathjs";
 import { Mesh, MeshBasicMaterial, Scene } from "three";
 import { gameMap } from "../assets/json";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals, produceResources, Resources } from "../attr";
-import { Fire, Hold, Move } from "../command";
+import { Build, canCapture, Capture, Deploy, Fire, getDeployTargets, getFireTargets, getMoveTargets, Hold, Move, Train } from "../command";
 import { JsonResourcesType } from "../flows";
 import { Player, playerEquals } from "../player";
-import { BuildingData, Cities, cubeTileEquals, GameMap, Prop, Tile, WeightedCubeTile } from "../props";
+import { BuildingData, Cities, cubeTileEquals, GameMap, Prop, Tile, UnitData, WeightedCubeTile } from "../props";
 import { Barracks, Building, BuildingStatus, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
   Artillery,
+  Assault,
+  Engineer,
   Infantry,
+  Militia,
+  Mountain,
   Personnel,
+  Support,
   Unit,
   UnitStatus
 } from "../props/units";
@@ -194,7 +199,6 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
   while (active.length !== 0) {
     let check = active.sort((a, b) => a.CostDistance - b.CostDistance)[0];
     if (cubeTileEquals(check, end)) {
-      console.log('reached destination');
       // trace back parents to get the path
       while (check.Parent !== undefined) {
         const t = getTile(gameMap, convertToOffestCoOrds(check.CubeCoords));
@@ -334,6 +338,85 @@ const hasFriendlyBuilding = (gameMap: GameMap, coords: Point, self: Player): boo
 };
 //#endregion
 
+//#region AI
+const AITurn = (scene: Scene, data: JsonResourcesType) => {
+  const gameMap = data.gameMap;
+  const unitData = data.unitData;
+  const ai = gameMap.Players[1];
+  const ai_city = getPlayersCities(gameMap, ai);
+  const player_city = getPlayersCities(gameMap, gameMap.Players[0]);
+  const barracks = gameMap.Buildings.filter(b => playerEquals(b.Owner, ai) && b instanceof Barracks).map(b => b as Barracks);
+  const units: string[] = Object.keys(data.unitData.PersonnelData);
+  const own_units = gameMap.Units.filter(u => playerEquals(ai, u.Owner) && u.Status === UnitStatus.Active);
+
+  const getUnitFromName = (name: string, data: UnitData): Unit => {
+    switch (name) {
+      case 'militia':
+        return new Militia(data.PersonnelData[name]);
+      case 'infantry':
+        return new Infantry(data.PersonnelData[name]);
+      case 'assault':
+        return new Assault(data.PersonnelData[name]);
+      case 'support':
+        return new Support(data.PersonnelData[name]);
+      case 'mountain':
+        return new Mountain(data.PersonnelData[name]);
+      case 'engineer':
+        return new Engineer(data.PersonnelData[name]);
+    }
+  };
+
+  if (barracks.length === 0) {
+    const b_targets = getConstructibleNeighbours(gameMap, ai_city[0].CoOrds, applyModAttr(ai_city[0].ConstructionRange));
+    const rand_b = b_targets[randomInt(0, b_targets.length)];
+    gameMap.Commands.push(new Build(scene, gameMap, ai, rand_b.CoOrds, rand_b.CoOrds, new Barracks(data.buildingData.UnitBuildingData['barracks'])));
+    return;
+  }
+
+  const active_barracks = barracks.filter(b => b.Status === BuildingStatus.Active);
+  if (active_barracks.length === 0) {
+    return;
+  }
+
+  const t_target = active_barracks[randomInt(0, active_barracks.length)];
+  const u_target = units[randomInt(0, units.length)];
+  gameMap.Commands.push(new Train(scene, gameMap, ai, t_target.CoOrds, t_target.CoOrds, getUnitFromName(u_target, unitData)));
+
+  const deploy_target = active_barracks.filter(b => b.ReadyToDeploy.length !== 0);
+  if (deploy_target.length === 0) {
+     return;
+  }
+  const deploy_barrack = deploy_target[randomInt(0, deploy_target.length)];
+  const ready_queue = deploy_barrack.ReadyToDeploy;
+  const deploy_unit = ready_queue[randomInt(0, ready_queue.length)];
+  const deploy_tiles = getDeployTargets(gameMap, getTile(gameMap, deploy_barrack.CoOrds), ai);
+  const deploy_tile = deploy_tiles[randomInt(0, deploy_tiles.length)];
+  gameMap.Commands.push(new Deploy(scene, gameMap, ai, deploy_barrack.CoOrds, deploy_tile.CoOrds, data.customData, deploy_unit.Name))
+
+  if (own_units.length === 0) {
+    return;
+  }
+  own_units.forEach(o => {
+    const ot = getTile(gameMap, o.Coords)
+    const fire_targets = getFireTargets(gameMap, ot, ai, (o as Personnel).PrimaryFirearm);
+    const move_targets = getMoveTargets(gameMap, ot, ai);
+    
+    if (canCapture(gameMap, ot, ai)) {
+      gameMap.Commands.push(new Capture(gameMap, ai, ot.CoOrds, ot.CoOrds));
+    } else if (fire_targets.length !== 0) {
+      const f_target = fire_targets[randomInt(0, fire_targets.length)];
+      gameMap.Commands.push(new Fire(gameMap, ai, ot.CoOrds, f_target.Coords));
+    } else if (move_targets.length !== 0) {
+      const m_target = move_targets.sort((a, b) => 
+        getHexDistance(a.CoOrds, player_city[0].CoOrds) - 
+        getHexDistance(b.CoOrds, player_city[0].CoOrds));
+      gameMap.Commands.push(new Move(gameMap, ai, ot.CoOrds, m_target[0].CoOrds));
+    }
+  })
+};
+
+//#endregion
+
 const getRequiredSupplies = (path: Tile[], unit: Unit): number => {
   let supplies = 0;
   path.forEach(p => {
@@ -367,15 +450,19 @@ const removeDestroyed = (scene: Scene, gameMap: GameMap): void => {
   });
   gameMap.Buildings
     .filter(b => b.Status === BuildingStatus.Destroyed)
-    .forEach(b => scene.remove(scene.getObjectByName(b.Name)));
+    .forEach(b => scene.remove(scene.getObjectByName(b.MeshName)));
   gameMap.Units = gameMap.Units.filter(u => u.Status !== UnitStatus.Destroyed);
   gameMap.Buildings = gameMap.Buildings.filter(b => b.Status !== BuildingStatus.Destroyed);
 };
 const updateTrainingTime = (gameMap: GameMap): void => {
   getUnitsWithStatus(gameMap, UnitStatus.InQueue).forEach(u => {
     u.TrainingTimeRemaining -= 1;
-    if (u.TrainingTimeRemaining <= 0) {
+    if (u.TrainingTimeRemaining <= 0 && u.Status !== UnitStatus.Active) {
+      u.TrainingTimeRemaining = 0;
       u.Status = UnitStatus.CanBeDeployed;
+      if (playerEquals(u.Owner, gameMap.Players[0])) {
+        gameMap.RoundLog.push(`${u.Name} trained at ${u.TrainingGround.Name} (${u.TrainingGround.CoOrds.X}, ${u.TrainingGround.CoOrds.Y}) is ready to be deployed.`);
+      }
       u.TrainingGround.TrainingQueue.splice(u.TrainingGround.TrainingQueue.indexOf(u), 1);
       u.TrainingGround.ReadyToDeploy.push(u);
     }
@@ -391,16 +478,22 @@ const updateTrainingGroundsQueues = (gameMap: GameMap): void => {
   });
 };
 const updateUnitPositions = (scene: Scene, gameMap: GameMap) => {
-  gameMap.Units.forEach(u => {
-    const pos = parseCoordsToScreenPoint(u.Coords);
-    getMesh(scene, u).position.set(pos.x, pos.y, pos.z);
-  })
+  gameMap.Units
+    .filter(u => u.Status === UnitStatus.Active)
+    .forEach(u => {
+      const pos = parseCoordsToScreenPoint(u.Coords);
+      getMesh(scene, u)?.position.set(pos.x, pos.y, pos.z);
+    });
 };
 const updateConstructionTime = (gameMap: GameMap): void => {
   gameMap.Buildings.filter(b => b.Status === BuildingStatus.UnderConstruction).forEach(b => {
     b.ConstructionTimeRemaining -= 1;
     if (b.ConstructionTimeRemaining <= 0) {
+      b.ConstructionTimeRemaining = 0;
       b.Status = BuildingStatus.Active;
+      if (playerEquals(b.Owner, gameMap.Players[0])) {
+        gameMap.RoundLog.push(`Construction of ${b.Name} at (${b.CoOrds.X}, ${b.CoOrds.Y}) has finished.`)
+      }
     }
   });
 };
@@ -416,7 +509,7 @@ const updateDestroyed = (gameMap: GameMap): void => {
     gameMap.RoundLog.push(`${u.Name} at (${u.Coords.X}, ${u.Coords.Y}) was destroyed!`);
     u.Status = UnitStatus.Destroyed;
   });
-  gameMap.Buildings.filter(b => b.Durability.Value <= 0).forEach(b => {
+  gameMap.Buildings.filter(b => b.Durability.Value <= 0 || b.Level === 0).forEach(b => {
     gameMap.RoundLog.push(`${b.Name} at (${b.CoOrds.X}, ${b.CoOrds.Y}) was destroyed!`);
     b.Status = BuildingStatus.Destroyed;
   });
@@ -459,6 +552,7 @@ const clearCommands = (gameMap: GameMap) => {
 };
 
 const executePhases = (scene: Scene, data: JsonResourcesType) => {
+  AITurn(scene, data);
   data.gameMap.Commands.filter(h => h instanceof Hold).forEach(h => h.Execute());
   executeFirePhase(data.gameMap);
   executeMovePhase(data.gameMap);
@@ -472,6 +566,7 @@ const executeFirePhase = (gameMap: GameMap) => {
   gameMap.Commands.filter(c => c instanceof Fire).forEach(f => f.Execute());
 };
 const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
+  gameMap.Commands.filter(c => !(c instanceof Move) && !(c instanceof Fire)).forEach(c => c.Execute());
   calculateMorale(gameMap);
   gameMap.Units.forEach(u => flee(u));
   updateConstructionTime(gameMap);
@@ -489,8 +584,12 @@ const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
   updateUnitPositions(scene, gameMap);
   gameMap.Players.forEach(p => produceResources(p.Resources, getCityByPlayer(gameMap, p).Production));
   updateResources(gameMap.Players[0].Resources);
+  while (gameMap.RoundLog.length > 0) {
+    alert(gameMap.RoundLog.pop());
+  }
   alert(`Round ${gameMap.RoundNum} ended. Now is round ${gameMap.RoundNum + 1}`);
   gameMap.RoundNum += 1;
+  console.log(gameMap.Buildings);
 };
 
 export {

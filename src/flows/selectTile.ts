@@ -20,9 +20,11 @@ import {
   Direction,
   makeActionButtonAvailable,
   getCityAt,
-  makeTrainButtonAvailable
+  makeTrainButtonAvailable,
+  makeConstructButtonAvailable,
+  makeDeployButtonAvailable
 } from '../utils';
-import { GameMap, Tile } from '../props';
+import { BuildingData, GameMap, Tile, UnitData } from '../props';
 import { Point } from '../attr';
 import {
   canCapture,
@@ -47,11 +49,13 @@ import {
   Capture,
   Fortify,
   Demolish,
+  getConstructBuildings,
 } from '../command';
 import { unhighlightTargets } from './highlightTile';
 import { meshes } from '../resources';
-import { Personnel, Unit } from '../props/units';
+import { Assault, Engineer, Infantry, Militia, Mountain, Personnel, Support, Unit } from '../props/units';
 import { JsonResourcesType } from './loadResourcesFromJsons';
+import { Barracks, Building } from '../props/buildings';
 
 type TargetType = 'none' | 'move' | 'fire' | 'build' | 'fortify' | 'demolish' | 'deploy';
 
@@ -61,6 +65,7 @@ let currentCoOrds: Point = new Point(17, 7);
 let source: Tile;
 let targetType: TargetType = 'none';
 let targetName: string;
+let targets: Tile[] = [];
 
 interface SelectTileInputType {
   camera: Camera;
@@ -77,9 +82,9 @@ const selectTile = ({
   data = undefined,
   confirmSelection = false
 }: SelectTileInputType): void => {
+  const player = data.gameMap.Players[0]; // for AI player just get all available commands to choose from, for each unit
   //#region helper functions
   const selectTarget = (type: TargetType, unit?: Unit) => {
-    let targets: Tile[] = [];
     targetType = type;
     switch (type) {
       case 'move':
@@ -92,8 +97,15 @@ const selectTile = ({
       case 'build':
         targets = getBuildTargets(data.gameMap, tileObject, player);
         break;
+      case 'fortify':
+        targets = getFortifyTargets(data.gameMap, tileObject, player).map(b => getTile(data.gameMap, b.CoOrds));
+        break;
+      case 'demolish':
+        targets = getDemolishTargets(data.gameMap, tileObject, player).map(b => getTile(data.gameMap, b.CoOrds));
+        break;
       case 'deploy':
         targets = getDeployTargets(data.gameMap, tileObject, player);
+        break;
     }
     if (source === undefined) {
       highlightTargets(scene, targets);
@@ -108,13 +120,35 @@ const selectTile = ({
       case 'fire':
         return new Fire(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
       case 'deploy':
-        return new Deploy(data.gameMap, player, source.CoOrds, tileObject.CoOrds, data.customData);
+        return new Deploy(scene, data.gameMap, player, source.CoOrds, tileObject.CoOrds, data.customData, target_name);
       case 'build':
-        return new Build(data.gameMap, player, source.CoOrds, tileObject.CoOrds, data.buildingData[target_name]);
+        return new Build(scene, data.gameMap, player, source.CoOrds, tileObject.CoOrds, getBuildingFromName(target_name, data.buildingData));
       case 'fortify':
         return new Fortify(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
       case 'demolish':
         return new Demolish(data.gameMap, player, source.CoOrds, tileObject.CoOrds);
+    }
+  };
+  const getUnitFromName = (name: string, data: UnitData): Unit => {
+    switch (name) {
+      case 'militia':
+        return new Militia(data.PersonnelData[name]);
+      case 'infantry':
+        return new Infantry(data.PersonnelData[name]);
+      case 'assault':
+        return new Assault(data.PersonnelData[name]);
+      case 'support':
+        return new Support(data.PersonnelData[name]);
+      case 'mountain':
+        return new Mountain(data.PersonnelData[name]);
+      case 'engineer':
+        return new Engineer(data.PersonnelData[name]);
+    }
+  };
+  const getBuildingFromName = (name: string, data: BuildingData): Building => {
+    switch (name) {
+      case 'barracks':
+        return new Barracks(data.UnitBuildingData[name]);
     }
   };
   //#endregion
@@ -163,13 +197,15 @@ const selectTile = ({
   ));
   //#endregion
   
-  const player = data.gameMap.Players[0]; // for AI player just get all available commands to choose from, for each unit
   if (confirmSelection && source !== undefined) {
     if ((currentTile as Mesh).material[2] === meshes.available) {
-      console.log(source.CoOrds);
-      console.log(getUnitAt(data.gameMap, source.CoOrds));
-      addCommand(data.gameMap, getUnitAt(data.gameMap, source.CoOrds), getCommand(targetType, targetName));
-      unhighlightTargets(scene, getMoveTargets(data.gameMap, source, player));
+      const c = getCommand(targetType, targetName);
+      if (c instanceof Build || c instanceof Deploy) {
+        addRepeatableCommand(data.gameMap, c);
+      } else {
+        addCommand(data.gameMap, getUnitAt(data.gameMap, source.CoOrds), c);
+      }
+      unhighlightTargets(scene, targets);
       source = undefined;
       confirmSelection = false;
       targetType = 'none';
@@ -183,26 +219,38 @@ const selectTile = ({
   if (unit !== undefined && unit.Owner === player) {
     makeActionButtonAvailable('hold');
     getMoveTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('move');
-    getBuildTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('construct');
+    if (getBuildTargets(data.gameMap, tileObject, player)) {
+      makeActionButtonAvailable('construct');
+      getBuildTargets(data.gameMap, tileObject, player) && getConstructBuildings(player, data.buildingData).forEach(b =>
+        makeConstructButtonAvailable(b.Name.toLowerCase())
+      );
+    }
+    getFortifyTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('fortify');
+    getDemolishTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('demolish');
     canCapture(data.gameMap, tileObject, player) && makeActionButtonAvailable('capture');
   }
 
   const building = getBuildingAt(data.gameMap, coords);
   if (building !== undefined) {
-    getFortifyTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('fortify');
-    getDemolishTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('demolish');
     if (canTrain(data.gameMap, tileObject, player)) {
       makeActionButtonAvailable('train');
       getTrainUnits(player, data.unitData).forEach(u => 
         makeTrainButtonAvailable(u.Name.toLowerCase())
       );
+      if (getDeployUnits(data.gameMap, tileObject, player)) {
+        makeActionButtonAvailable('deploy');
+        getDeployUnits(data.gameMap, tileObject, player).forEach(u => 
+          makeDeployButtonAvailable(u.Name.toLowerCase()))
+      }
     }
-    getDeployUnits(data.gameMap, tileObject, player) && getDeployTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('deploy');
   }
 
   const cities = getCityAt(data.gameMap, coords);
   if (cities !== undefined && cities.Owner === player) {
     getBuildTargets(data.gameMap, tileObject, player) && makeActionButtonAvailable('construct');
+    getConstructBuildings(player, data.buildingData).forEach(b =>
+      makeConstructButtonAvailable(b.Name.toLowerCase())
+    );
   }
 
   if (true) {
@@ -222,25 +270,23 @@ const selectTile = ({
       }
     });
     Array.from(document.querySelectorAll(`ul.action-sublist`)[1].children).forEach((e: HTMLElement) => {
-      switch (e.className) {
+      switch (e.className.replace('with-submenu', '').trim()) {
         case 'train':
-          Array.from(e.children).forEach((ee: HTMLElement) => {
+          Array.from(document.querySelector(`ul.train-list`).children).forEach((ee: HTMLElement) => {
             ee.onclick = () => 
               addRepeatableCommand(data.gameMap, 
-                         new Train(data.gameMap, 
+                         new Train(scene,
+                                   data.gameMap, 
                                    player,
                                    tileObject.CoOrds,
                                    tileObject.CoOrds,
-                                   Object.assign(
-                                     {},
-                                     data.unitData.PersonnelData[ee.className]
-                                    )
+                                   getUnitFromName(ee.className.toLowerCase(), data.unitData)
                                   )
                                   );
           });
           break;
-        case 'build':
-          Array.from(e.children).forEach((ee: HTMLElement) => {
+        case 'construct':
+          Array.from(document.querySelector(`ul.building-list`).children).forEach((ee: HTMLElement) => {
             ee.onclick = () => { 
               targetName = ee.className;
               selectTarget('build');
@@ -254,7 +300,12 @@ const selectTile = ({
           e.onclick = () => selectTarget('demolish');
           break;
         case 'deploy':
-          // TODO
+          Array.from(document.querySelector(`ul.deploy-list`).children).forEach((ee: HTMLElement) => {
+            ee.onclick = () => { 
+              targetName = ee.className;
+              selectTarget('deploy');
+            };
+          });
           break;
       }
     });
