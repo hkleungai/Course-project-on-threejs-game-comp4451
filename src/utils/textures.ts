@@ -62,13 +62,14 @@ const getUnitEntries = (unit: Unit): { [k: string]: Texture } => {
   }
 };
 
-const getBuildingEntries = (building: Building): { [k: string]: Texture } => {
-  switch (building.Name) {
+const getBuildingEntries = ({ Name }: Building): { [k: string]: Texture } => {
+  switch (Name) {
     case "barracks":
       return barracks;
     default:
-      console.log('oops');
-      break;
+      // eslint-disable-next-line no-console
+      console.error(`No building with the name ${Name}`);
+      return {};
   }
 };
 

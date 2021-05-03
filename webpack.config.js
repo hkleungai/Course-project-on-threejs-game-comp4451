@@ -77,8 +77,6 @@ module.exports = {
     new StylelintPlugin(),
   ],
 
-  cache: false,
-
   optimization: {
     splitChunks: {
       chunks: 'all',

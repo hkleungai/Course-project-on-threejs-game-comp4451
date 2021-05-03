@@ -7,7 +7,7 @@ import { meshes } from "../resources";
 import { parseCoordsToScreenPoint, InvalidArgumentException, range } from "./";
 import { getUnitEntries } from "./textures";
 
-const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
+const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit): void => {
   if (unit.Owner === undefined) {
     throw new InvalidArgumentException('unit.Owner', unit);
   }
@@ -35,9 +35,9 @@ const instantiateUnit = (mainScene: Scene, coords: Point, unit: Unit) => {
         mainScene.add(child);
       }
     });
-  }, undefined, () => { console.log('error') });
+  }, undefined, console.error); // eslint-disable-line no-console
   unit.MeshName = meshname;
-}
+};
 
 export {
   instantiateUnit

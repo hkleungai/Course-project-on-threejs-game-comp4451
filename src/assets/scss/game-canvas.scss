@@ -103,7 +103,7 @@ nav.navigation {
         padding-right: 1rem;
       }
 
-      &:hover {
+      &:not(.unavailable-action):hover {
         background: #7a0000;
         color: white;
         cursor: pointer;
@@ -115,11 +115,72 @@ nav.navigation {
 
       &.unavailable-action {
         opacity: 0.8;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
 
-        &:hover {
-          background: #068;
-          color: #fc0;
-        }
+div.statistics-table-with-banner {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  overflow: hidden;
+  background: #068;
+  color: #fc0;
+  font-size: 1.875rem;
+
+  .cross {
+    float: right;
+    width: 1.875rem;
+    height: 1.25rem;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .banner {
+    overflow: hidden;
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  table.statistics-table {
+    border-collapse: collapse;
+    top: 20%;
+    width: 100%;
+
+    td {
+      border-top: 0.025rem solid #ddd;
+      padding: 0.5rem;
+    }
+
+    th {
+      border-top: 0.025rem solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+      background-color: #b350af;
+      color: #ddd;
+      width: 50%;
+    }
+
+    tr {
+      background: #0d0d0d;
+
+      :hover {
+        background: #222;
       }
     }
   }

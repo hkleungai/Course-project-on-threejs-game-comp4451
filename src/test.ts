@@ -1,4 +1,3 @@
-//eslint-disable no-console
 import { Scene } from 'three';
 import {
   getNeighbors,
@@ -16,10 +15,10 @@ import {
 } from './utils';
 import { GameMap, Tile } from './props/tiles';
 import { meshes } from './resources';
-import { Barracks, Building, BuildingStatus } from './props/buildings';
+import { Barracks, Building } from './props/buildings';
 import { BuildingData, UnitData } from './props';
 import { lackingResources, Point } from './attr';
-import { Infantry, Personnel, Support, Unit, UnitStatus } from './props/units';
+import { Infantry, Personnel, Support, Unit } from './props/units';
 import { Player } from './player';
 import { JsonResourcesType } from './flows';
 import { getMoveTargets, canCapture, getDeployUnits, getFireTargets, getBuildTargets, canTrain, Hold, getFortifyTargets, getDemolishTargets, Move, Fire } from './command';
@@ -32,7 +31,7 @@ const testGetNeiboursAtRange = (scene: Scene, map: GameMap, tile: Tile, range: n
   });
 };
 
-const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Unit, owner: Player) => {
+const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Unit, owner: Player): void => {
   unit.Owner = owner;
   unit.Carrying.Supplies.Value = unit.Cost.Base.Supplies.Value;
   unit.Carrying.Cartridges.Value = unit.Cost.Base.Cartridges.Value;
@@ -40,27 +39,25 @@ const testCreateUnit = (scene: Scene, gameMap: GameMap, coords: Point, unit: Uni
   unit.Carrying.Fuel.Value = unit.Cost.Base.Fuel.Value;
   instantiateUnit(scene, coords, unit);
   unit.Coords = coords;
-  unit.Status = UnitStatus.Active;
   gameMap.Units.push(unit);
 };
 
-const testCreateBuilding = (scene: Scene, gameMap: GameMap, coords: Point, building: Building, owner: Player) => {
+const testCreateBuilding = (scene: Scene, gameMap: GameMap, coords: Point, building: Building, owner: Player): void => {
   building.Owner = owner;
   instantiateBuilding(scene, coords, building);
   building.CoOrds = coords;
-  building.Status = BuildingStatus.Active;
-  building.Level = 1;
   gameMap.Buildings.push(building);
 };
 
-const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player) => {
+/* eslint-disable no-console */
+const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player): void => {
   const t = getTile(gameMap, coords);
   if (getBuildTargets(gameMap, t, player)) {
     console.log(`can construct buildings by selecting tile at (${coords.X}, ${coords.Y})`);
   }
   const o = isOccupied(gameMap, coords);
   console.log(`(${coords.X}, ${coords.Y}) is ${o ? '' : 'not '}occupied`);
-  if (o) {   
+  if (o) {
     const u = hasUnit(gameMap, coords);
     console.log(`(${coords.X}, ${coords.Y}) ${u ? 'has' : 'does not have'} unit`);
     const b = hasBuilding(gameMap, coords);
@@ -86,6 +83,7 @@ const testButtonLogic = (gameMap: GameMap, coords: Point, player: Player) => {
     console.log(`(${coords.X}, ${coords.Y}) has no units or buildings`);
   }
 };
+/* eslint-enable no-console */
 
 const testCommands = (scene: Scene, data: JsonResourcesType) => {
   const p = data.gameMap.Players[0];
@@ -95,11 +93,11 @@ const testCommands = (scene: Scene, data: JsonResourcesType) => {
   data.gameMap.Commands.push(c2);
 };
 
-const executeTests = (scene: Scene, data: JsonResourcesType) => {
+const executeTests = (scene: Scene, data: JsonResourcesType): void => {
   const p = data.gameMap.Players[0];
   const a = data.gameMap.Players[1];
   const u = new Infantry(data.unitData.PersonnelData['infantry']);
-  testCreateUnit(scene, data.gameMap, new Point(47, 77), u, p);
+  testCreateUnit(scene, data.gameMap, new Point(17, 8), u, p);
   u.PrimaryFirearm = data.customData.FirearmData[u.DefaultPrimary.toLowerCase()];
   const u1 = new Support(data.unitData.PersonnelData['support']);
   testCreateUnit(scene, data.gameMap, new Point(18, 8), u1, p);
@@ -108,8 +106,8 @@ const executeTests = (scene: Scene, data: JsonResourcesType) => {
   testCreateUnit(scene, data.gameMap, new Point(20, 8), u2, a);
   u2.PrimaryFirearm = data.customData.FirearmData[u2.DefaultPrimary.toLowerCase()];
   const b1 = new Barracks(data.buildingData.UnitBuildingData['barracks']);
-  //testCreateBuilding(scene, data.gameMap, new Point(19, 8), b1, p);
-  //testCommands(scene, data);
+  testCreateBuilding(scene, data.gameMap, new Point(19, 8), b1, p);
+  testCommands(scene, data);
 };
 
 export {

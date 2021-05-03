@@ -1,14 +1,12 @@
 import { isInteger, random, randomInt } from "mathjs";
 import { Mesh, MeshBasicMaterial, Scene } from "three";
-import { gameMap } from "../assets/json";
 import { applyMod, applyModAttr, geqAttr, Point, pointEquals, produceResources, Resources } from "../attr";
 import { Build, canCapture, Capture, Deploy, Fire, getDeployTargets, getFireTargets, getMoveTargets, Hold, Move, Train } from "../command";
 import { JsonResourcesType } from "../flows";
 import { Player, playerEquals } from "../player";
-import { BuildingData, Cities, cubeTileEquals, GameMap, Prop, Tile, UnitData, WeightedCubeTile } from "../props";
+import { Cities, cubeTileEquals, GameMap, Prop, Tile, UnitData, WeightedCubeTile } from "../props";
 import { Barracks, Building, BuildingStatus, BuildingType, DefensiveBuilding, Infrastructure, ResourcesBuilding, TransmissionBuilding, UnitBuilding } from "../props/buildings";
 import {
-  Artillery,
   Assault,
   Engineer,
   Infantry,
@@ -100,43 +98,40 @@ const getNeighborsAtRange = (gameMap: GameMap, tile: Tile, range: number, exclud
   const dummy = (tile.CoOrds.X % 2 && range % 2) || !(tile.CoOrds.X % 2 || range % 2);
   n_YLowerRange.forEach((y, i) =>
     rangeFromTo(tile.CoOrds.X - (range - 2 * (i + 1) + +dummy), tile.CoOrds.X + range - 2 * (i + 1) + +dummy)
-    .filter(x => x >= 0 || x < GameMap.Width)
-    .forEach(x =>
-      neighbors.push(gameMap.Tiles[x][y])
-    )
+      .filter(x => x >= 0 || x < GameMap.Width)
+      .forEach(x =>
+        neighbors.push(gameMap.Tiles[x][y])
+      )
   );
   n_YUpperRange.forEach((y, i) => {
     const det = range - 2 * (i + 1) + +(!dummy);
     const arr: number[] = det < 0
-    ? [tile.CoOrds.X]
-    : rangeFromTo(tile.CoOrds.X - det, tile.CoOrds.X + det);
+      ? [tile.CoOrds.X]
+      : rangeFromTo(tile.CoOrds.X - det, tile.CoOrds.X + det);
     arr.filter(x => x >= 0 || x < GameMap.Width).forEach(x =>
-    neighbors.push(gameMap.Tiles[x][y])
+      neighbors.push(gameMap.Tiles[x][y])
     );
-    });
+  });
   const raw: Tile[] = neighbors.filter(n => n !== undefined);
   return [...new Set(exclude_inaccessible ? raw.filter(t => isAccessible(t)) : raw)];
 };
 const getNeighborsWithCubeCoords = (
   gameMap: GameMap,
   cube_tile_so_far: WeightedCubeTile,
-  end: WeightedCubeTile): WeightedCubeTile[] => {
-  const neighbors : WeightedCubeTile[] = [];
-
+  end: WeightedCubeTile
+): WeightedCubeTile[] => {
   const hex_neighbors = getNeighbors(gameMap, convertToOffestCoOrds(cube_tile_so_far.CubeCoords));
-  hex_neighbors.forEach(h =>
-    neighbors.push(
-      new WeightedCubeTile(
-        cube_tile_so_far,
-        convertToCudeCoOrds(h.CoOrds),
-        end.BaseCost,
-        h.TerrainMod.Supplies.Value / 100 + 1,
-        cube_tile_so_far.Cost + end.BaseCost * (h.TerrainMod.Supplies.Value / 100 + 1),
-        getHexDistanceWithCubeCoords(convertToCudeCoOrds(h.CoOrds), end.CubeCoords),
-        cube_tile_so_far.DistanceSoFar + 1
-      )
+  const neighbors = hex_neighbors.map(h => (
+    new WeightedCubeTile(
+      cube_tile_so_far,
+      convertToCudeCoOrds(h.CoOrds),
+      end.BaseCost,
+      h.TerrainMod.Supplies.Value / 100 + 1,
+      cube_tile_so_far.Cost + end.BaseCost * (h.TerrainMod.Supplies.Value / 100 + 1),
+      getHexDistanceWithCubeCoords(convertToCudeCoOrds(h.CoOrds), end.CubeCoords),
+      cube_tile_so_far.DistanceSoFar + 1
     )
-  );
+  ));
   return neighbors;
 };
 const hasEmptyNeigbors = (gameMap: GameMap, coords: Point): boolean => {
@@ -144,23 +139,23 @@ const hasEmptyNeigbors = (gameMap: GameMap, coords: Point): boolean => {
 };
 const hasConstructibleNeighbours = (gameMap: GameMap, coords: Point): boolean => {
   return getNeighbors(gameMap, coords).some(n => !isOccupied(gameMap, n.CoOrds) && n.AllowConstruction);
-}
+};
 const getConstructibleNeighbours = (gameMap: GameMap, coords: Point, range = 1): Tile[] => {
-  return (range === 1 ? 
-    getNeighbors(gameMap, coords) : 
+  return (range === 1 ?
+    getNeighbors(gameMap, coords) :
     getNeighborsAtRange(gameMap, getTile(gameMap, coords), range))
     .filter(n => !isOccupied(gameMap, n.CoOrds) && n.AllowConstruction);
-}
+};
 const getFortifyableNeighbours = (gameMap: GameMap, coords: Point, range = 1): Building[] => {
   return (range === 1 ?
     getNeighbors(gameMap, coords) :
     getNeighborsAtRange(gameMap, getTile(gameMap, coords), range))
     .map(n => getBuildingAt(gameMap, n.CoOrds))
-    .filter(b => b !== undefined 
+    .filter(b => b !== undefined
       && b.Status === BuildingStatus.Active
-      && b.Level >= 1 
+      && b.Level >= 1
       && b.Level < b.MaxLevel);
-}
+};
 const getDemolishableNeighbours = (gameMap: GameMap, coords: Point, range = 1): Building[] => {
   return (range === 1 ?
     getNeighbors(gameMap, coords) :
@@ -169,7 +164,7 @@ const getDemolishableNeighbours = (gameMap: GameMap, coords: Point, range = 1): 
     .filter(b => b !== undefined
       && b.Status === BuildingStatus.Active
       && b.Level >= 1);
-}
+};
 //#endregion
 
 //path-finding
@@ -185,7 +180,8 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
     t1.TerrainMod.Supplies.Value / 100 + 1,
     0,
     getHexDistance(t1.CoOrds, t2.CoOrds),
-    0);
+    0
+  );
   const end = new WeightedCubeTile(
     undefined,
     convertToCudeCoOrds(t2.CoOrds),
@@ -193,7 +189,8 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
     t2.TerrainMod.Supplies.Value / 100 + 1,
     0,
     0,
-    0); // last 3 parameters aren't important for end;
+    0
+  ); // last 3 parameters aren't important for end;
 
   active.push(start);
   while (active.length !== 0) {
@@ -225,6 +222,7 @@ const getPath = (gameMap: GameMap, t1: Tile, t2: Tile, unit: Unit): Tile[] => {
       }
     });
   }
+  // eslint-disable-next-line no-console
   console.log('no path found');
   return path;
 };
@@ -252,14 +250,15 @@ const isOccupied = (gameMap: GameMap, coords: Point): boolean => {
   return getUnitAt(gameMap, coords) !== undefined ||
     getBuildingAt(gameMap, coords) !== undefined;
 };
-const tileExistsInArray = (arr: Tile[], t: Tile): boolean => {
-  return arr.filter(tile => pointEquals(t.CoOrds, tile.CoOrds)).length > 0;
+const isTileInList = (arr: Tile[], t: Tile): boolean => {
+  return arr.some(tile => pointEquals(t.CoOrds, tile.CoOrds));
 };
 const isCity = (gameMap: GameMap, coords: Point): boolean => {
   return getCityAt(gameMap, coords) !== undefined;
 };
 const isFriendlyCity = (gameMap: GameMap, coords: Point, self: Player): boolean => {
-  return (isCity(gameMap, coords) && (getCityAt(gameMap, coords)?.Owner === self));
+  const { Owner } = getCityAt(gameMap, coords);
+  return !!Owner && Owner === self;
 };
 //#endregion
 
@@ -267,31 +266,33 @@ const isFriendlyCity = (gameMap: GameMap, coords: Point, self: Player): boolean 
 const hasUnit = (gameMap: GameMap, coords: Point): boolean => {
   return getUnitAt(gameMap, coords) !== undefined;
 };
-const getUnitAt = (gameMap: GameMap, coords: Point): Unit => {
-  return gameMap.Units.find(u => pointEquals(u.Coords, coords));
+const getUnitAt = ({ Units }: GameMap, coords: Point): Unit => {
+  return Units.find(u => pointEquals(u.Coords, coords));
 };
-const getNumUnits = (gameMap: GameMap, self: Player): number => {
-  return gameMap.Units.filter(u => playerEquals(u.Owner, self)).length;
+const getNumUnits = ({ Units }: GameMap, self: Player): number => {
+  return Units.filter(u => playerEquals(u.Owner, self)).length;
 };
 const hasFriendlyUnit = (gameMap: GameMap, coords: Point, self: Player): boolean => {
-  return getUnitAt(gameMap, coords)?.Owner === self;
+  const { Owner } = getUnitAt(gameMap, coords);
+  return !!Owner && Owner === self;
 };
 const hasHostileUnit = (gameMap: GameMap, coords: Point, self: Player): boolean => {
-  return getUnitAt(gameMap, coords)?.Owner !== self;
+  const { Owner } = getUnitAt(gameMap, coords);
+  return !!Owner && Owner !== self;
 };
 const hasEnoughCartridges = (unit: Unit, firearm: Firearm, suppress = false): boolean => {
   return geqAttr(unit.Carrying.Cartridges, suppress ? firearm.ConsumptionSuppress.Cartridges : firearm.ConsumptionNormal.Cartridges);
 };
 const hasEnoughShells = (unit: Unit, weapon: Firearm | Gun, suppress = false): boolean => {
   return geqAttr(
-    unit.Carrying.Shells, 
-    weapon instanceof Firearm 
-      ? (suppress
-          ? (weapon as Firearm).ConsumptionSuppress.Shells
-          : (weapon as Firearm).ConsumptionNormal.Shells)
-      : (weapon as Gun).ShellConsumption
+    unit.Carrying.Shells,
+    !(weapon instanceof Firearm)
+      ? (weapon as Gun).ShellConsumption
+      : suppress
+        ? (weapon as Firearm).ConsumptionSuppress.Shells
+        : (weapon as Firearm).ConsumptionNormal.Shells
   );
-}
+};
 // for weapons that consume fuel, so far firearms only
 const hasEnoughFuel = (unit: Unit, firearm: Firearm, suppress = false): boolean => {
   return geqAttr(unit.Carrying.Fuel, suppress ? firearm.ConsumptionSuppress.Fuel : firearm.ConsumptionNormal.Fuel);
@@ -316,25 +317,26 @@ const hasBuilding = (gameMap: GameMap, coords: Point): boolean => {
 const getBuildingAt = (gameMap: GameMap, coords: Point): Building => {
   return gameMap.Buildings.find(b => pointEquals(b.CoOrds, coords));
 };
-const getBuildingsOfSameType = (gameMap: GameMap, type: BuildingType): Building[] => {
+const getBuildingsOfSameType = ({ Buildings }: GameMap, type: BuildingType): Building[] => {
   switch (type) {
     case 'unit':
-      return gameMap.Buildings.filter(b => b instanceof UnitBuilding);
+      return Buildings.filter(b => b instanceof UnitBuilding);
     case 'resources':
-      return gameMap.Buildings.filter(b => b instanceof ResourcesBuilding);
+      return Buildings.filter(b => b instanceof ResourcesBuilding);
     case 'infra':
-      return gameMap.Buildings.filter(b => b instanceof Infrastructure);
+      return Buildings.filter(b => b instanceof Infrastructure);
     case 'transmit':
-      return gameMap.Buildings.filter(b => b instanceof TransmissionBuilding);
+      return Buildings.filter(b => b instanceof TransmissionBuilding);
     case 'defensive':
-      return gameMap.Buildings.filter(b => b instanceof DefensiveBuilding);
+      return Buildings.filter(b => b instanceof DefensiveBuilding);
   }
 };
-const filterFriendlyBuildings = (buildings: Building[], self: Player) => {
+const filterFriendlyBuildings = (buildings: Building[], self: Player): Building[] => {
   return buildings.filter(b => playerEquals(b.Owner, self));
 };
 const hasFriendlyBuilding = (gameMap: GameMap, coords: Point, self: Player): boolean => {
-  return getBuildingAt(gameMap, coords)?.Owner === self;
+  const { Owner } = getBuildingAt(gameMap, coords);
+  return !!Owner && Owner === self;
 };
 //#endregion
 
@@ -384,35 +386,35 @@ const AITurn = (scene: Scene, data: JsonResourcesType) => {
 
   const deploy_target = active_barracks.filter(b => b.ReadyToDeploy.length !== 0);
   if (deploy_target.length === 0) {
-     return;
+    return;
   }
   const deploy_barrack = deploy_target[randomInt(0, deploy_target.length)];
   const ready_queue = deploy_barrack.ReadyToDeploy;
   const deploy_unit = ready_queue[randomInt(0, ready_queue.length)];
   const deploy_tiles = getDeployTargets(gameMap, getTile(gameMap, deploy_barrack.CoOrds), ai);
   const deploy_tile = deploy_tiles[randomInt(0, deploy_tiles.length)];
-  gameMap.Commands.push(new Deploy(scene, gameMap, ai, deploy_barrack.CoOrds, deploy_tile.CoOrds, data.customData, deploy_unit.Name))
+  gameMap.Commands.push(new Deploy(scene, gameMap, ai, deploy_barrack.CoOrds, deploy_tile.CoOrds, data.customData, deploy_unit.Name));
 
   if (own_units.length === 0) {
     return;
   }
   own_units.forEach(o => {
-    const ot = getTile(gameMap, o.Coords)
+    const ot = getTile(gameMap, o.Coords);
     const fire_targets = getFireTargets(gameMap, ot, ai, (o as Personnel).PrimaryFirearm);
     const move_targets = getMoveTargets(gameMap, ot, ai);
-    
+
     if (canCapture(gameMap, ot, ai)) {
       gameMap.Commands.push(new Capture(gameMap, ai, ot.CoOrds, ot.CoOrds));
     } else if (fire_targets.length !== 0) {
       const f_target = fire_targets[randomInt(0, fire_targets.length)];
       gameMap.Commands.push(new Fire(gameMap, ai, ot.CoOrds, f_target.Coords));
     } else if (move_targets.length !== 0) {
-      const m_target = move_targets.sort((a, b) => 
-        getHexDistance(a.CoOrds, player_city[0].CoOrds) - 
+      const m_target = move_targets.sort((a, b) =>
+        getHexDistance(a.CoOrds, player_city[0].CoOrds) -
         getHexDistance(b.CoOrds, player_city[0].CoOrds));
       gameMap.Commands.push(new Move(gameMap, ai, ot.CoOrds, m_target[0].CoOrds));
     }
-  })
+  });
 };
 
 //#endregion
@@ -421,20 +423,22 @@ const getRequiredSupplies = (path: Tile[], unit: Unit): number => {
   let supplies = 0;
   path.forEach(p => {
     supplies += applyMod(p.TerrainMod.Supplies,
-          applyModAttr(unit.Consumption.Supplies))
+      applyModAttr(unit.Consumption.Supplies));
   });
   return supplies;
 };
 
-const calculateMorale = (gameMap: GameMap) => {
-  gameMap.Units.filter(u => u.Carrying.Supplies.Value <= 0).forEach(u => {
-    u.Morale.Value -= 10; // -10 for now, can vary with different types of units later
-    if (u.Morale.Value < 0) {
-      u.Morale.Value = 0;
-    }
-  });
+const calculateMorale = (gameMap: GameMap): void => {
+  gameMap.Units
+    .filter(u => u.Carrying.Supplies.Value <= 0)
+    .forEach(u => {
+      u.Morale.Value -= 10; // -10 for now, can vary with different types of units later
+      if (u.Morale.Value < 0) {
+        u.Morale.Value = 0;
+      }
+    });
 };
-const flee = (unit: Unit) => {
+const flee = (unit: Unit): void => {
   if (unit.Morale.Value === 0) {
     if (random(0, 1) <= 0.1) { // 0.1 for now, can vary with different types of units later
       unit.Status = UnitStatus.Destroyed;
@@ -469,12 +473,11 @@ const updateTrainingTime = (gameMap: GameMap): void => {
   });
 };
 const updateTrainingGroundsQueues = (gameMap: GameMap): void => {
-  gameMap.Buildings.filter(b => b instanceof UnitBuilding).forEach(b => {
-    const ub = b as UnitBuilding;
-    if (ub.TrainingQueue.length === 0) {
+  gameMap.Buildings.forEach(b => {
+    if (!(b instanceof UnitBuilding) || b.TrainingQueue.length === 0) {
       return;
     }
-    ub.CurrentQueueTime = ub.TrainingQueue[ub.TrainingQueue.length - 1].TrainingTimeRemaining ?? 0;
+    b.CurrentQueueTime = b.TrainingQueue.slice(-1)[0].TrainingTimeRemaining ?? 0;
   });
 };
 const updateUnitPositions = (scene: Scene, gameMap: GameMap) => {
@@ -492,12 +495,12 @@ const updateConstructionTime = (gameMap: GameMap): void => {
       b.ConstructionTimeRemaining = 0;
       b.Status = BuildingStatus.Active;
       if (playerEquals(b.Owner, gameMap.Players[0])) {
-        gameMap.RoundLog.push(`Construction of ${b.Name} at (${b.CoOrds.X}, ${b.CoOrds.Y}) has finished.`)
+        gameMap.RoundLog.push(`Construction of ${b.Name} at (${b.CoOrds.X}, ${b.CoOrds.Y}) has finished.`);
       }
     }
   });
 };
-const updateResources = (r: Resources) => {
+const updateResources = (r: Resources): void => {
   document.querySelector('.player-resource-value.money-value').innerHTML = r.Money.Value.toString();
   document.querySelector('.player-resource-value.steel-value').innerHTML = r.Steel.Value.toString();
   document.querySelector('.player-resource-value.supplies-value').innerHTML = r.Supplies.Value.toString();
@@ -523,30 +526,24 @@ const updateCities = (scene: Scene, gameMap: GameMap): void => {
   });
 };
 const getWinner = (gameMap: GameMap): Player => {
-  const eliminated: Player[] = [];
-  gameMap.Players.forEach(p => {
-    if (getPlayersCities(gameMap, p).length === 0) {
-      eliminated.push(p);
-    }
-  });
-  if (eliminated.length !== 0) {
-    const remaining_players = gameMap.Players.filter(p => !eliminated.includes(p));
-    if (remaining_players.length === 1) {
-      return remaining_players[0];
-    } else if (remaining_players.length === 0) { // all players' cities are destroyed in the same round
-      const numUnits: number[] = [];
-      gameMap.Players.forEach(p => numUnits.push(getNumUnits(gameMap, p)));
-      const player_index_with_most_units = numUnits.reduce((iMax, x, i, arr) => x > arr[iMax] ? i : iMax, 0);
-      return gameMap.Players[player_index_with_most_units];
-      // TODO can consider more cases but it's already very rare
-      // to have same num units && all players' cities are destroyed in the same round
-    }
-    gameMap.Units = gameMap.Units.filter(u => remaining_players.includes(u.Owner));
-    gameMap.Buildings = gameMap.Buildings.filter(b => remaining_players.includes(b.Owner));
+  const playersWithCities = gameMap.Players.filter(p => getPlayersCities(gameMap, p).length > 0);
+  if (playersWithCities.length === 2) {
+    gameMap.Units = gameMap.Units.filter(u => playersWithCities.includes(u.Owner));
+    gameMap.Buildings = gameMap.Buildings.filter(b => playersWithCities.includes(b.Owner));
+    return undefined;
   }
-  return undefined;
+  if (playersWithCities.length === 1) {
+    return playersWithCities[0];
+  }
+  const playersWithNumUnits: [Player, number][] = gameMap.Players.map(p => [p, getNumUnits(gameMap, p)]);
+  return playersWithNumUnits.reduce( // Linear scan for in general >= 2 players
+    (previous, current) => previous[1] >= current[1] ? previous : current
+  )[0];
+  // return gameMap.Players[player_index_with_most_units];
+  // TODO: Consider more cases,
+  // but it's already very rare to have same num units && all players' cities are destroyed in the same round
 };
-const clearCommands = (gameMap: GameMap) => {
+const clearCommands = (gameMap: GameMap): void => {
   gameMap.Commands = [];
   gameMap.Units.forEach(u => u.IsCommandSet = false);
 };
@@ -578,6 +575,7 @@ const executeMiscPhase = (scene: Scene, gameMap: GameMap) => {
   removeDestroyed(scene, gameMap);
   const p = getWinner(gameMap);
   if (p !== undefined) {
+    // eslint-disable-next-line no-alert
     alert(`${p.Name} won!!`);
     // TODO return to main menu
   }
@@ -621,7 +619,7 @@ export {
   isOccupied,
   isAccessible,
   isWithinBoundary,
-  tileExistsInArray,
+  isTileInList,
   isCity,
   isFriendlyCity,
   hasFriendlyUnit,

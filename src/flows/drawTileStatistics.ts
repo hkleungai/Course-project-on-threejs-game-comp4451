@@ -70,15 +70,15 @@ const drawTileStatistics = ({
 
   guiContainer.style.top = `${screenTile.y}px`;
   guiContainer.style.left = `${screenTile.x}px`;
-  
-  let currentTileGridPosition = currentTile.name.match(/\((\d+), (\d+)\)/);
-  let pos: Point = new Point(parseInt(currentTileGridPosition[1]), parseInt(currentTileGridPosition[2]));
+
+  const currentTileGridPosition = currentTile.name.match(/\((\d+), (\d+)\)/);
+  const pos: Point = new Point(parseInt(currentTileGridPosition[1]), parseInt(currentTileGridPosition[2]));
   tileGridPosition && gui.removeFolder(tileGridPosition);
   tileGridPosition = gui.addFolder('Grid position');
   tileGridPosition.add(pos, 'X', 0, 25, 1).name('X');
   tileGridPosition.add(pos, 'Y', 0, 25, 1).name('Y');
   tileGridPosition.open();
-  
+
   tileCanvasPosition && gui.removeFolder(tileCanvasPosition);
   tileCanvasPosition = gui.addFolder('Canvas position');
   tileCanvasPosition.add(currentTile.position, 'x', -100, 100, 0.0001).name('X');

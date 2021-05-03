@@ -1,8 +1,6 @@
 import { Vector3 } from 'three';
 import {
   Attribute,
-  Modifier, // eslint-disable-line @typescript-eslint/no-unused-vars
-  ModifierType, // eslint-disable-line @typescript-eslint/no-unused-vars
   Point,
   Resources,
   TerrainModifiers
@@ -16,10 +14,9 @@ import {
   mapDataJson,
   playerDataJson
 } from '../assets/json';
-// import { isInteger } from 'mathjs';
-// import { InvalidArgumentException, rangeFrom, rangeFromTo } from '../utils';
 import { Building } from './buildings';
 import { Command } from '../command';
+import { range } from '../utils';
 
 enum TileType {
   BOUNDARY = 0,
@@ -82,6 +79,7 @@ class Cities extends Tile {
   }
 }
 
+/* eslint-disable camelcase */
 class WeightedCubeTile {
   public CubeCoords: number[];
   public BaseCost: number; // base cost for this tile: unit supplies/fule consumption
@@ -92,7 +90,7 @@ class WeightedCubeTile {
   public Parent: WeightedCubeTile;
   // a "just-right" estimate of total cost
   // IMPORTANT: sometimes wrong path is returned using underestimate, yet to find out why
-  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 2 }
+  get CostDistance(): number { return this.Cost + this.DistanceToGoal * this.BaseCost * 2; }
 
   constructor(parent: WeightedCubeTile, cube: number[], base: number, mod: number, cost: number, d_goal: number, d_sofar: number) {
     this.Parent = parent;
@@ -104,14 +102,10 @@ class WeightedCubeTile {
     this.DistanceSoFar = d_sofar;
   }
 }
+/* eslint-enable camelcase */
 
 const cubeTileEquals = (t1: WeightedCubeTile, t2: WeightedCubeTile): boolean => {
-  for (let i = 0; i < 3; i++) {
-    if (t1.CubeCoords[i] !== t2.CubeCoords[i]) {
-      return false;
-    }
-  }
-  return true;
+  return range(3).every(i => t1.CubeCoords[i] === t2.CubeCoords[i]);
 };
 
 class GameMap {

@@ -1,6 +1,5 @@
-// import { ResourcesBuilding } from './props/buildings';
 import { Unit } from './props/units';
-import { InsufficientResourcesException, InvalidArgumentException } from './utils';
+import { InvalidArgumentException } from './utils';
 
 class Point {
   public X : number;
@@ -18,7 +17,7 @@ class Point {
 
 const pointEquals = (p1: Point, p2: Point): boolean => {
   return p1.X === p2.X && p1.Y === p2.Y;
-}
+};
 
 class Resources {
   public Money : Attribute;
@@ -93,7 +92,7 @@ const consumeResources = (
   original.RareMetal.Value -= consumption.RareMetal.Value;
   original.Manpower.Value -= consumption.Manpower.Value;
   original.Power.Value -= consumption.Power.Value;
-}
+};
 
 const produceResources = (
   original : Resources,
@@ -134,11 +133,11 @@ const applyMod = (m: Modifier, n: number): number => {
     case ModifierType.MULTIPLE:
       return Math.round(n * m.Value);
   }
-}
+};
 
 const modEquals = (m1: Modifier, m2: Modifier): boolean => {
   return m1?.Type === m2?.Type && m1?.Value === m2?.Value;
-}
+};
 
 class TerrainModifiers {
   public Recon : Modifier;
@@ -188,80 +187,68 @@ const applyModAttr = (attr: Attribute): number => {
 ///region f**king "operator override"
 const plusAttr = (a1: Attribute, a2: Attribute): number => {
   return applyModAttr(a1) + applyModAttr(a2);
-}
+};
 
 const minusAttr = (a1: Attribute, a2: Attribute): number => {
   return applyModAttr(a1) - applyModAttr(a2);
-}
+};
 
 const timesAttr = (a1: Attribute, a2: Attribute): number => {
   return applyModAttr(a1) * applyModAttr(a2);
-}
+};
 
 const divideAttr = (a1: Attribute, a2: Attribute): number => {
   return applyModAttr(a1) / applyModAttr(a2);
-}
+};
 
-// note: undefined = throw if mods are diff; flase = keep a2 mod instead
-const plusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  const val: number = plusAttr(a1, a2);
-  if (!modEquals(a1.Mod, a2.Mod)) {
-    if (keep_a1_mod === undefined) {
-      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
+/* eslint-disable camelcase */
+// note: undefined = throw if mods are diff; false = keep a2 mod instead
+const equalsAttr = (fn: ((a: Attribute, b: Attribute) => number)) => {
+  return (a1: Attribute, a2: Attribute, keep_a1_mod?: boolean): Attribute => {
+    const val = fn(a1, a2);
+    if (!modEquals(a1.Mod, a2.Mod)) {
+      if (keep_a1_mod === undefined) {
+        throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
+      }
+      return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
     }
-    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
-  }
-  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
-}
+    return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
+  };
+};
 
-const minusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  const val: number = minusAttr(a1, a2);
-  if (!modEquals(a1.Mod, a2.Mod)) {
-    if (keep_a1_mod === undefined) {
-      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
-    }
-    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
-  }
-  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
-}
+const plusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod?: boolean): Attribute => {
+  return equalsAttr(plusAttr)(a1, a2, keep_a1_mod);
+};
 
-const timesEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  const val: number = timesAttr(a1, a2);
-  if (!modEquals(a1.Mod, a2.Mod)) {
-    if (keep_a1_mod === undefined) {
-      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
-    }
-    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
-  }
-  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
-}
+const minusEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod?: boolean): Attribute => {
+  return equalsAttr(minusAttr)(a1, a2, keep_a1_mod);
+};
 
-const divideEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod: boolean = undefined): Attribute => {
-  const val: number = divideAttr(a1, a2);
-  if (!modEquals(a1.Mod, a2.Mod)) {
-    if (keep_a1_mod === undefined) {
-      throw new InvalidArgumentException('a1.Mod, a2.Mod', a1.Mod, a2.Mod);
-    }
-    return new Attribute(val, keep_a1_mod ? a1.Mod : a2.Mod);
-  }
-  return new Attribute(val, a1.Mod); // a1.Mod or a2.Mod are both ok as they are equal
-}
+const timesEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod?: boolean): Attribute => {
+  return equalsAttr(timesAttr)(a1, a2, keep_a1_mod);
+};
+
+const divideEqualsAttr = (a1: Attribute, a2: Attribute, keep_a1_mod?: boolean): Attribute => {
+  return equalsAttr(divideAttr)(a1, a2, keep_a1_mod);
+};
+
+/* eslint-enable camelcase */
 
 const ltAttr = (a1: Attribute, a2: Attribute): boolean => {
   return applyModAttr(a1) < applyModAttr(a2);
-}
+};
 
 const leqAttr = (a1: Attribute, a2: Attribute): boolean => {
   return applyModAttr(a1) <= applyModAttr(a2);
-}
+};
 
 const gtAttr = (a1: Attribute, a2: Attribute): boolean => {
   return applyModAttr(a1) > applyModAttr(a2);
-}
+};
 
 const geqAttr = (a1: Attribute, a2: Attribute): boolean => {
   return applyModAttr(a1) >= applyModAttr(a2);
-}
+};
 
 ///endregion
 class Cost {

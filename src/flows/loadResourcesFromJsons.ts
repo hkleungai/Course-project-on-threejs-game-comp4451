@@ -23,25 +23,37 @@ const loadGameMapFromJson = ({ shouldLoad }: { shouldLoad: boolean }): GameMap =
   return gameMap;
 };
 
-const loadTileDataFromJson = (): TileData => {
+const loadTileDataFromJson = ({ shouldLoad }: { shouldLoad: boolean }): TileData => {
+  if (!shouldLoad) {
+    return undefined;
+  }
   const tileData = new TileData();
   tileData.Load();
   return tileData;
 };
 
-const loadBuildingDataFromJson = (): BuildingData => {
+const loadBuildingDataFromJson = ({ shouldLoad }: { shouldLoad: boolean }): BuildingData => {
+  if (!shouldLoad) {
+    return undefined;
+  }
   const buildingData = new BuildingData();
   buildingData.Load();
   return buildingData;
 };
 
-const loadCustomizableDataFromJson = (): CustomizableData => {
+const loadCustomizableDataFromJson = ({ shouldLoad }: { shouldLoad: boolean }): CustomizableData => {
+  if (!shouldLoad) {
+    return undefined;
+  }
   const customizableData = new CustomizableData();
   customizableData.Load();
   return customizableData;
 };
 
-const loadUnitDataFromJson = (): UnitData => {
+const loadUnitDataFromJson = ({ shouldLoad }: { shouldLoad: boolean }): UnitData => {
+  if (!shouldLoad) {
+    return undefined;
+  }
   const unitData = new UnitData();
   unitData.Load();
   return unitData;
@@ -50,11 +62,11 @@ const loadUnitDataFromJson = (): UnitData => {
 const loadResourcesFromJsons = ({
   shouldLoad = true
 }: { shouldLoad?: boolean } = {}): JsonResourcesType => ({
-    gameMap: loadGameMapFromJson({ shouldLoad }),
-    tileData: loadTileDataFromJson(),
-    buildingData: loadBuildingDataFromJson(),
-    customData: loadCustomizableDataFromJson(),
-    unitData: loadUnitDataFromJson()
-  });
+  gameMap: loadGameMapFromJson({ shouldLoad }),
+  tileData: loadTileDataFromJson({ shouldLoad }),
+  buildingData: loadBuildingDataFromJson({ shouldLoad }),
+  customData: loadCustomizableDataFromJson({ shouldLoad }),
+  unitData: loadUnitDataFromJson({ shouldLoad }),
+});
 
 export { JsonResourcesType, loadResourcesFromJsons };

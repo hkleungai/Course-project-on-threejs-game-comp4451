@@ -2,12 +2,9 @@ import {
   BufferGeometry,
   Camera,
   Object3D,
-  Mesh,
   Points,
   PointsMaterial,
-  Raycaster,
   Scene,
-  Vector3,
 } from 'three';
 import { highlightTile, highlightTargets } from './';
 import {
@@ -92,7 +89,7 @@ const selectTile = ({
         break;
       case 'fire':
         targets = getFireTargets(data.gameMap, tileObject, player, (unit as Personnel).PrimaryFirearm)
-        .map(t => getTile(data.gameMap, t.Coords));
+          .map(t => getTile(data.gameMap, t.Coords));
         break;
       case 'build':
         targets = getBuildTargets(data.gameMap, tileObject, player);
@@ -181,22 +178,22 @@ const selectTile = ({
   const tileObject = getTile(data.gameMap, coords);
 
   //#region reset all to unavailable
-  document.querySelectorAll('.action-sublist').forEach(n => 
+  document.querySelectorAll('.action-sublist').forEach(n =>
     Array.from(n.children).forEach(e => {
       if (!e.classList.contains('unavailable-action')) {
         e.classList.toggle('unavailable-action');
       }
     }
-  ));
-  document.querySelectorAll('.train-list').forEach(n => 
+    ));
+  document.querySelectorAll('.train-list').forEach(n =>
     Array.from(n.children).forEach(e => {
       if (!e.classList.contains('unavailable-action')) {
         e.classList.toggle('unavailable-action');
       }
     }
-  ));
+    ));
   //#endregion
-  
+
   if (confirmSelection && source !== undefined) {
     if ((currentTile as Mesh).material[2] === meshes.available) {
       const c = getCommand(targetType, targetName);
@@ -214,7 +211,7 @@ const selectTile = ({
       return;
     }
   }
-  
+
   const unit = getUnitAt(data.gameMap, coords);
   if (unit !== undefined && unit.Owner === player) {
     makeActionButtonAvailable('hold');
@@ -234,13 +231,13 @@ const selectTile = ({
   if (building !== undefined) {
     if (canTrain(data.gameMap, tileObject, player)) {
       makeActionButtonAvailable('train');
-      getTrainUnits(player, data.unitData).forEach(u => 
+      getTrainUnits(player, data.unitData).forEach(u =>
         makeTrainButtonAvailable(u.Name.toLowerCase())
       );
       if (getDeployUnits(data.gameMap, tileObject, player)) {
         makeActionButtonAvailable('deploy');
-        getDeployUnits(data.gameMap, tileObject, player).forEach(u => 
-          makeDeployButtonAvailable(u.Name.toLowerCase()))
+        getDeployUnits(data.gameMap, tileObject, player).forEach(u =>
+          makeDeployButtonAvailable(u.Name.toLowerCase()));
       }
     }
   }
@@ -253,63 +250,61 @@ const selectTile = ({
     );
   }
 
-  if (true) {
-    Array.from(document.querySelectorAll(`ul.action-sublist`)[0].children).forEach((e: HTMLElement) => {
-      switch (e.className) {
-        case 'hold':
-          e.onclick = () => addCommand(data.gameMap, unit, new Hold(data.gameMap, player, tileObject.CoOrds, tileObject.CoOrds));
-          break;
-        case 'move':
-          e.onclick = () => selectTarget('move');
-          break;
-        case 'fire':
-          e.onclick = () => selectTarget('fire');
-          break;
-        case 'capture':
-          e.onclick = () => addCommand(data.gameMap, unit, new Capture(data.gameMap, player, tileObject.CoOrds, tileObject.CoOrds));
-      }
-    });
-    Array.from(document.querySelectorAll(`ul.action-sublist`)[1].children).forEach((e: HTMLElement) => {
-      switch (e.className.replace('with-submenu', '').trim()) {
-        case 'train':
-          Array.from(document.querySelector(`ul.train-list`).children).forEach((ee: HTMLElement) => {
-            ee.onclick = () => 
-              addRepeatableCommand(data.gameMap, 
-                         new Train(scene,
-                                   data.gameMap, 
-                                   player,
-                                   tileObject.CoOrds,
-                                   tileObject.CoOrds,
-                                   getUnitFromName(ee.className.toLowerCase(), data.unitData)
-                                  )
-                                  );
-          });
-          break;
-        case 'construct':
-          Array.from(document.querySelector(`ul.building-list`).children).forEach((ee: HTMLElement) => {
-            ee.onclick = () => { 
-              targetName = ee.className;
-              selectTarget('build');
-            };
-          });
-          break;
-        case 'fortify':
-          e.onclick = () => selectTarget('fortify');
-          break;
-        case 'demolish':
-          e.onclick = () => selectTarget('demolish');
-          break;
-        case 'deploy':
-          Array.from(document.querySelector(`ul.deploy-list`).children).forEach((ee: HTMLElement) => {
-            ee.onclick = () => { 
-              targetName = ee.className;
-              selectTarget('deploy');
-            };
-          });
-          break;
-      }
-    });
-  }
+  Array.from(document.querySelectorAll(`ul.action-sublist`)[0].children).forEach((e: HTMLElement) => {
+    switch (e.className) {
+      case 'hold':
+        e.onclick = () => addCommand(data.gameMap, unit, new Hold(data.gameMap, player, tileObject.CoOrds, tileObject.CoOrds));
+        break;
+      case 'move':
+        e.onclick = () => selectTarget('move');
+        break;
+      case 'fire':
+        e.onclick = () => selectTarget('fire');
+        break;
+      case 'capture':
+        e.onclick = () => addCommand(data.gameMap, unit, new Capture(data.gameMap, player, tileObject.CoOrds, tileObject.CoOrds));
+    }
+  });
+  Array.from(document.querySelectorAll(`ul.action-sublist`)[1].children).forEach((e: HTMLElement) => {
+    switch (e.className.replace('with-submenu', '').trim()) {
+      case 'train':
+        Array.from(document.querySelector(`ul.train-list`).children).forEach((ee: HTMLElement) => {
+          ee.onclick = () =>
+            addRepeatableCommand(data.gameMap,
+              new Train(scene,
+                data.gameMap,
+                player,
+                tileObject.CoOrds,
+                tileObject.CoOrds,
+                getUnitFromName(ee.className.toLowerCase(), data.unitData)
+              )
+            );
+        });
+        break;
+      case 'construct':
+        Array.from(document.querySelector(`ul.building-list`).children).forEach((ee: HTMLElement) => {
+          ee.onclick = () => {
+            targetName = ee.className;
+            selectTarget('build');
+          };
+        });
+        break;
+      case 'fortify':
+        e.onclick = () => selectTarget('fortify');
+        break;
+      case 'demolish':
+        e.onclick = ( ) => selectTarget('demolish');
+        break;
+      case 'deploy':
+        Array.from(document.querySelector(`ul.deploy-list`).children).forEach((ee: HTMLElement) => {
+          ee.onclick = () => {
+            targetName = ee.className;
+            selectTarget('deploy');
+          };
+        });
+        break;
+    }
+  });
 };
 
 export { selectTile };
