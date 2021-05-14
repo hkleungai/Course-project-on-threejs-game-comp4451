@@ -1,0 +1,1557 @@
+{
+  "DefaultMainArmament": "C50mm",
+  "Guns": [
+    {
+      "Offense": {
+        "Handling": {
+          "Cyclic": {
+            "Value": 3.3300000000000001,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Clip": {
+            "Value": 1,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Reload": {
+            "Value": 3.2000000000000002,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Aim": {
+            "Value": 1.6000000000000001,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Salvo": {
+            "Value": 1,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "ROF": 0.79346168509340431,
+          "ROFSuppress": 1.063490035769034
+        },
+        "Damage": {
+          "Soft": {
+            "Value": 625,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Hard": {
+            "Value": 625,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Destruction": {
+            "Value": 500,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Deviation": {
+            "Value": 0.10000000000000001,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Dropoff": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Penetration": {
+            "Value": 160,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Accuracy": {
+          "Normal": {
+            "Value": 0.80000000000000004,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Suppress": {
+            "Value": 0.80000000000000004,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Deviation": {
+            "Value": 0.059999999999999998,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "AOE": {
+          "BlastRadius": {
+            "Value": 0.20000000000000001,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "SplashDecay": {
+            "Value": 0.80000000000000004,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Suppression": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "MinRange": {
+          "Value": 0,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "MaxRange": {
+          "Value": 7,
+          "Mod": {
+            "Type": 0,
+            "Value": 0
+          }
+        },
+        "IsDirectFire": true
+      },
+      "Noise": {
+        "Value": 180,
+        "Mod": null
+      },
+      "CamoPenaltyFire": {
+        "Value": -0.5,
+        "Mod": null
+      },
+      "ShellConsumption": {
+        "Value": 1.4199999999999999,
+        "Mod": null
+      },
+      "CompatibleShells": [
+        "AP",
+        "HE"
+      ],
+      "CurrentShell": null,
+      "Integrity": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Weight": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Name": "cannon_50mm",
+      "Cost": {
+        "Base": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Research": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Repair": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Fortification": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Manufacture": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Maintenance": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "Recycling": {
+          "Money": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Steel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Supplies": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Cartridges": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Shells": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Fuel": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "RareMetal": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Manpower": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Power": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          },
+          "Time": {
+            "Value": 0,
+            "Mod": {
+              "Type": 0,
+              "Value": 0
+            }
+          }
+        },
+        "CostModifier": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    }
+  ],
+  "MachineGuns": [],
+  "Engine": null,
+  "Suspension": null,
+  "Radio": null,
+  "Periscope": null,
+  "FuelTank": null,
+  "CannonBreech": null,
+  "AmmoRack": null,
+  "Name": "light_tank",
+  "Owner": null,
+  "Coords": {
+    "X": 0,
+    "Y": 0
+  },
+  "Status": 0,
+  "Cost": {
+    "Base": {
+      "Money": {
+        "Value": 2100,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 175,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 40,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 70,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 7.5,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 50,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 24,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 3.75,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "Research": {
+      "Money": {
+        "Value": 1100,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 280,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 1.25,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 6,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "Repair": {
+      "Money": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "Fortification": {
+      "Money": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "Manufacture": {
+      "Money": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 4,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "Maintenance": {
+      "Money": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "Recycling": {
+      "Money": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Steel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Supplies": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Cartridges": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Shells": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Fuel": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "RareMetal": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Manpower": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Power": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Time": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    },
+    "CostModifier": {
+      "Type": 0,
+      "Value": 0
+    }
+  },
+  "Maneuverability": {
+    "Speed": {
+      "Value": 7,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Mobility": {
+      "Value": 75,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Size": {
+      "Value": 3.2999999999999998,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Weight": {
+      "Value": 12,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    }
+  },
+  "Defense": {
+    "Strength": {
+      "Value": 840,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Resistance": {
+      "Value": 250,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Evasion": {
+      "Value": 0.025000000000000001,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Hardness": {
+      "Value": 0.69999999999999996,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Integrity": {
+      "Value": 275,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Suppression": {
+      "Threshold": {
+        "Value": 1.2,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      },
+      "Resilience": {
+        "Value": 0,
+        "Mod": {
+          "Type": 0,
+          "Value": 0
+        }
+      }
+    }
+  },
+  "Consumption": {
+    "Money": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Steel": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Supplies": {
+      "Value": 2,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Cartridges": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Shells": {
+      "Value": 1.4199999999999999,
+      "Mod": null
+    },
+    "Fuel": {
+      "Value": 2.5,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "RareMetal": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Manpower": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Power": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Time": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    }
+  },
+  "Carrying": {
+    "Money": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Steel": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Supplies": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Cartridges": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Shells": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Fuel": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "RareMetal": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Manpower": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Power": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Time": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    }
+  },
+  "Capacity": {
+    "Money": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Steel": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Supplies": {
+      "Value": 80,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Cartridges": {
+      "Value": 140,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Shells": {
+      "Value": 15,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Fuel": {
+      "Value": 125,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "RareMetal": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Manpower": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Power": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Time": {
+      "Value": 0,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    }
+  },
+  "Scouting": {
+    "Reconnaissance": {
+      "Value": 4,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Camouflage": {
+      "Value": 14,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Detection": {
+      "Value": 30,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    },
+    "Communication": {
+      "Value": 9,
+      "Mod": {
+        "Type": 0,
+        "Value": 0
+      }
+    }
+  },
+  "Morale": {
+    "Value": 100,
+    "Mod": null
+  },
+  "CurrentSuppressionLevel": 0,
+  "LastSuppressedRound": 0,
+  "IsSuppressed": false,
+  "IsDisconnected": false,
+  "TrainingTimeRemaining": 0,
+  "TrainingGround": null,
+  "IsCommandSet": false
+}

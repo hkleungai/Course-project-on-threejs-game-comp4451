@@ -1,0 +1,26 @@
+C:\Users\leung\source\repos\JSON Util\bin\Debug\JSON Util.exe.config
+C:\Users\leung\source\repos\JSON Util\bin\Debug\JSON Util.exe
+C:\Users\leung\source\repos\JSON Util\bin\Debug\JSON Util.pdb
+C:\Users\leung\source\repos\JSON Util\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Buffers.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Memory.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Text.Json.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.ValueTuple.dll
+C:\Users\leung\source\repos\JSON Util\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Buffers.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Memory.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Text.Json.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\leung\source\repos\JSON Util\bin\Debug\System.ValueTuple.xml
+C:\Users\leung\source\repos\JSON Util\obj\Debug\JSON Util.csprojAssemblyReference.cache
+C:\Users\leung\source\repos\JSON Util\obj\Debug\JSON Util.csproj.CoreCompileInputs.cache
+C:\Users\leung\source\repos\JSON Util\obj\Debug\JSON Util.csproj.CopyComplete
+C:\Users\leung\source\repos\JSON Util\obj\Debug\JSON Util.exe
+C:\Users\leung\source\repos\JSON Util\obj\Debug\JSON Util.pdb
