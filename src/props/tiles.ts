@@ -118,6 +118,7 @@ class GameMap {
   private _buildings : Building[] = [];
   private _commands : Command[] = [];
   private _roundnum = 1;
+  private _round_log : string[] = [];
   private static _hexScreenSize: Vector3;
 
   static get Height() : number { return GameMap._height; }
@@ -133,6 +134,8 @@ class GameMap {
   set Buildings(buildings: Building[]) { this._buildings = buildings; }
   get Commands() : Command[] { return this._commands; }
   set Commands(commands: Command[]) { this._commands = commands; }
+  get RoundLog(): string[] { return this._round_log; }
+  set RoundLog(log: string[]) { this._round_log = this.RoundLog; }
   get RoundNum() : number { return this._roundnum; }
   set RoundNum(round: number) { this._roundnum = round; }
   static get HexScreenSize() : Vector3 { return GameMap._hexScreenSize; }

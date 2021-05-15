@@ -97,9 +97,9 @@ const listenOnKeyboardEvent = ({
       case 'q':
         selectTile({
           camera,
-          gameMap: jsonResources.gameMap,
           direction: Direction[event.key],
-          scene
+          scene,
+          data: jsonResources
         });
         break;
       case 't': //test
@@ -107,6 +107,14 @@ const listenOnKeyboardEvent = ({
         break;
       case 'Enter':
         scene !== undefined && jsonResources.gameMap !== undefined && executePhases(scene, jsonResources);
+        break;
+      case ' ':
+        selectTile({
+          camera,
+          scene,
+          confirmSelection: true,
+          data: jsonResources
+        });
         break;
       default:
         console.log(event.key); // eslint-disable-line no-console

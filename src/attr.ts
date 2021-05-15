@@ -45,7 +45,7 @@ class Resources {
   }
 }
 
-const consumeResources = (
+const lackingResources = (
   original: Resources,
   consumption: Resources
 ): string => {
@@ -76,7 +76,13 @@ const consumeResources = (
   if (original.Power.Value < consumption.Power.Value) {
     return 'power';
   }
+  return '';
+};
 
+const consumeResources = (
+  original : Resources,
+  consumption: Resources
+): void => {
   original.Money.Value -= consumption.Money.Value;
   original.Steel.Value -= consumption.Steel.Value;
   original.Supplies.Value -= consumption.Supplies.Value;
@@ -86,8 +92,6 @@ const consumeResources = (
   original.RareMetal.Value -= consumption.RareMetal.Value;
   original.Manpower.Value -= consumption.Manpower.Value;
   original.Power.Value -= consumption.Power.Value;
-
-  return '';
 };
 
 const produceResources = (
@@ -132,7 +136,7 @@ const applyMod = (m: Modifier, n: number): number => {
 };
 
 const modEquals = (m1: Modifier, m2: Modifier): boolean => {
-  return m1.Type === m2.Type && m1.Value === m2.Value;
+  return m1?.Type === m2?.Type && m1?.Value === m2?.Value;
 };
 
 class TerrainModifiers {
@@ -387,6 +391,7 @@ export {
   Point,
   pointEquals,
   Resources,
+  lackingResources,
   consumeResources,
   produceResources,
   Attribute,

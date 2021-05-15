@@ -12,7 +12,28 @@ const XOR = <T, >(a: T[], b: T[]): T[] => {
 
 const makeActionButtonAvailable = (classname: string): void => {
   document
-    .querySelector(`ul.action-sublist.${classname}`)
+    .querySelector(`ul.action-sublist>li.${classname}`)
+    .classList
+    .remove('unavailable-action');
+};
+
+const makeTrainButtonAvailable = (classname: string): void => {
+  document
+    .querySelector(`ul.train-list>li.${classname}`)
+    .classList
+    .remove('unavailable-action');
+};
+
+const makeConstructButtonAvailable = (classname: string): void => {
+  document
+    .querySelector(`ul.building-list>li.${classname}`)
+    ?.classList
+    ?.remove('unavailable-action');
+};
+
+const makeDeployButtonAvailable = (classname: string): void => {
+  document
+    .querySelector(`ul.deploy-list>li.${classname}`)
     .classList
     .remove('unavailable-action');
 };
@@ -77,6 +98,9 @@ export {
   cosDeg,
   XOR,
   makeActionButtonAvailable,
+  makeTrainButtonAvailable,
+  makeConstructButtonAvailable,
+  makeDeployButtonAvailable,
   KeyValuePair,
   Dictionary
 };

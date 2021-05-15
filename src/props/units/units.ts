@@ -57,7 +57,8 @@ abstract class Unit extends Prop {
   public IsSuppressed : boolean;
   public IsDisconnected : boolean;
   public TrainingTimeRemaining : number;
-  public TrainingGround: UnitBuilding;
+  public TrainingGround : UnitBuilding;
+  public IsCommandSet : boolean;
 
   public constructor(unit?: Partial<Unit>) {
     super();

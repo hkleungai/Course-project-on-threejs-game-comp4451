@@ -685,6 +685,10 @@
             "Value": 0
           }
         }
+      },
+      "CostModifier": {
+        "Type": 0,
+        "Value": 0
       }
     }
   },
@@ -700,21 +704,21 @@
   "Cost": {
     "Base": {
       "Money": {
-        "Value": 0,
+        "Value": 1100,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 45,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Supplies": {
-        "Value": 0,
+        "Value": 80,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -728,7 +732,7 @@
         }
       },
       "Shells": {
-        "Value": 0,
+        "Value": 12.5,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -749,7 +753,7 @@
         }
       },
       "Manpower": {
-        "Value": 0,
+        "Value": 20,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -763,7 +767,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 2,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -772,14 +776,14 @@
     },
     "Research": {
       "Money": {
-        "Value": 0,
+        "Value": 660,
         "Mod": {
           "Type": 0,
           "Value": 0
         }
       },
       "Steel": {
-        "Value": 0,
+        "Value": 140,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -814,7 +818,7 @@
         }
       },
       "RareMetal": {
-        "Value": 0,
+        "Value": 0.5,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -835,7 +839,7 @@
         }
       },
       "Time": {
-        "Value": 0,
+        "Value": 4,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -1044,7 +1048,7 @@
         }
       },
       "Power": {
-        "Value": 0,
+        "Value": 1.5,
         "Mod": {
           "Type": 0,
           "Value": 0
@@ -1201,6 +1205,10 @@
           "Value": 0
         }
       }
+    },
+    "CostModifier": {
+      "Type": 0,
+      "Value": 0
     }
   },
   "Maneuverability": {
@@ -1538,5 +1546,6 @@
   "IsSuppressed": false,
   "IsDisconnected": false,
   "TrainingTimeRemaining": 0,
-  "TrainingGround": null
+  "TrainingGround": null,
+  "IsCommandSet": false
 }

@@ -34,8 +34,6 @@ const applyCssChangesOnGameStart = (): void => {
   quitButtonForStatisticsTable.onclick = () => {
     statisticsTableWithBanner.style.display = 'none';
   };
-
-  // setTimeout 50ms so that the menu disappearing faster than alert shows up
   availableActions.forEach((availableAction: HTMLElement) => {
     if (!availableAction.classList.contains('show-statistics')) {
       availableAction.onclick = () => {
@@ -60,4 +58,3 @@ const applyCssChangesOnGameStart = (): void => {
   });
 };
 
-export { applyCssChangesOnGameStart };

@@ -6,7 +6,9 @@ import {
   Scene,
   Vector3Tuple,
 } from 'three';
-import { Hexagon } from '../utils';
+import { Tile } from '../props';
+import { meshes } from '../resources';
+import { getMesh, Hexagon } from '../utils';
 
 interface HighlightTileInputType {
   center: Vector3Tuple;
@@ -30,4 +32,12 @@ const highlightTile = ({
   return highlight;
 };
 
-export { highlightTile };
+const highlightTargets = (scene: Scene, tiles: Tile[]) => {
+  tiles.forEach(t => getMesh(scene, t).material[2] = meshes.available);
+};
+
+const unhighlightTargets = (scene: Scene, tiles: Tile[]) => {
+  tiles.forEach(t => getMesh(scene, t).material[2] = meshes.blank);
+};
+
+export { highlightTile, highlightTargets, unhighlightTargets };

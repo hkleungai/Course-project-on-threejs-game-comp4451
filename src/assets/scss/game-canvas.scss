@@ -68,6 +68,24 @@ nav.navigation {
       left: 30rem;
     }
 
+    .train-list {
+      display: none;
+      top: 0;
+      left: 30rem;
+    }
+
+    .building-list {
+      display: none;
+      top: 0;
+      left: 30rem;
+    }
+
+    .deploy-list {
+      display: none;
+      top: 0;
+      left: 30rem;
+    }
+
     li {
       @include set-height-and-lineHeight(3);
 
@@ -91,7 +109,7 @@ nav.navigation {
         cursor: pointer;
       }
 
-      &.with-submenu:hover ul {
+      &.with-submenu:hover > ul {
         display: block;
       }
 
